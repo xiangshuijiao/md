@@ -34,6 +34,7 @@
   * [百度网盘客户端 - Go语言编写]([https://github.com/iikira/BaiduPCS-Go#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95](https://github.com/iikira/BaiduPCS-Go#下载文件目录))
   * BaiduPCS-Go locate <文件1> <文件2> 获取下载直链
   * d --share  --locate  -p 100 文件**支持自动断点续传，所以下载卡住了可以重新下载**
-  * 
+  * markdown
+  * bind配置
 * 
 
