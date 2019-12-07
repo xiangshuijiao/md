@@ -10,7 +10,6 @@
 * [BBR安装教程：Debian9、CentOS](https://fangeqiang.com/2012.html)
 * [v2ray免费账号·Alvin9999 / new-pac Wiki·GitHub](https://github.com/Alvin9999/new-pac/wiki/v2ray免费账号)
 
-* 
 
 #### VMware虚拟机
 
@@ -104,9 +103,9 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   * [下载源码：wireshark-master-3.0.zip](https://www.lanzous.com/i7kvtpc)
   
     ```shell
-  wget -c http://download.qt-project.org/archive/qt/5.11/5.11.2/qt-opensource-linux-x64-5.11.2.run # 下载qt5.11.2
-  # 安装工具包
-  sudo apt-get install libglib2.0-dev
+    wget -c http://download.qt-project.org/archive/qt/5.11/5.11.2/qt-opensource-linux-x64-5.11.2.run # 下载qt5.11.2
+    # 安装工具包
+    sudo apt-get install libglib2.0-dev
     sudo apt-get install libgcrypt20-dev
     sudo apt-get install flex bison
     sudo apt-get install libssh-dev
@@ -118,12 +117,10 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
     
     chmod 777 qt-opensource-linux-x64-5.11.2.run && ./qt-opensource-linux-x64-5.11.2.run # 除了两个android不要选，其他都选上。 
     mkdir build && cd build 
-  export CMAKE_PREFIX_PATH="/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Core:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5LinguistTools:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Multimedia:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5PrintSupport:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Svg"
+    export CMAKE_PREFIX_PATH="/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Core:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5LinguistTools:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Multimedia:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5PrintSupport:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Svg"
     
     cmake -G "Unix Makefiles" ../wireshark-master-3.0/  # 注意：**如果已经进入了管理员模式就不要在使用sudo了，否则上一步的环境变量不会生效。**
     make && make install
     sudo wireshark
-  ```
-    
-  
-  
+    ```
+
