@@ -143,5 +143,20 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
     sudo wireshark
     ```
 
-#### 啊手动阀
+#### ubuntu开启混杂模式后用wireshark抓包
+
+* ```shell
+  service network-manager stop # 彻底关闭网络模块，防止开了混杂模式后一连网又退出混杂模式了
+  # 将网卡设置为混杂模式
+  ifconfig wlan0 down
+  iwconfig wlan0 mode monitor
+  ifconfig wlan0 up
+  apt install aircrack-ng
+  # 设置无线网卡既抓取2.4G的帧，也抓取5G的帧
+  airodump-ng wlan0 --bssid ff:ff:ff:ff:ff:ff -C 2400-5900 
+  # wireshark筛选出2.4G和5G的beacon帧
+  wlan.fc.type==0x00 && wlan.fc.type_subtype==0x08 && (wlan.addr==00:12:23:38:38:38 || wlan.addr==00:12:23:38:38:399) 
+  ```
+
+* 
 
