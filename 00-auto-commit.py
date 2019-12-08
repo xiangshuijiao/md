@@ -8,5 +8,5 @@ def timer(n):
         run("git add --all && git commit -m  \"" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) +  "\" && git push origin master", shell=True)
         print("start sleep...\n")
         time.sleep(n)
-timer(1)
+timer(180)
     
