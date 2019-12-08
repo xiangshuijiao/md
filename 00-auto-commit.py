@@ -1,6 +1,6 @@
 import time
 import datetime
-import os
+from subprocess import run
 
 # 每隔n秒执行一次
 def timer(n):
