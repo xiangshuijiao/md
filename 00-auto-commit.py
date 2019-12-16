@@ -43,21 +43,12 @@ http
     server {
         listen       8089;
         server_name  www.huozhebusi.xyz;
+        add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+        access_log logs/access.log default;        
 
         location / {
                 rewrite "^/(.*)" https://$host/$1 redirect;
-        }
-    }
-
-    server {
-        server_name  www.huozhebusi.xyz;
-        add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
-        access_log logs/access.log default;
-
-        location / {
                 proxy_pass https://www.google.com;
         }
-
     }
-
 }
