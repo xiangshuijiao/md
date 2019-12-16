@@ -170,6 +170,10 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 
 * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
 
+* **注意**：只能使用http，https会访问失败
+
+* /usr/local/nginx/conf/nginx.conf配置文件如下：
+
 * ```makefile
   user nobody nobody;
   worker_processes auto;
