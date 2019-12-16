@@ -162,3 +162,9 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   wlan.fc.type==0x00 && wlan.fc.type_subtype==0x08 && (wlan.addr==00:12:23:38:38:38 || wlan.addr==00:12:23:38:38:399) 
   ```
 
+### 翻墙
+
+#### 谷歌镜像搭建
+
+* [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
+
