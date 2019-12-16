@@ -167,4 +167,6 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 #### 谷歌镜像搭建
 
 * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
+* [使用 Nginx 反向代理 Google 和 Wikipedia](https://stdrc.cc/post/2018/10/23/reverse-proxy-of-google/)
+* [Nginx反向代理建设谷歌一体化站](https://www.h2wp.com/tech-stuff/google-on.html)
 
