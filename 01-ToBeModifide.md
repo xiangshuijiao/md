@@ -272,11 +272,13 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 
 * [Ubuntu全盘备份与恢复，亲自总结，实测可靠](https://blog.csdn.net/sinat_27554409/article/details/78227496)
 
+  * 将下面的脚本拷贝到/backup文件夹并执行
+  
   ```makefile
-  echo $(date)
-  cd /
-  tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys --exclude=/media /
-  echo $(data)
+      echo $(date)
+      cd /
+      tar cvpzf /backup/`date +%Y%m%d%H%M`.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup --exclude=/mnt --exclude=/sys --exclude=/media /
+      echo $(date)
   ```
 
 
