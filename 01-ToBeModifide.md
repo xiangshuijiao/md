@@ -246,9 +246,9 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 
 ### 搭建测试拓扑
 
-### 测试拓扑搭建教程
+#### 测试拓扑搭建教程
 
-#### 相t关知识
+##### 相关知识
 
 * host www.debian.cn 192.168.23.179  指定域名服务器，正向查询
 
@@ -280,7 +280,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   ```
 
 
-#### DNS
+##### DNS
 
 * [Linux系统下搭建DNS服务器——DNS原理总结](https://zhuanlan.zhihu.com/p/31568450)
 * [Ubuntu采用bind9配置DNS服务器](https://blog.csdn.net/colourzjs/article/details/44491479)
@@ -292,13 +292,13 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   * [DNS软件bind使用（一）](https://blog.51cto.com/cuchadanfan/1710387)
   * [Debian 环境下简单配置 Bind9 服务](https://cloud.tencent.com/developer/article/1374805)
 
-#### DHCP
+##### DHCP
 
 * [Ubuntu-16.04搭建DHCP服务](https://blog.51cto.com/tong707/2124716)
 * [Ubuntu 14.04 isc-dhcp-server 启动失败(no IPv4 addresses)问题解决方法](https://blog.csdn.net/yingang_fu/article/details/39400845)
 
 
-#### PPPOE
+##### PPPOE
 
 * VlanID：局端会剥去从样机过来的VlanID为35的头部，从局端出来的所有的数据都没有VlanID，所以服务器不需要划分VlanID，下面的四个网页看看就好，用不到的。
 
@@ -315,7 +315,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
     pppoe-server -I enp1s0  -L 192.168.5.1 -R 192.168.5.3 -N 200
     ```
 
-#### dibbler-server、radvd
+##### dibbler-server、radvd
 
 * 内网：培训时李伟杰的ppt、Ubuntu下测试环境搭建doc
 
@@ -337,29 +337,29 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   * fe80::4216:9fff:feaa:bb3a为DUT wan口的本地链路地址，这里也可以填写dibbler分配給WAN口的全球链路地址，也就是说ipv6的网关既可以是本地链路地址，也可以是全球链路地址。
   * enp1s0为dibbler服务器所在的网卡名，也是DUT wan口直连的服务器网卡名。
 
-#### PPPOEv6
+##### PPPOEv6
 
 * `/etc/ppp/pppoe-server-options`多一项配置`+ipv6`
 * [基于Linux的IPv6接入服务器配置过程](https://wenku.baidu.com/view/12ae3149852458fb770b5684.html)的`PPPoEv6服务器配置`章节中解释了必须配置/etc/ppp/ipv6-up.d脚本的原因。脚本的唯一作用：**`将/etc/radvd.conf和/etc/dibbler/server.conf中的iface网口名enp1s0替换为pppoe服务器启动时新建的网口名ppp0或ppp1或ppp2等，并重启radvd、dibbler-server `**
 
-#### 转发功能
+##### 转发功能
 
 * [ubuntu 双网卡转发网线直接连接配置](https://blog.csdn.net/tiger_he/article/details/80805075): vim /etc/sysctl.conf 
 * 参考：[ubuntu双网卡设置内外网上网问题,实现路由转发](https://wenku.baidu.com/view/1920c29b4693daef5ef73df7.html)
 * `sysctl -p`全为1表示ipv4、ipv6的转发功能都开启了
 
-#### wireshak
+##### wireshak
 
 * [Ubuntu源码安装wireshark](https://blog.csdn.net/weixin_40850689/article/details/93466848)：/etc/sysctl.conf
 * [Wireshark3.0 ubuntu16.04上编译](https://blog.csdn.net/cjqqschoolqq/article/details/89737648)
 
-#### flameshot
+##### flameshot
 
 * 注意：不能在管理员模式下使用flameshot gui启动flameshot，只能在普通模式下启动;
 * [ubuntu1604 安装截图粘图工具flameshot并设置快捷键为F3](https://blog.csdn.net/weixin_42927959/article/details/95375941) ;
 * [qmake报错：Project ERROR: Unknown module(s) in QT: svg](https://blog.csdn.net/qq_21398167/article/details/46427597)
 
-#### BaiduPCS-Go
+##### BaiduPCS-Go
 
 * **github搜索百度网盘按日期排序，最近更新过的项目肯定是能用的**（百度云用于关键词搜索）。
 * [BaiduPCS-Go的安装及使用](https://luomuxiaoxiao.com/?p=102)
@@ -367,7 +367,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 * BaiduPCS-Go locate <文件1> <文件2> 获取下载直链
 * d --share  --locate  -p 100 文件**支持自动断点续传，所以下载卡住了可以重新下载**
 
-#### 静态IP
+##### 静态IP
 
 * 在Ubuntu1404中通过`/etc/network/interfaces`配置ipv4、ipv6地址时ipv4不生效，重启电脑也不行，Ubuntu1604中则没有这个问题，通过反复执行下面的命令可以使配置生效，具体哪个起的作用我也不清楚
   * `ifdown eth0 && ifup eth0 && ifconfig ` **这个命令可能会执行失败，所以需要反复执行，如果能成功执行就能使配置生效**
@@ -376,9 +376,9 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   * `/etc/init.d/network-manager restart`
 * **注意：**在``/etc/NetworkManager/system-connections``中的配置信息可能会和`/etc/network/interfaces`中的配置信息冲突，所以最好删除``/etc/NetworkManager/system-connections``中的所有文件，然后重启电脑。
 
-### 配置文件
+#### 配置文件
 
-#### 静态IP配置文件
+##### 静态IP配置文件
 
 * vim /etc/network/interfaces
 
@@ -406,7 +406,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
           netmask         64
   ```
 
-#### dns 配置文件
+##### dns 配置文件
 
 * vim /etc/bind/named.conf.local
 
@@ -461,7 +461,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   3.5 IN  PTR www.debian.cn.
   ```
 
-#### dhcp配置文件
+##### dhcp配置文件
 
 * vim /etc/sysctl.conf开启ipv4和ipv6转发，并用sysctl -p检查是否开启成功
 
@@ -508,7 +508,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 
   
 
-#### radvd配置文件
+##### radvd配置文件
 
 * vim /etc/radvd.conf
 
@@ -524,7 +524,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   
   ```
 
-#### dibbler配置文件
+##### dibbler配置文件
 
 * vim /etc/dibbler/server.conf
 
@@ -556,7 +556,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   
   ```
 
-#### pppoe配置文件
+##### pppoe配置文件
 
 * vim /etc/ppp/options
 
@@ -599,7 +599,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   
   ```
 
-#### pppoev6配置文件
+##### pppoev6配置文件
 
 * ```makefile
   /etc/skel/dibbler_server_for_eth.conf
@@ -722,20 +722,17 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   
   ```
 
-```
-  
 * 开机自启动：`vim /etc/rc.local`
 
   ```makefile
   pppoe-server -I enp1s0  -L 192.168.5.1 -R 192.168.5.3 -N 200
-
-```
+  ```
 
 * **注意：**因为每次进行pppoe连接时都会新建一个ppp接口，而dibbler-server必须要在指定的ppp接口上启动才可以给该ppp接口连接的DUT样机分配IPV6地址，而上面脚本的作用就是每来一个ppp连接就将dibbler-server的启动接口修改为新建的ppp连接接口，从而给新建的连接分配ipv6地址，但是这样就不能给旧有的ppp连接分配ipv6地址了，所以我采用了以下两点策略：
 * 将dibbler-server的地址有效时间修改的长一点，这样旧有的ppp连接有了地址之后的很长一段时间都不用再次获取ipv6地址。
   * pppoe拨号获取ipv6失败就反复重拨，因为每次拨号都会将dibbler-server的启动接口修改为新建的ppp接口，同时还会重启dibbler-server服务器。
 
-### 测试
+#### 测试
 
 * sip服务器上已经注册过的电话
 
@@ -776,9 +773,9 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   * [[网络性能测试工具iperf详细使用图文教程【转载】](https://www.cnblogs.com/yingsong/p/5682080.html)](https://www.cnblogs.com/yingsong/p/5682080.html)
 
 
-### 踩的坑
+#### 踩的坑
 
-#### glibc升级
+##### glibc升级
 
 * 千万不要升级glibc！！！
 * 在源码安装chariot endpoint时提示glibc版本太低，于是升级glibc，然后系统就崩了，再也起不来了，只能找网管重装系统再来一遍，下面的恢复教程都没用。
@@ -786,21 +783,21 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 * [编译升级glibc与修复](https://github.com/levinit/itnotes/wiki/%E7%BC%96%E8%AF%91%E5%8D%87%E7%BA%A7glibc%E4%B8%8E%E4%BF%AE%E5%A4%8D#%E4%BF%AE%E5%A4%8Dglibc)
 * [记GLIBC升级失败后的恢复](http://blog.koko.vc/a/33/%E8%AE%B0glibc%E5%8D%87%E7%BA%A7%E5%A4%B1%E8%B4%A5%E5%90%8E%E7%9A%84%E6%81%A2%E5%A4%8D)
 
-#### dibbler启动
+##### dibbler启动
 
 * dibbler-server在enp1s0接口上能正常启动分配IP，在进行pppoev6拨号时在ppp接口上启动失败，询问师兄后得知：使用`rm -rf /var/lib/dibbler/*`将原来的配置信息给清除掉就可以了
 
-### 问题
+#### 问题
 
-#### 网关上的ipv6路由表要自己搭建
+##### 网关上的ipv6路由表要自己搭建
 
-#### pppoe拨号获取ipv6相关信息失败
+##### pppoe拨号获取ipv6相关信息失败
 
 * 解决1：反复几次重新拨号或者干脆删掉连接后重新建立连接。
 * 解决2：使用串口查看自己的ppp接口名，然后在服务器上将radvd、dibbler的启动接口修改为自己的ppp接口并重启。
 * 原因说明：因为每次pppoe拨号启动时都会将dibbler-server的启动接口修改为新建的ppp接口并重启dibbler-server服务器，而每次pppoe拨号断开时会将dibbler-server的启动接口修改为enp1s0接口并重启dibbler-server服务器，如果pppoe拨号获取ipv6失败就反复几次重新拨号或者干脆删掉连接后重新建立连接，因为dibbler-server服务器有小概率会启动失败，而每次拨号都会重启dibbler-server服务器
 
-#### Dynamic拨号获取ipv6相关信息失败
+##### Dynamic拨号获取ipv6相关信息失败
 
 * 解决1：新建一个pppoe拨号并删除，然后在进行Dynamic拨号。
 * 解决2：使用串口查看自己的ppp接口名，然后在服务器上将radvd、dibbler的启动接口修改为自己的ppp接口并重启。
