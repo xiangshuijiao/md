@@ -4,7 +4,7 @@
   * [VMware虚拟机](#vmware%E8%99%9A%E6%8B%9F%E6%9C%BA)
   * [tmux使用手册](#tmux%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C)
   * [securecrt配置](#securecrt%E9%85%8D%E7%BD%AE)
-  * [git手册](#git%E6%89%8B%E5%86%8C)
+  * [git手册](#git%E6%89%8B%E5%86%8C) 
   * [vim配置文件](#vim%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   * [typora配置文件](#typora%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   * [python转exe](#python%E8%BD%ACexe)
@@ -302,11 +302,12 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 * [Ubuntu全盘备份与恢复，亲自总结，实测可靠](https://blog.csdn.net/sinat_27554409/article/details/78227496)
 
   * 将下面的脚本拷贝到/backup文件夹并执行
+  * [ubuntu 系统备份和还原策略](https://github.com/hayifeng/Just_For_Fun/issues/7)：备份到最后系统会提示`tar: 由于前次错误,将以上次的错误状态退出`，这个警告可以忽略，没什么影响的。
   
   ```makefile
   echo $(date)
   cd /
-  tar cvpzf /backup/`date +%Y%m%d%H%M`.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup --exclude=/mnt --exclude=/sys --exclude=/media /
+  tar cvpzf /backup/`date +%Y%m%d%H%M`.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup --exclude=/mnt --exclude=/tmp --exclude=/media /
   echo $(date)
   ```
 
@@ -761,6 +762,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 
 * **注意：**因为每次进行pppoe连接时都会新建一个ppp接口，而dibbler-server必须要在指定的ppp接口上启动才可以给该ppp接口连接的DUT样机分配IPV6地址，而上面脚本的作用就是每来一个ppp连接就将dibbler-server的启动接口修改为新建的ppp连接接口，从而给新建的连接分配ipv6地址，但是这样就不能给旧有的ppp连接分配ipv6地址了，所以我采用了以下两点策略：
 * 将dibbler-server的地址有效时间修改的长一点，这样旧有的ppp连接有了地址之后的很长一段时间都不用再次获取ipv6地址。
+  
   * pppoe拨号获取ipv6失败就反复重拨，因为每次拨号都会将dibbler-server的启动接口修改为新建的ppp接口，同时还会重启dibbler-server服务器。
 
 #### 测试
