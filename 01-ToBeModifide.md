@@ -48,15 +48,13 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 #### 能**上网查到**的就不要记了
 
+### 杂项
+
 #### 书签备份
 
 * [bookmarks_2019_12_7.7z](https://www.lanzous.com/i7vu99g)
 
-#### v2ray
-
-* [V2Ray搭建详细图文教程](https://github.com/233boy/v2ray/wiki/V2Ray搭建详细图文教程)
-* [BBR安装教程：Debian9、CentOS](https://fangeqiang.com/2012.html)
-* [v2ray免费账号·Alvin9999 / new-pac Wiki·GitHub](https://github.com/Alvin9999/new-pac/wiki/v2ray免费账号)
+* 
 
 
 #### VMware虚拟机
@@ -193,6 +191,12 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
   ```
 
 ### 翻墙
+
+#### v2ray
+
+* [V2Ray搭建详细图文教程](https://github.com/233boy/v2ray/wiki/V2Ray搭建详细图文教程)
+* [BBR安装教程：Debian9、CentOS](https://fangeqiang.com/2012.html)
+* [v2ray免费账号·Alvin9999 / new-pac Wiki·GitHub](https://github.com/Alvin9999/new-pac/wiki/v2ray免费账号)
 
 #### 谷歌镜像搭建
 
