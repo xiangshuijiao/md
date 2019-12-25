@@ -135,6 +135,15 @@ body {
 
 ### Ubuntu
 
+#### ubuntu中文路径改为英文
+
+* 在普通模式和管理员模式下分别各自执行以下命令
+
+* ```makefile
+  export LANG=en_US
+  xdg-user-dirs-gtk-update
+  ```
+
 #### ubuntu新系统配置
 
 ```shell
