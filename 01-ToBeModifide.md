@@ -438,7 +438,7 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
           netmask         255.255.255.0
           broadcast       192.168.5.255
   #        gateway		10.112.18.254
-  #      	 dns-nameservers	10.112.18.1
+  #      	 dns-nameservers	10.112.18.1 10.112.18.2
   iface enp1s0 inet6 static
           address         2404:5555::1
           netmask         64
