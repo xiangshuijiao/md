@@ -135,6 +135,10 @@ body {
 
 ### Ubuntu
 
+#### 其他
+
+* [Ubuntu16.04默认make版本修改](https://blog.csdn.net/sjzzdf123/article/details/79863548)
+
 #### ubuntu中文路径改为英文
 
 * 在普通模式和管理员模式下分别各自执行以下命令
