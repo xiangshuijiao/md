@@ -135,6 +135,12 @@ body {
 
 ### Ubuntu
 
+#### 搭建ftp服务器
+
+* 下面教程都不行，**最后决定还是使用百度云吧**
+* [关于Linux环境下安装配置vsftpd服务全攻略（踩坑）](https://blog.csdn.net/aiynmimi/article/details/77012507)
+* [CentOS7安装配置vsftp搭建FTP.md](https://github.com/jaywcjlove/handbook/blob/master/CentOS/CentOS7安装配置vsftp搭建FTP.md)
+
 #### 其他
 
 * [Ubuntu16.04默认make版本修改](https://blog.csdn.net/sjzzdf123/article/details/79863548)
