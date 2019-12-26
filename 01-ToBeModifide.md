@@ -197,7 +197,9 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 
 #### ubuntu开启混杂模式后用wireshark抓包
 
-* ```shell
+* [使用Aircrack-ng套件在5Ghz无线网频段](https://blog.csdn.net/CK2009159/article/details/84096343)
+  
+  ```shell
   service network-manager stop # 彻底关闭网络模块，防止开了混杂模式后一连网又退出混杂模式了
   # 将网卡设置为混杂模式
   ifconfig wlan0 down
@@ -223,6 +225,8 @@ export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是
 * [搭建Google 反代站（镜像站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)
 
 * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
+
+* [2019/2020 Google镜像大全，谷歌镜像网址](https://www.uedbox.com/post/54776/)
 
 * **注意**：只能使用http，https会访问失败
 
