@@ -143,7 +143,7 @@ body {
 
 #### 其他
 
-* [Ubuntu16.04默认make版本修改](https://blog.csdn.net/sjzzdf123/article/details/79863548)
+* [Ubuntu16.04默认make版本修改（make-3.82）](https://blog.csdn.net/sjzzdf123/article/details/79863548)
 
 #### ubuntu中文路径改为英文
 
