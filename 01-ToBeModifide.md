@@ -147,21 +147,14 @@ body {
 
 #### ubuntu中文路径改为英文
 
-* 在普通模式和管理员模式下分别各自执行以下命令
+* 在**普通模式**下执行以下命令
 
 * ```makefile
+  # 注意：不要在管理员模式下执行命令
   export LANG=en_US
   xdg-user-dirs-gtk-update
+  reboot
   ```
-
-#### ubuntu新系统配置
-
-```shell
-# 主文件夹改为英文
-export LANG=en_US
-xdg-user-dirs-gtk-update # 跳出对话框询问是否将目录转化为英文路径,同意并关闭.
-export LANG=zh_CN # 关闭终端,并重起.下次进入系统,系统会提示是否把转化好的目录改回中文.选择不再提示,并取消修改.主目录的中文转英文就完成了~
-```
 
 #### Ubuntu1604源码安装wireshak最新版3.0.7
 
