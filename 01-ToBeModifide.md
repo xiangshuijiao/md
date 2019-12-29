@@ -61,7 +61,6 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 #### VMware虚拟机
 
 * [VMware虚拟机扩展Linux根目录磁盘空间（Centos）](https://my.oschina.net/u/876354/blog/967848)
-* [**回收VMWare虚拟机占用的磁盘空间**](http://blog.csdn.net/MENGHUANBEIKE/article/details/7851127)
 * 虚拟机linux设置静态IP
   - [Linux重启网卡报错：Bringing up interface eth0:1...... - 弗兰-随风小欢的博客 - CSDN博客](https://blog.csdn.net/qq_32575047/article/details/78896534)
   - [Linux虚拟机设置静态IP - Baishu的专栏 - CSDN博客](https://blog.csdn.net/sinat_32660629/article/details/80080880)
