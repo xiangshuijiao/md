@@ -4,12 +4,17 @@
   * [VMware虚拟机](#vmware%E8%99%9A%E6%8B%9F%E6%9C%BA)
   * [tmux使用手册](#tmux%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C)
   * [securecrt配置](#securecrt%E9%85%8D%E7%BD%AE)
+  * [excel绘图](#excel%E7%BB%98%E5%9B%BE)
   * [git手册](#git%E6%89%8B%E5%86%8C)
   * [vim配置文件](#vim%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   * [typora配置文件](#typora%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   * [python转exe](#python%E8%BD%ACexe)
+* [Windows](#windows)
+  * [Win10离线安装\.NET Framework 3\.5的方法技巧](#win10%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85net-framework-35%E7%9A%84%E6%96%B9%E6%B3%95%E6%8A%80%E5%B7%A7)
 * [Ubuntu](#ubuntu)
-  * [ubuntu新系统配置](#ubuntu%E6%96%B0%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE)
+  * [其他](#%E5%85%B6%E4%BB%96)
+  * [samba图形化界面配置](#samba%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%E9%85%8D%E7%BD%AE)
+  * [ubuntu中文路径改为英文](#ubuntu%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
   * [Ubuntu1604源码安装wireshak最新版3\.0\.7](#ubuntu1604%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85wireshak%E6%9C%80%E6%96%B0%E7%89%88307)
   * [ubuntu开启混杂模式后用wireshark抓包](#ubuntu%E5%BC%80%E5%90%AF%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F%E5%90%8E%E7%94%A8wireshark%E6%8A%93%E5%8C%85)
 * [翻墙](#%E7%BF%BB%E5%A2%99)
@@ -29,7 +34,7 @@
     * [BaiduPCS\-Go](#baidupcs-go)
     * [静态IP](#%E9%9D%99%E6%80%81ip)
   * [配置文件](#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-    * [静态IP配置文件](#%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+    * [静态IP、DNS](#%E9%9D%99%E6%80%81ipdns)
     * [dns 配置文件](#dns-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
     * [dhcp配置文件](#dhcp%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
     * [radvd配置文件](#radvd%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
@@ -44,6 +49,7 @@
     * [网关上的ipv6路由表要自己搭建](#%E7%BD%91%E5%85%B3%E4%B8%8A%E7%9A%84ipv6%E8%B7%AF%E7%94%B1%E8%A1%A8%E8%A6%81%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA)
     * [pppoe拨号获取ipv6相关信息失败](#pppoe%E6%8B%A8%E5%8F%B7%E8%8E%B7%E5%8F%96ipv6%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E5%A4%B1%E8%B4%A5)
     * [Dynamic拨号获取ipv6相关信息失败](#dynamic%E6%8B%A8%E5%8F%B7%E8%8E%B7%E5%8F%96ipv6%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E5%A4%B1%E8%B4%A5)
+
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go) 
 
@@ -76,6 +82,10 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 - [SecureCRT配置屏幕内容输出到log文件 - quietly_brilliant的专栏 - CSDN博客](https://blog.csdn.net/quietly_brilliant/article/details/78125599)
 - [10个提升工作效率的Secure CRT小窍门 - 你玩转了几个？-sandshell-51CTO博客](https://blog.51cto.com/sandshell/2118024)
+
+#### excel绘图
+
+* [通过Excel2003图表工具栏创建图表](http://www.excelcn.com/jiaocheng/excel2003/376.html)
 
 #### git手册
 
@@ -133,17 +143,33 @@ body {
 * [简单3步将你的python转成exe格式](https://zhuanlan.zhihu.com/p/38659588)
 * 
 
+### Windows
+
+#### Win10离线安装.NET Framework 3.5的方法技巧
+
+* 下载window10的iso文件
+
+* Win10 ISO文件上点击右键，选择“装载”，记下装载的盘符G，下面的命令会用到
+
+* 以管理员权限执行下面的命令，[参考链接](https://www.windows10.pro/win10-net-framework-3-5/)
+
+  ```shell
+  dism.exe /online /enable-feature /featurename:netfx3 /Source:G:\sources\sxs
+  ```
+
 ### Ubuntu
-
-#### 搭建ftp服务器
-
-* 下面教程都不行，**最后决定还是使用百度云吧**
-* [关于Linux环境下安装配置vsftpd服务全攻略（踩坑）](https://blog.csdn.net/aiynmimi/article/details/77012507)
-* [CentOS7安装配置vsftp搭建FTP.md](https://github.com/jaywcjlove/handbook/blob/master/CentOS/CentOS7安装配置vsftp搭建FTP.md)
 
 #### 其他
 
 * [Ubuntu16.04默认make版本修改（make-3.82）](https://blog.csdn.net/sjzzdf123/article/details/79863548)
+
+#### samba图形化界面配置
+
+* ```powershell
+  apt install samba samba-common smbfs cifs-utils system-config-samba
+  system-config-samba  # 选择access--》allow access to everyone
+  setfacl -R -m u:nobody:rwx /home/mobile/Desktop/ # 给所有用户读写执行权限
+  ```
 
 #### ubuntu中文路径改为英文
 
@@ -415,10 +441,21 @@ body {
 ##### BaiduPCS-Go
 
 * **github搜索百度网盘按日期排序，最近更新过的项目肯定是能用的**（百度云用于关键词搜索）。
+
 * [BaiduPCS-Go的安装及使用](https://luomuxiaoxiao.com/?p=102)
+
 * [百度网盘客户端 - Go语言编写]([https://github.com/iikira/BaiduPCS-Go#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95](https://github.com/iikira/BaiduPCS-Go#下载文件目录))
+
 * BaiduPCS-Go locate <文件1> <文件2> 获取下载直链
+
 * d --share  --locate  -p 100 文件**支持自动断点续传，所以下载卡住了可以重新下载**
+
+* **BaiduPCS-Go登录不上**
+
+  * 错误代码: 50035, 消息: 系统繁忙，请稍候再试(50035)
+  * 换种登录方式即可，`BaiduPCS-Go login -bduss=`
+
+  * [GitHub issue中有BDUSS获取方式](https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS)
 
 ##### 静态IP
 
@@ -494,13 +531,12 @@ body {
   www IN  A   192.168.5.3
   ipv4 IN A   10.0.0.100
   ipv6  IN  AAAA 2404::100
-  ftp IN  CNAME @
   proxy IN CNAME @
   blog IN CNAME @
   mysql IN CNAME @
   * IN A 192.168.5.4
   ```
-
+  
 * vim /etc/bind/zones/db.192.168 
 
   ```makefile
