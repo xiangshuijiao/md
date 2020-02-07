@@ -141,7 +141,12 @@ body {
 #### python转exe
 
 * [简单3步将你的python转成exe格式](https://zhuanlan.zhihu.com/p/38659588)
-* 
+
+#### 小米手环模拟加密的门禁等IC卡的教程
+
+* 需要购买**259元的proxmark3**
+* [手把手教 如何模拟IC加密卡](https://zhuanlan.zhihu.com/p/81384126)
+* [小米手环4nfc版提示“不支模拟该类型卡”的解决方案](https://www.bilibili.com/read/cv3417983/)
 
 ### Windows
 
