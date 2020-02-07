@@ -1,4 +1,4 @@
-  * [能<strong>上网查到</strong>的就不要记了](#%E8%83%BD%E4%B8%8A%E7%BD%91%E6%9F%A5%E5%88%B0%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%A6%81%E8%AE%B0%E4%BA%86)
+* [能<strong>上网查到</strong>的就不要记了](#%E8%83%BD%E4%B8%8A%E7%BD%91%E6%9F%A5%E5%88%B0%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%A6%81%E8%AE%B0%E4%BA%86)
 * [杂项](#%E6%9D%82%E9%A1%B9)
   * [书签备份](#%E4%B9%A6%E7%AD%BE%E5%A4%87%E4%BB%BD)
   * [VMware虚拟机](#vmware%E8%99%9A%E6%8B%9F%E6%9C%BA)
@@ -9,6 +9,7 @@
   * [vim配置文件](#vim%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   * [typora配置文件](#typora%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   * [python转exe](#python%E8%BD%ACexe)
+  * [小米手环模拟加密的门禁等IC卡的教程](#%E5%B0%8F%E7%B1%B3%E6%89%8B%E7%8E%AF%E6%A8%A1%E6%8B%9F%E5%8A%A0%E5%AF%86%E7%9A%84%E9%97%A8%E7%A6%81%E7%AD%89ic%E5%8D%A1%E7%9A%84%E6%95%99%E7%A8%8B)
 * [Windows](#windows)
   * [Win10离线安装\.NET Framework 3\.5的方法技巧](#win10%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85net-framework-35%E7%9A%84%E6%96%B9%E6%B3%95%E6%8A%80%E5%B7%A7)
 * [Ubuntu](#ubuntu)
