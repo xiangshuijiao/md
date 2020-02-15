@@ -363,6 +363,35 @@ body {
   tar cvpzf /backup/`date +%Y%m%d%H%M`.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup --exclude=/mnt --exclude=/tmp --exclude=/media /
   echo $(date)
   ```
+##### wireshak
+
+* [Ubuntu源码安装wireshark](https://blog.csdn.net/weixin_40850689/article/details/93466848)：/etc/sysctl.conf
+* [Wireshark3.0 ubuntu16.04上编译](https://blog.csdn.net/cjqqschoolqq/article/details/89737648)
+
+##### flameshot
+
+* 注意：不能在管理员模式下使用flameshot gui启动flameshot，只能在普通模式下启动;
+* [ubuntu1604 安装截图粘图工具flameshot并设置快捷键为F3](https://blog.csdn.net/weixin_42927959/article/details/95375941) ;
+* [qmake报错：Project ERROR: Unknown module(s) in QT: svg](https://blog.csdn.net/qq_21398167/article/details/46427597)
+
+##### BaiduPCS-Go
+
+* **github搜索百度网盘按日期排序，最近更新过的项目肯定是能用的**（百度云用于关键词搜索）。
+
+* [BaiduPCS-Go的安装及使用](https://luomuxiaoxiao.com/?p=102)
+
+* [百度网盘客户端 - Go语言编写]([https://github.com/iikira/BaiduPCS-Go#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95](https://github.com/iikira/BaiduPCS-Go#下载文件目录))
+
+* BaiduPCS-Go locate <文件1> <文件2> 获取下载直链
+
+* d --share  --locate  -p 100 文件**支持自动断点续传，所以下载卡住了可以重新下载**
+
+* **BaiduPCS-Go登录不上**
+
+  * 错误代码: 50035, 消息: 系统繁忙，请稍候再试(50035)
+  * 换种登录方式即可，`BaiduPCS-Go login -bduss=`
+
+  * [GitHub issue中有BDUSS获取方式](https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS)
 
 
 ##### DNS
@@ -433,35 +462,6 @@ body {
 * 参考：[ubuntu双网卡设置内外网上网问题,实现路由转发](https://wenku.baidu.com/view/1920c29b4693daef5ef73df7.html)
 * `sysctl -p`全为1表示ipv4、ipv6的转发功能都开启了
 
-##### wireshak
-
-* [Ubuntu源码安装wireshark](https://blog.csdn.net/weixin_40850689/article/details/93466848)：/etc/sysctl.conf
-* [Wireshark3.0 ubuntu16.04上编译](https://blog.csdn.net/cjqqschoolqq/article/details/89737648)
-
-##### flameshot
-
-* 注意：不能在管理员模式下使用flameshot gui启动flameshot，只能在普通模式下启动;
-* [ubuntu1604 安装截图粘图工具flameshot并设置快捷键为F3](https://blog.csdn.net/weixin_42927959/article/details/95375941) ;
-* [qmake报错：Project ERROR: Unknown module(s) in QT: svg](https://blog.csdn.net/qq_21398167/article/details/46427597)
-
-##### BaiduPCS-Go
-
-* **github搜索百度网盘按日期排序，最近更新过的项目肯定是能用的**（百度云用于关键词搜索）。
-
-* [BaiduPCS-Go的安装及使用](https://luomuxiaoxiao.com/?p=102)
-
-* [百度网盘客户端 - Go语言编写]([https://github.com/iikira/BaiduPCS-Go#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95](https://github.com/iikira/BaiduPCS-Go#下载文件目录))
-
-* BaiduPCS-Go locate <文件1> <文件2> 获取下载直链
-
-* d --share  --locate  -p 100 文件**支持自动断点续传，所以下载卡住了可以重新下载**
-
-* **BaiduPCS-Go登录不上**
-
-  * 错误代码: 50035, 消息: 系统繁忙，请稍候再试(50035)
-  * 换种登录方式即可，`BaiduPCS-Go login -bduss=`
-
-  * [GitHub issue中有BDUSS获取方式](https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS)
 
 ##### 静态IP
 
