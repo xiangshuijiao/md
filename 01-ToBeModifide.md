@@ -226,9 +226,9 @@ body {
   
   ```shell
   service network-manager stop # 彻底关闭网络模块，防止开了混杂模式后一连网又退出混杂模式了
-  # 将网卡设置为混杂模式
+  # 将网卡设置为混杂监听模式
   ifconfig wlan0 down
-  iwconfig wlan0 mode monitor
+  iwconfig wlan0 mode monitor ## 可以用iw list 查看网卡是否支持monitor模式
   ifconfig wlan0 up
   apt install aircrack-ng
   # 设置无线网卡既抓取2.4G的帧，也抓取5G的帧
