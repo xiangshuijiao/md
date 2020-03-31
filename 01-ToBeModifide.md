@@ -242,10 +242,28 @@ body {
 #### v2ray
 
 * [V2Ray搭建详细图文教程](https://github.com/233boy/v2ray/wiki/V2Ray搭建详细图文教程)
+
 * [BBR安装教程：Debian9、CentOS](https://fangeqiang.com/2012.html)
+
 * [v2ray免费账号·Alvin9999 / new-pac Wiki·GitHub](https://github.com/Alvin9999/new-pac/wiki/v2ray免费账号)
+
 * 端口检测：http://coolaf.com/tool/port
-* 端口打开命令 
+
+* 打开端口防火墙
+
+  * 方法1：
+
+    ```shell
+    iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8088 -j ACCEPT
+    iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8088 -j ACCEPT
+    /etc/init.d/iptables save
+    vim /etc/sysconfig/iptables-config
+    将IPTABLES_MODULES_UNLOAD项从yes修改为no       IPTABLES_MODULES_UNLOAD="no"
+    /etc/init.d/iptables restart
+    /etc/init.d/iptables  status
+    ```
+
+  * 方法2
 
 #### 谷歌镜像搭建
 
