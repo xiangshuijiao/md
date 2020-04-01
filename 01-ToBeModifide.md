@@ -243,6 +243,7 @@ body {
 
 * 新的方法（2020年4月1日）
 
+  * centos 8系统
   * [V2Ray翻墙完全教程(WS+TLS+Web) ](https://pincong.rocks/article/15493)
 
 * 旧的方法
