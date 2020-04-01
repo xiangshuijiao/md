@@ -241,7 +241,7 @@ body {
 
 #### v2ray
 
-* [V2Ray搭建详细图文教程](https://github.com/233boy/v2ray/wiki/V2Ray搭建详细图文教程)
+* [V2Ray搭建详细图文教程](https://github.com/233boy/v2ray/wiki/V2Ray搭建详细图文教程)：注意脚本仅支持**Centos 7 **以上的系统，6不支持
 
 * [BBR安装教程：Debian9、CentOS](https://fangeqiang.com/2012.html)
 
@@ -251,7 +251,7 @@ body {
 
 * 打开端口防火墙
 
-  * 方法1：
+  * 方法1：centos6
 
     ```shell
     iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8088 -j ACCEPT
@@ -263,7 +263,20 @@ body {
     /etc/init.d/iptables  status
     ```
 
-  * 方法2
+  * 方法2  centos7、8
+
+    ```shell 
+    firewall-cmd --zone=public --add-port=22/tcp --permanent
+    firewall-cmd --zone=public --add-port=22/udp --permanent
+    firewall-cmd --zone=public --add-port=8000/tcp --permanent
+    firewall-cmd --zone=public --add-port=8000/udp --permanent
+    firewall-cmd --zone=public --add-port=8001/tcp --permanent
+    firewall-cmd --zone=public --add-port=8001/udp --permanent
+    firewall-cmd --reload
+    firewall-cmd --zone=public --list-ports
+    ```
+
+    
 
 #### 谷歌镜像搭建
 
