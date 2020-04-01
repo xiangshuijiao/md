@@ -253,7 +253,7 @@ body {
 
   * [v2ray免费账号·Alvin9999 / new-pac Wiki·GitHub](https://github.com/Alvin9999/new-pac/wiki/v2ray免费账号)
 
-  * 端口检测：http://coolaf.com/tool/port
+  * [端口检测](http://coolaf.com/tool/port)
 
   * 打开端口防火墙
 
