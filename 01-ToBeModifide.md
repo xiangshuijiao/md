@@ -245,6 +245,7 @@ body {
 
   * centos 8系统
   * [V2Ray翻墙完全教程(WS+TLS+Web) ](https://pincong.rocks/article/15493)
+    * [网页备份，配置文件备份]
 
 * 旧的方法
 
