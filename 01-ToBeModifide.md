@@ -246,6 +246,7 @@ body {
   * centos 8系统
   * [V2Ray翻墙完全教程(WS+TLS+Web) ](https://pincong.rocks/article/15493)
     * [网页备份，配置文件备份](https://www.lanzous.com/iaz2f1i)
+  * [v2ray多用户配置](https://www.hijk.pw/v2ray-multiple-users/)
 
 * 旧的方法
 
