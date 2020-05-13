@@ -293,11 +293,11 @@ body {
 
 * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
 
-* [2019/2020 Google镜像大全，谷歌镜像网址](https://www.uedbox.com/post/54776/)
+* 公开资源
 
-* https://ac.scmor.com/
-
-* 
+  * [2019/2020 Google镜像大全，谷歌镜像网址](https://www.uedbox.com/post/54776/)
+  * https://ac.scmor.com/
+  * http://scholar.hedasudi.com/
 
 * 
 
