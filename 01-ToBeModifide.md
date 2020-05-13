@@ -295,7 +295,11 @@ body {
 
 * [2019/2020 Google镜像大全，谷歌镜像网址](https://www.uedbox.com/post/54776/)
 
-* **注意**：只能使用http，https会访问失败
+* https://ac.scmor.com/
+
+* 
+
+* 
 
 * /usr/local/nginx/conf/nginx.conf配置文件如下：
 
