@@ -295,7 +295,7 @@ body {
 
 * 公开资源
 
-  * [2019/2020 Google镜像大全，谷歌镜像网址](https://www.uedbox.com/post/54776/)
+  * https://www.uedbox.com/post/54776/
   * https://ac.scmor.com/
   * http://scholar.hedasudi.com/
   * https://www.hurbai.com/resource/149
