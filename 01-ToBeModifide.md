@@ -289,9 +289,9 @@ body {
 
 #### 谷歌镜像搭建
 
-* [搭建Google 反代站（镜像站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)
+* [搭建Google 反代站（镜像站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)，注意：配置文件使用下面的
 
-* [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
+* [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)，
 
 * 公开资源
 
