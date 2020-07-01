@@ -1,93 +1,64 @@
-* [][[能上网查到的就不要记了]Table of Contents
-    * [能<strong>上网查到</strong>的就不要记了](#%E8%83%BD%E4%B8%8A%E7%BD%91%E6%9F%A5%E5%88%B0%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%A6%81%E8%AE%B0%E4%BA%86)
-    * [杂项](#%E6%9D%82%E9%A1%B9)
-      * [书签备份](#%E4%B9%A6%E7%AD%BE%E5%A4%87%E4%BB%BD)
-      * [Autohotkey](#autohotkey)
-      * [Beyond compare](#beyond-compare)
-      * [C](#c)
-      * [Chrome](#chrome)
-      * [Docker](#docker)
-      * [Excel](#excel)
-      * [Find](#find)
-      * [Git](#git)
-      * [Install system](#install-system)
-      * [Makefile](#makefile)
-      * [NET Framework 3\.5离线安装](#net-framework-35%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85)
-      * [NFC](#nfc)
-      * [Python](#python)
-      * [Samba](#samba)
-      * [Securecrt](#securecrt)
-      * [Tmux](#tmux)
-      * [Typora](#typora)
-      * [ubuntu1804远程桌面连接](#ubuntu1804%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
-      * [Ubuntu中文路径改为英文](#ubuntu%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
-      * [Ubuntu更换内核](#ubuntu%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8)
-      * [Vim](#vim)
-      * [VMware](#vmware)
-      * [Wireshark](#wireshark)
-        * [Ubuntu1604源码安装](#ubuntu1604%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85)
-        * [抓802\.11无线包](#%E6%8A%9380211%E6%97%A0%E7%BA%BF%E5%8C%85)
-      * [Win10磁贴布局重启后恢复原状](#win10%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
-    * [翻墙](#%E7%BF%BB%E5%A2%99)
-      * [V2ray](#v2ray)
-      * [谷歌镜像搭建](#%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BA)
-    * [搭建公司测试拓扑](#%E6%90%AD%E5%BB%BA%E5%85%AC%E5%8F%B8%E6%B5%8B%E8%AF%95%E6%8B%93%E6%89%91)
-      * [测试拓扑搭建教程](#%E6%B5%8B%E8%AF%95%E6%8B%93%E6%89%91%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B)
-        * [相关知识](#%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86)
-        * [wireshak](#wireshak)
-        * [flameshot](#flameshot)
-        * [BaiduPCS\-Go](#baidupcs-go)
-        * [DNS](#dns)
-        * [DHCP](#dhcp)
-        * [PPPOE](#pppoe)
-        * [dibbler\-server、radvd](#dibbler-serverradvd)
-        * [PPPOEv6](#pppoev6)
-        * [转发功能](#%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD)
-        * [静态IP](#%E9%9D%99%E6%80%81ip)
-        * [组播](#%E7%BB%84%E6%92%AD)
-        * [VLAN](#vlan)
-      * [配置文件](#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-        * [静态IP、DNS](#%E9%9D%99%E6%80%81ipdns)
-        * [dhcp配置文件](#dhcp%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-        * [radvd配置文件](#radvd%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-        * [dibbler配置文件](#dibbler%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-        * [pppoe配置文件](#pppoe%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-        * [pppoev6配置文件](#pppoev6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-      * [测试](#%E6%B5%8B%E8%AF%95)
-      * [踩的坑](#%E8%B8%A9%E7%9A%84%E5%9D%91)
-        * [glibc升级](#glibc%E5%8D%87%E7%BA%A7)
-        * [dibbler启动](#dibbler%E5%90%AF%E5%8A%A8)
-      * [问题](#%E9%97%AE%E9%A2%98)
-        * [网关上的ipv6路由表要自己搭建](#%E7%BD%91%E5%85%B3%E4%B8%8A%E7%9A%84ipv6%E8%B7%AF%E7%94%B1%E8%A1%A8%E8%A6%81%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA)
-        * [pppoe拨
+Table of Contents
+=================
 
-### 能**上网查到**的就不要记了
+* [能<strong>上网查到</strong>的就不要记了](#%E8%83%BD%E4%B8%8A%E7%BD%91%E6%9F%A5%E5%88%B0%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%A6%81%E8%AE%B0%E4%BA%86)
+* [书签备份](#%E4%B9%A6%E7%AD%BE%E5%A4%87%E4%BB%BD)
+* [Autohotkey](#autohotkey)
+* [Beyond compare](#beyond-compare)
+* [C](#c)
+* [Chrome](#chrome)
+* [Docker](#docker)
+* [Excel](#excel)
+* [Find](#find)
+* [Git](#git)
+* [Install system](#install-system)
+* [Makefile](#makefile)
+* [NET Framework 3\.5离线安装](#net-framework-35%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85)
+* [NFC](#nfc)
+* [Over the wall](#over-the-wall)
+* [Python](#python)
+* [Samba](#samba)
+* [Securecrt](#securecrt)
+* [Tmux](#tmux)
+* [TPLink Test topology](#tplink-test-topology)
+* [Typora](#typora)
+* [ubuntu1804远程桌面连接](#ubuntu1804%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
+* [Ubuntu中文路径改为英文](#ubuntu%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
+* [Ubuntu更换内核](#ubuntu%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8)
+* [Vim](#vim)
+* [VMware](#vmware)
+* [Wireshark](#wireshark)
+* [Win10磁贴布局重启后恢复原状](#win10%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
 
-### 杂项
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
-#### 书签备份
+
+
+## 能**上网查到**的就不要记了
+
+## 书签备份
 
 * [bookmarks_2019_12_7.7z](https://www.lanzous.com/i7vu99g)
 
-#### Autohotkey
+## Autohotkey
 
 *   [autohotkey快捷键睡眠](https://www.autoahk.com/archives/2527)
 
-#### Beyond compare
+## Beyond compare
 
 *   [beyond compare文本文件内容一样却标记为不同的解决方法](https://www.beyondcompare.cc/wenti/wenjian-chayi.html)
 
-#### C
+## C
 
 *   [用gcc做宏展开](https://xueyayang.github.io/2013/12/20/%E7%94%A8gcc%E5%B0%86%E5%AE%8F%E5%B1%95%E5%BC%80%E4%BB%A5%E4%BE%BF%E9%98%85%E8%AF%BB.html)
 
-#### Chrome
+## Chrome
 
 * Chrome浏览器插件离线下载
   * https://www.chromedownloads.net/
   * https://chromecj.com/
 
-#### Docker
+## Docker
 
 * [Docker镜像的导入导出](https://blog.csdn.net/ncdx111/article/details/79878098)
 * [ssh连接docker容器](https://blog.csdn.net/vincent2610/article/details/52490397)
@@ -106,15 +77,15 @@ docker save 4e4c445311e6  >  C:\node.tar
 VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Credential Guard 后，可以运行 VMware Workstation。有关更多详细信息，请访问
 ```
 
-#### Excel
+## Excel
 
 * [通过Excel2003图表工具栏创建图表](http://www.excelcn.com/jiaocheng/excel2003/376.html)
 
-#### Find
+## Find
 
 *   [find结果排序](https://blog.csdn.net/bohu83/article/details/80083816)
 
-#### Git
+## Git
 
 * [常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 * [git回滚部分文件到某个版本](https://www.cnblogs.com/acm-bingzi/p/gitCheckout.html)
@@ -123,17 +94,17 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
     * [Git知识总览(三) 分支的创建、删除、切换、合并以及冲突解决](https://www.cnblogs.com/ludashi/p/8093145.html)
     * [Git知识总览(四) git分支管理之rebase 以及 cherry-pick相关操作](https://www.cnblogs.com/ludashi/p/8116434.html)
 
-#### Install system
+## Install system
 
 *   [**免U盘**安装windows 和 Ubuntu 18.04 双系统流程，教你避免各种坑](https://blog.csdn.net/sscc_learning/article/details/82868150)
 
-#### Makefile
+## Makefile
 
 * [Ubuntu16.04默认make版本修改（make-3.82）](https://blog.csdn.net/sjzzdf123/article/details/79863548)
 * makefile调试：https://www.cnblogs.com/lotgu/p/5936465.html
 
 
-#### NET Framework 3.5离线安装
+## NET Framework 3.5离线安装
 
 * 下载window10的iso文件
 
@@ -145,188 +116,16 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   dism.exe /online /enable-feature /featurename:netfx3 /Source:G:\sources\sxs
   ```
 
-#### NFC
+## NFC
 
 * 小米手环模拟加密的门禁等IC卡的教程
     * 需要购买**259元的proxmark3**
     * [手把手教 如何模拟IC加密卡](https://zhuanlan.zhihu.com/p/81384126)
     * [小米手环4nfc版提示“不支模拟该类型卡”的解决方案](https://www.bilibili.com/read/cv3417983/)
 
-#### Python
+## Over the wall
 
-* [简单3步将你的python转成exe格式](https://zhuanlan.zhihu.com/p/38659588)
-
-
-
-#### Samba
-
-* 图形化界面配置
-  
-  ```powershell
-  apt install samba samba-common smbfs cifs-utils system-config-samba
-  system-config-samba  # 选择access--》allow access to everyone
-  setfacl -R -m u:nobody:rwx /home/mobile/Desktop/ # 给所有用户读写执行权限
-  ```
-
-#### Securecrt
-
-* 导出日志，行数无限制
-- [SecureCRT配置屏幕内容输出到log文件 - quietly_brilliant的专栏 - CSDN博客](https://blog.csdn.net/quietly_brilliant/article/details/78125599)
-- [10个提升工作效率的Secure CRT小窍门 - 你玩转了几个？-sandshell-51CTO博客](https://blog.51cto.com/sandshell/2118024)
-- [secureCRT配色](https://s2.ax1x.com/2020/03/10/8PH16x.png)
-
-#### Tmux
-
-* [Tmux使用手册]([http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4](http://louiszhai.github.io/2017/09/30/tmux/#Tmux快捷指令))
-* [Tmux 快捷键 & 速查表 & 简明教程](https://gist.github.com/ryerh/14b7c24dfd623ef8edc7)
-
-#### Typora
-
-*   配置文件
-
-    ```c
-    /* 打开偏好设置 -> 打开主题文件夹 -> 新建 github.user.css 文件，填入如下内容。 */
-    /* 调整视图正文宽度 */
-    #write{
-        max-width: 90%;
-    }
-    /* 调整源码正文宽度 */
-    #typora-source .CodeMirror-lines {
-        max-width: 90%;
-    }
-    /* 调整输出 PDF 文件宽度 */
-    @media print {
-        #write{
-            max-width: 95%;
-        }
-        @page {
-            size: A3;
-        }
-    }
-    /* 调整正文字体,字体需单独下载 */
-    body {
-        font-family: IBM Plex Sans;
-    }
-    ```
-
-#### ubuntu1804远程桌面连接
-
-* [Windows 远程桌面连接ubuntu及xrdp的一些小问题](https://blog.csdn.net/u014447845/article/details/80291678) 
-    * 远程桌面闪退、连接失败、tab补全功能，无菜单栏，error - problem connecting  
-* [连接教程](https://m.linuxidc.com/Linux/2019-08/159848.htm)
-
-#### Ubuntu中文路径改为英文
-
-* 在**普通模式**下执行以下命令
-
-    ```makefile
-    # 注意：不要在管理员模式下执行命令
-    export LANG=en_US
-    xdg-user-dirs-gtk-update
-    reboot
-    ```
-#### Ubuntu更换内核
-
-*  [Ubuntu更换Linux内核版本](https://blog.csdn.net/tenorange/article/details/80914559)
-*  [Ubuntu更换内核方法](https://blog.csdn.net/xin_yu_xin/article/details/42184899)
-
-#### Vim
-
-* 配置文件		
-
-  ```shell
-  filetype on
-  filetype indent on
-  set autoindent
-  set smartindent
-  set tabstop=4
-  set noexpandtab
-  set shiftwidth=4
-  set nu
-  syntax on
-  inoremap { {}<ESC>i<CR><ESC>ko
-  
-  nnoremap <silent> [b :bprevious<CR>
-  nnoremap <silent> ]b :bnext<CR>
-  nnoremap <silent> [B :bfisrt<CR>
-  nnoremap <silent> ]B :blast<CR>
-  ```
-
-#### VMware
-
-* [VMware虚拟机扩展Linux根目录磁盘空间（Centos）](https://my.oschina.net/u/876354/blog/967848)
-* 虚拟机linux设置静态IP
-  - [Linux重启网卡报错：Bringing up interface eth0:1...... - 弗兰-随风小欢的博客 - CSDN博客](https://blog.csdn.net/qq_32575047/article/details/78896534)
-  - [Linux虚拟机设置静态IP - Baishu的专栏 - CSDN博客](https://blog.csdn.net/sinat_32660629/article/details/80080880)
-
-
-
-
-
-
-
-
-
-
-#### Wireshark 
-
-##### Ubuntu1604源码安装
-
-* [Ubuntu源码安装wireshark](https://blog.csdn.net/weixin_40850689/article/details/93466848)
-
-* [Wireshark3.0 ubuntu16.04上编译](https://blog.csdn.net/cjqqschoolqq/article/details/89737648)
-
-* 安装步骤
-  
-  * [下载源码：wireshark-master-3.0.zip](https://www.lanzous.com/i7kvtpc)
-    
-    ```shell
-    wget -c http://download.qt-project.org/archive/qt/5.11/5.11.2/qt-opensource-linux-x64-5.11.2.run # 下载qt5.11.2
-    # 安装工具包
-    sudo apt-get install libglib2.0-dev
-    sudo apt-get install libgcrypt20-dev
-    sudo apt-get install flex bison
-    sudo apt-get install libssh-dev
-    sudo apt-get install libpcap-dev
-    sudo apt-get install libssh-dev
-    sudo apt-get install libsystemd-dev
-    sudo apt-get install qmake-qt-gui
-    sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-    
-    chmod 777 qt-opensource-linux-x64-5.11.2.run && ./qt-opensource-linux-x64-5.11.2.run # 除了两个android不要选，其他都选上。 
-    mkdir build && cd build 
-    export CMAKE_PREFIX_PATH="/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Core:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5LinguistTools:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Multimedia:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5PrintSupport:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Svg"
-    
-    cmake -G "Unix Makefiles" ../wireshark-master-3.0/  # 注意：**如果已经进入了管理员模式就不要在使用sudo了，否则上一步的环境变量不会生效。**
-    make && make install
-    sudo wireshark
-    ```
-
-##### 抓802.11无线包
-
-* [使用Aircrack-ng套件在5Ghz无线网频段](https://blog.csdn.net/CK2009159/article/details/84096343)
-  
-  ```shell
-  service network-manager stop # 彻底关闭网络模块，防止开了混杂模式后一连网又退出混杂模式了
-  # 将网卡设置为混杂监听模式
-  ifconfig wlan0 down
-  iwconfig wlan0 mode monitor ## 可以用iw list 查看网卡是否支持monitor模式
-  ifconfig wlan0 up
-  apt install aircrack-ng
-  # 设置无线网卡既抓取2.4G的帧，也抓取5G的帧
-  airodump-ng wlan0 --bssid ff:ff:ff:ff:ff:ff -C 2400-5900 
-  # wireshark筛选出2.4G和5G的beacon帧。
-  wlan.fc.type==0x00 && wlan.fc.type_subtype==0x08 && (wlan.addr==00:12:23:38:38:38 || wlan.addr==00:12:23:38:38:399) 
-  ```
-
-#### Win10磁贴布局重启后恢复原状
-
-*   [磁贴布局重启后恢复原状问题](https://blog.csdn.net/ai520587/article/details/83573230)
-
-
-### 翻墙
-
-#### V2ray
+### V2ray
 
 * 新的方法（2020年4月1日）
   
@@ -372,7 +171,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
       firewall-cmd --zone=public --list-ports
       ```
 
-#### 谷歌镜像搭建
+### 谷歌镜像搭建
 
 * 搭建流程
   
@@ -462,11 +261,43 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   * http://scholar.hedasudi.com/
   * https://www.hurbai.com/resource/149
 
-### 搭建公司测试拓扑
 
-#### 测试拓扑搭建教程
+## Python
 
-##### 相关知识
+* [简单3步将你的python转成exe格式](https://zhuanlan.zhihu.com/p/38659588)
+
+
+
+## Samba
+
+* 图形化界面配置
+  
+  ```powershell
+  apt install samba samba-common smbfs cifs-utils system-config-samba
+  system-config-samba  # 选择access--》allow access to everyone
+  setfacl -R -m u:nobody:rwx /home/mobile/Desktop/ # 给所有用户读写执行权限
+  ```
+
+## Securecrt
+
+* 导出日志，行数无限制
+- [SecureCRT配置屏幕内容输出到log文件 - quietly_brilliant的专栏 - CSDN博客](https://blog.csdn.net/quietly_brilliant/article/details/78125599)
+- [10个提升工作效率的Secure CRT小窍门 - 你玩转了几个？-sandshell-51CTO博客](https://blog.51cto.com/sandshell/2118024)
+- [secureCRT配色](https://s2.ax1x.com/2020/03/10/8PH16x.png)
+
+## Tmux
+
+* [Tmux使用手册]([http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4](http://louiszhai.github.io/2017/09/30/tmux/#Tmux快捷指令))
+* [Tmux 快捷键 & 速查表 & 简明教程](https://gist.github.com/ryerh/14b7c24dfd623ef8edc7)
+
+
+
+
+## TPLink Test topology
+
+### 测试拓扑搭建教程
+
+#### 相关知识
 
 * host www.debian.cn 192.168.23.179  指定域名服务器，正向查询
 
@@ -499,20 +330,20 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   tar cvpzf /backup/`date +%Y%m%d%H%M`.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup --exclude=/mnt --exclude=/tmp --exclude=/media /
   echo $(date)
   ```
-  
-  ##### wireshak
+
+#### wireshak
 
 * [Ubuntu源码安装wireshark](https://blog.csdn.net/weixin_40850689/article/details/93466848)：/etc/sysctl.conf
 
 * [Wireshark3.0 ubuntu16.04上编译](https://blog.csdn.net/cjqqschoolqq/article/details/89737648)
 
-##### flameshot
+#### flameshot
 
 * 注意：不能在管理员模式下使用flameshot gui启动flameshot，只能在普通模式下启动;
 * [ubuntu1604 安装截图粘图工具flameshot并设置快捷键为F3](https://blog.csdn.net/weixin_42927959/article/details/95375941) ;
 * [qmake报错：Project ERROR: Unknown module(s) in QT: svg](https://blog.csdn.net/qq_21398167/article/details/46427597)
 
-##### BaiduPCS-Go
+#### BaiduPCS-Go
 
 * **github搜索百度网盘按日期排序，最近更新过的项目肯定是能用的**（百度云用于关键词搜索）。
 
@@ -532,7 +363,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   
   * [GitHub issue中有BDUSS获取方式](https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS)
 
-##### DNS
+#### DNS
 
 * [Linux系统下搭建DNS服务器——DNS原理总结](https://zhuanlan.zhihu.com/p/31568450)
 * [Ubuntu采用bind9配置DNS服务器](https://blog.csdn.net/colourzjs/article/details/44491479)
@@ -544,12 +375,12 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   * [DNS软件bind使用（一）](https://blog.51cto.com/cuchadanfan/1710387)
   * [Debian 环境下简单配置 Bind9 服务](https://cloud.tencent.com/developer/article/1374805)
 
-##### DHCP
+#### DHCP
 
 * [Ubuntu-16.04搭建DHCP服务](https://blog.51cto.com/tong707/2124716)
 * [Ubuntu 14.04 isc-dhcp-server 启动失败(no IPv4 addresses)问题解决方法](https://blog.csdn.net/yingang_fu/article/details/39400845)
 
-##### PPPOE
+#### PPPOE
 
 * VlanID：局端会剥去从样机过来的VlanID为35的头部，从局端出来的所有的数据都没有VlanID，所以服务器不需要划分VlanID，下面的四个网页看看就好，用不到的。
   
@@ -566,7 +397,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
     pppoe-server -I enp1s0  -L 192.168.5.1 -R 192.168.5.3 -N 200
     ```
 
-##### dibbler-server、radvd
+#### dibbler-server、radvd
 
 * 内网：培训时李伟杰的ppt、Ubuntu下测试环境搭建doc
 
@@ -588,18 +419,18 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   * fe80::4216:9fff:feaa:bb3a为DUT wan口的本地链路地址，这里也可以填写dibbler分配給WAN口的全球链路地址，也就是说ipv6的网关既可以是本地链路地址，也可以是全球链路地址。
   * enp1s0为dibbler服务器所在的网卡名，也是DUT wan口直连的服务器网卡名。
 
-##### PPPOEv6
+#### PPPOEv6
 
 * `/etc/ppp/pppoe-server-options`多一项配置`+ipv6`
 * [基于Linux的IPv6接入服务器配置过程](https://wenku.baidu.com/view/12ae3149852458fb770b5684.html)的`PPPoEv6服务器配置`章节中解释了必须配置/etc/ppp/ipv6-up.d脚本的原因。脚本的唯一作用：**`将/etc/radvd.conf和/etc/dibbler/server.conf中的iface网口名enp1s0替换为pppoe服务器启动时新建的网口名ppp0或ppp1或ppp2等，并重启radvd、dibbler-server `**
 
-##### 转发功能
+#### 转发功能
 
 * [ubuntu 双网卡转发网线直接连接配置](https://blog.csdn.net/tiger_he/article/details/80805075): vim /etc/sysctl.conf 
 * 参考：[ubuntu双网卡设置内外网上网问题,实现路由转发](https://wenku.baidu.com/view/1920c29b4693daef5ef73df7.html)
 * `sysctl -p`全为1表示ipv4、ipv6的转发功能都开启了
 
-##### 静态IP
+#### 静态IP
 
 * 在Ubuntu1404中通过`/etc/network/interfaces`配置ipv4、ipv6地址时ipv4不生效，重启电脑也不行，Ubuntu1604中则没有这个问题，通过反复执行下面的命令可以使配置生效，具体哪个起的作用我也不清楚
   * `ifdown eth0 && ifup eth0 && ifconfig ` **这个命令可能会执行失败，所以需要反复执行，如果能成功执行就能使配置生效**
@@ -608,7 +439,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   * `/etc/init.d/network-manager restart`
 * **注意：**在``/etc/NetworkManager/system-connections``中的配置信息可能会和`/etc/network/interfaces`中的配置信息冲突，所以最好删除``/etc/NetworkManager/system-connections``中的所有文件，然后重启电脑。
 
-##### 组播
+#### 组播
 
 *   [组播转发开启方法](http://www.sskywatcher.com/blog/archives/336)
 *   vlc3.0.2 ubuntu1604 snap 安装方法
@@ -616,14 +447,14 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
     * apt install snapd
     * snap install xxxxx.snap --dangerous
 
-##### VLAN
+#### VLAN
 
 * [理解Switch中的PVID / VID /标签/取消标签](http://www.wdroot.com/articles/167.html)
 * [VLAN的理解和应用](https://blog.csdn.net/zhangxinbiao2011/article/details/40144959)
 
-#### 配置文件
+### 配置文件
 
-##### 静态IP、DNS
+#### 静态IP、DNS
 
 * vim /etc/network/interfaces
   
@@ -707,7 +538,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   3.5 IN  PTR www.debian.cn.
   ```
 
-##### dhcp配置文件
+#### dhcp配置文件
 
 * vim /etc/sysctl.conf开启ipv4和ipv6转发，并用sysctl -p检查是否开启成功
   
@@ -750,7 +581,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   max-lease-time 7200;
   ```
 
-##### radvd配置文件
+#### radvd配置文件
 
 * vim /etc/radvd.conf
   
@@ -765,7 +596,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   };
   ```
 
-##### dibbler配置文件
+#### dibbler配置文件
 
 * vim /etc/dibbler/server.conf
   
@@ -796,7 +627,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   }
   ```
 
-##### pppoe配置文件
+#### pppoe配置文件
 
 * vim /etc/ppp/options
   
@@ -836,7 +667,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   ttt    *    ttt         *
   ```
 
-##### pppoev6配置文件
+#### pppoev6配置文件
 
 * ```makefile
   /etc/skel/dibbler_server_for_eth.conf
@@ -965,7 +796,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   
   * pppoe拨号获取ipv6失败就反复重拨，因为每次拨号都会将dibbler-server的启动接口修改为新建的ppp接口，同时还会重启dibbler-server服务器。
 
-#### 测试
+### 测试
 
 * sip服务器上已经注册过的电话
   
@@ -1003,9 +834,9 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   
   * [[网络性能测试工具iperf详细使用图文教程【转载】](https://www.cnblogs.com/yingsong/p/5682080.html)](https://www.cnblogs.com/yingsong/p/5682080.html)
 
-#### 踩的坑
+### 踩的坑
 
-##### glibc升级
+#### glibc升级
 
 * 千万不要升级glibc！！！
 
@@ -1015,22 +846,167 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 * [记GLIBC升级失败后的恢复](http://blog.koko.vc/a/33/%E8%AE%B0glibc%E5%8D%87%E7%BA%A7%E5%A4%B1%E8%B4%A5%E5%90%8E%E7%9A%84%E6%81%A2%E5%A4%8D)
 
-##### dibbler启动
+#### dibbler启动
 
 * dibbler-server在enp1s0接口上能正常启动分配IP，在进行pppoev6拨号时在ppp接口上启动失败，询问师兄后得知：使用`rm -rf /var/lib/dibbler/*`将原来的配置信息给清除掉就可以了
 
-#### 问题
+### 拓扑目前依旧存在的问题
 
-##### 网关上的ipv6路由表要自己搭建
+#### 网关上的ipv6路由表要自己搭建
 
-##### pppoe拨号获取ipv6相关信息失败
+#### pppoe拨号获取ipv6相关信息失败
 
 * 解决1：反复几次重新拨号或者干脆删掉连接后重新建立连接。
 * 解决2：使用串口查看自己的ppp接口名，然后在服务器上将radvd、dibbler的启动接口修改为自己的ppp接口并重启。
 * 原因说明：因为每次pppoe拨号启动时都会将dibbler-server的启动接口修改为新建的ppp接口并重启dibbler-server服务器，而每次pppoe拨号断开时会将dibbler-server的启动接口修改为enp1s0接口并重启dibbler-server服务器，如果pppoe拨号获取ipv6失败就反复几次重新拨号或者干脆删掉连接后重新建立连接，因为dibbler-server服务器有小概率会启动失败，而每次拨号都会重启dibbler-server服务器
 
-##### Dynamic拨号获取ipv6相关信息失败
+#### Dynamic拨号获取ipv6相关信息失败
 
 * 解决1：新建一个pppoe拨号并删除，然后在进行Dynamic拨号。
 * 解决2：使用串口查看自己的ppp接口名，然后在服务器上将radvd、dibbler的启动接口修改为自己的ppp接口并重启。
 * 原因说明：因为每次pppoe拨号启动时都会将dibbler-server的启动接口修改为新建的ppp接口并重启dibbler-server服务器，而每次pppoe拨号断开时会将dibbler-server的启动接口修改为enp1s0接口并重启dibbler-server服务器，如果Dynamic拨号获取ipv6失败就先新建一个pppoe拨号并删除，然后在进行Dynamic拨号即可获取ipv6地址，因为每次pppoe拨号断开时会将dibbler-server的启动接口修改为enp1s0接口并重启dibbler-server服务器。
+
+
+
+## Typora
+
+*   配置文件
+
+    ```c
+    /* 打开偏好设置 -> 打开主题文件夹 -> 新建 github.user.css 文件，填入如下内容。 */
+    /* 调整视图正文宽度 */
+    #write{
+        max-width: 90%;
+    }
+    /* 调整源码正文宽度 */
+    #typora-source .CodeMirror-lines {
+        max-width: 90%;
+    }
+    /* 调整输出 PDF 文件宽度 */
+    @media print {
+        #write{
+            max-width: 95%;
+        }
+        @page {
+            size: A3;
+        }
+    }
+    /* 调整正文字体,字体需单独下载 */
+    body {
+        font-family: IBM Plex Sans;
+    }
+    ```
+
+## ubuntu1804远程桌面连接
+
+* [Windows 远程桌面连接ubuntu及xrdp的一些小问题](https://blog.csdn.net/u014447845/article/details/80291678) 
+    * 远程桌面闪退、连接失败、tab补全功能，无菜单栏，error - problem connecting  
+* [连接教程](https://m.linuxidc.com/Linux/2019-08/159848.htm)
+
+## Ubuntu中文路径改为英文
+
+* 在**普通模式**下执行以下命令
+
+    ```makefile
+    # 注意：不要在管理员模式下执行命令
+    export LANG=en_US
+    xdg-user-dirs-gtk-update
+    reboot
+    ```
+## Ubuntu更换内核
+
+*  [Ubuntu更换Linux内核版本](https://blog.csdn.net/tenorange/article/details/80914559)
+*  [Ubuntu更换内核方法](https://blog.csdn.net/xin_yu_xin/article/details/42184899)
+
+## Vim
+
+* 配置文件		
+
+  ```shell
+  filetype on
+  filetype indent on
+  set autoindent
+  set smartindent
+  set tabstop=4
+  set noexpandtab
+  set shiftwidth=4
+  set nu
+  syntax on
+  inoremap { {}<ESC>i<CR><ESC>ko
+  
+  nnoremap <silent> [b :bprevious<CR>
+  nnoremap <silent> ]b :bnext<CR>
+  nnoremap <silent> [B :bfisrt<CR>
+  nnoremap <silent> ]B :blast<CR>
+  ```
+
+## VMware
+
+* [VMware虚拟机扩展Linux根目录磁盘空间（Centos）](https://my.oschina.net/u/876354/blog/967848)
+* 虚拟机linux设置静态IP
+  - [Linux重启网卡报错：Bringing up interface eth0:1...... - 弗兰-随风小欢的博客 - CSDN博客](https://blog.csdn.net/qq_32575047/article/details/78896534)
+  - [Linux虚拟机设置静态IP - Baishu的专栏 - CSDN博客](https://blog.csdn.net/sinat_32660629/article/details/80080880)
+
+
+
+
+
+
+
+
+
+
+## Wireshark 
+
+### Ubuntu1604源码安装
+
+* [Ubuntu源码安装wireshark](https://blog.csdn.net/weixin_40850689/article/details/93466848)
+
+* [Wireshark3.0 ubuntu16.04上编译](https://blog.csdn.net/cjqqschoolqq/article/details/89737648)
+
+* 安装步骤
+  
+  * [下载源码：wireshark-master-3.0.zip](https://www.lanzous.com/i7kvtpc)
+    
+    ```shell
+    wget -c http://download.qt-project.org/archive/qt/5.11/5.11.2/qt-opensource-linux-x64-5.11.2.run # 下载qt5.11.2
+    # 安装工具包
+    sudo apt-get install libglib2.0-dev
+    sudo apt-get install libgcrypt20-dev
+    sudo apt-get install flex bison
+    sudo apt-get install libssh-dev
+    sudo apt-get install libpcap-dev
+    sudo apt-get install libssh-dev
+    sudo apt-get install libsystemd-dev
+    sudo apt-get install qmake-qt-gui
+    sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+    
+    chmod 777 qt-opensource-linux-x64-5.11.2.run && ./qt-opensource-linux-x64-5.11.2.run # 除了两个android不要选，其他都选上。 
+    mkdir build && cd build 
+    export CMAKE_PREFIX_PATH="/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Core:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5LinguistTools:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Multimedia:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5PrintSupport:/opt/Qt5.11.2/5.11.2/gcc_64/lib/cmake/Qt5Svg"
+    
+    cmake -G "Unix Makefiles" ../wireshark-master-3.0/  # 注意：**如果已经进入了管理员模式就不要在使用sudo了，否则上一步的环境变量不会生效。**
+    make && make install
+    sudo wireshark
+    ```
+
+### 抓802.11无线包
+
+* [使用Aircrack-ng套件在5Ghz无线网频段](https://blog.csdn.net/CK2009159/article/details/84096343)
+  
+  ```shell
+  service network-manager stop # 彻底关闭网络模块，防止开了混杂模式后一连网又退出混杂模式了
+  # 将网卡设置为混杂监听模式
+  ifconfig wlan0 down
+  iwconfig wlan0 mode monitor ## 可以用iw list 查看网卡是否支持monitor模式
+  ifconfig wlan0 up
+  apt install aircrack-ng
+  # 设置无线网卡既抓取2.4G的帧，也抓取5G的帧
+  airodump-ng wlan0 --bssid ff:ff:ff:ff:ff:ff -C 2400-5900 
+  # wireshark筛选出2.4G和5G的beacon帧。
+  wlan.fc.type==0x00 && wlan.fc.type_subtype==0x08 && (wlan.addr==00:12:23:38:38:38 || wlan.addr==00:12:23:38:38:399) 
+  ```
+
+## Win10磁贴布局重启后恢复原状
+
+*   [磁贴布局重启后恢复原状问题](https://blog.csdn.net/ai520587/article/details/83573230)
