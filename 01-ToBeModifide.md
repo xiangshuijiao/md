@@ -990,7 +990,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
     sudo wireshark
     ```
 
-### 抓802.11无线包
+### 抓802.11
 
 * [使用Aircrack-ng套件在5Ghz无线网频段](https://blog.csdn.net/CK2009159/article/details/84096343)
   
@@ -1006,6 +1006,12 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   # wireshark筛选出2.4G和5G的beacon帧。
   wlan.fc.type==0x00 && wlan.fc.type_subtype==0x08 && (wlan.addr==00:12:23:38:38:38 || wlan.addr==00:12:23:38:38:399) 
   ```
+
+### 解密802.11
+
+*   官方文档：[How to Decrypt 802.11](https://wiki.wireshark.org/HowToDecrypt802.11)
+    *   Gotchas章节明确说明了要想解密wpa，必须抓取到完整4此握手eapol帧
+    *   Examples章节给的有官方实例，可以发现里面有4个完整的eapol帧，而且解密后可以看到除了802.11管理控制帧还有其他解密出来的dhcp、dns等802.11数据帧。
 
 ## Win10磁贴布局重启后恢复原状
 
