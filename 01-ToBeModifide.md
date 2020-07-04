@@ -1,3 +1,4 @@
+
 Table of Contents
 =================
 
@@ -7,6 +8,7 @@ Table of Contents
 * [Beyond compare](#beyond-compare)
 * [C](#c)
 * [Chrome](#chrome)
+* [CNKI Free Download](#cnki-free-download)
 * [Docker](#docker)
 * [Excel](#excel)
 * [Find](#find)
@@ -16,11 +18,42 @@ Table of Contents
 * [NET Framework 3\.5离线安装](#net-framework-35%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85)
 * [NFC](#nfc)
 * [Over the wall](#over-the-wall)
+  * [V2ray](#v2ray)
+  * [谷歌镜像搭建](#%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BA)
 * [Python](#python)
 * [Samba](#samba)
 * [Securecrt](#securecrt)
 * [Tmux](#tmux)
 * [TPLink Test topology](#tplink-test-topology)
+  * [测试拓扑搭建教程](#%E6%B5%8B%E8%AF%95%E6%8B%93%E6%89%91%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B)
+    * [相关知识](#%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86)
+    * [wireshak](#wireshak)
+    * [flameshot](#flameshot)
+    * [BaiduPCS\-Go](#baidupcs-go)
+    * [DNS](#dns)
+    * [DHCP](#dhcp)
+    * [PPPOE](#pppoe)
+    * [dibbler\-server、radvd](#dibbler-serverradvd)
+    * [PPPOEv6](#pppoev6)
+    * [转发功能](#%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD)
+    * [静态IP](#%E9%9D%99%E6%80%81ip)
+    * [组播](#%E7%BB%84%E6%92%AD)
+    * [VLAN](#vlan)
+  * [配置文件](#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+    * [静态IP、DNS](#%E9%9D%99%E6%80%81ipdns)
+    * [dhcp配置文件](#dhcp%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+    * [radvd配置文件](#radvd%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+    * [dibbler配置文件](#dibbler%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+    * [pppoe配置文件](#pppoe%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+    * [pppoev6配置文件](#pppoev6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+  * [测试](#%E6%B5%8B%E8%AF%95)
+  * [踩的坑](#%E8%B8%A9%E7%9A%84%E5%9D%91)
+    * [glibc升级](#glibc%E5%8D%87%E7%BA%A7)
+    * [dibbler启动](#dibbler%E5%90%AF%E5%8A%A8)
+  * [拓扑目前依旧存在的问题](#%E6%8B%93%E6%89%91%E7%9B%AE%E5%89%8D%E4%BE%9D%E6%97%A7%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98)
+    * [网关上的ipv6路由表要自己搭建](#%E7%BD%91%E5%85%B3%E4%B8%8A%E7%9A%84ipv6%E8%B7%AF%E7%94%B1%E8%A1%A8%E8%A6%81%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA)
+    * [pppoe拨号获取ipv6相关信息失败](#pppoe%E6%8B%A8%E5%8F%B7%E8%8E%B7%E5%8F%96ipv6%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E5%A4%B1%E8%B4%A5)
+    * [Dynamic拨号获取ipv6相关信息失败](#dynamic%E6%8B%A8%E5%8F%B7%E8%8E%B7%E5%8F%96ipv6%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E5%A4%B1%E8%B4%A5)
 * [Typora](#typora)
 * [ubuntu1804远程桌面连接](#ubuntu1804%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
 * [Ubuntu中文路径改为英文](#ubuntu%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
@@ -28,11 +61,13 @@ Table of Contents
 * [Vim](#vim)
 * [VMware](#vmware)
 * [Wireshark](#wireshark)
+  * [Ubuntu1604源码安装](#ubuntu1604%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85)
+  * [抓802\.11](#%E6%8A%9380211)
+  * [解密802\.11](#%E8%A7%A3%E5%AF%8680211)
 * [Win10磁贴布局重启后恢复原状](#win10%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
-
-
+------------------分隔符------------------不要删除------------------分隔符------------------不要删除------------------分隔符------------------
 
 ## 能**上网查到**的就不要记了
 
