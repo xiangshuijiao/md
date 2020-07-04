@@ -58,6 +58,12 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
   * https://www.chromedownloads.net/
   * https://chromecj.com/
 
+## CNKI Free Download
+
+*   知网可以从浙大图书馆官网免费下载，具体教程如下：
+    *   [在家里如何免费使用中国知网？](https://www.zhihu.com/question/20188973)
+    *   [浙大图书馆官网](https://www.zjlib.cn/)：151365
+
 ## Docker
 
 * [Docker镜像的导入导出](https://blog.csdn.net/ncdx111/article/details/79878098)
