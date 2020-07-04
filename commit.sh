@@ -35,6 +35,8 @@ fi
 
 
 ./00-gh-md-toc.exe 01-ToBeModifide.md > 生成的TOC目录.md
+# 删除前3行对应的一级标题“Table of Contents”
+sed -i '1,3d' 生成的TOC目录.md
 cat 生成的TOC目录.md 01-ToBeModifide.md > 01-ToBeModifide-merge.md
 
 # 合并后的文件“01-ToBeModifide-merge.md”如果已经成功生成则删除合并前的文件，且修改名字为合并前的文件

@@ -1,7 +1,4 @@
 
-Table of Contents
-=================
-
 * [能<strong>上网查到</strong>的就不要记了](#%E8%83%BD%E4%B8%8A%E7%BD%91%E6%9F%A5%E5%88%B0%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%A6%81%E8%AE%B0%E4%BA%86)
 * [书签备份](#%E4%B9%A6%E7%AD%BE%E5%A4%87%E4%BB%BD)
 * [Autohotkey](#autohotkey)
