@@ -213,7 +213,9 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 * 搭建流程
   
-  * [搭建Google 反代站（镜像站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)，`注意：配置文件使用下面的`
+  * [搭建Google 反代站（镜像:q
+  
+  * 站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)，`注意：配置文件使用下面的`
   
   * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)，`注意：最新版nginx的默认端口的位置在文件/etc/nginx/nginx.conf中定义`
   
@@ -289,9 +291,9 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
                   # 这里替换网页中的链接，因为我们的镜像站是http的，所以上面顺便把协议也一起替换了
           }
           }
-      }
+    }
       ```
-
+  
 * 公开资源
   
   * https://www.uedbox.com/post/54776/
