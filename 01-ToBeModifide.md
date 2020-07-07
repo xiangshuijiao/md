@@ -169,7 +169,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   
   * centos 8系统
   * [V2Ray翻墙完全教程(WS+TLS+Web) ](https://pincong.rocks/article/15493)
-    * [网页备份，配置文件备份](https://www.lanzous.com/iaz2f1i)
+    * [网页备份，配置文件备份](D:\4-attachment\V2Ray翻墙完全教程(WS+TLS+Web.zip))
   * [v2ray多用户配置](https://www.hijk.pw/v2ray-multiple-users/)
 
 * 旧的方法
