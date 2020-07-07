@@ -171,7 +171,8 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
   * [V2Ray翻墙完全教程(WS+TLS+Web) ](https://pincong.rocks/article/15493)
     * [网页备份，配置文件备份](file:///D:/4-attachment/V2Ray-OverTheWall.zip)
   * [v2ray多用户配置](https://www.hijk.pw/v2ray-multiple-users/)
-
+  * [网页备份](file:///D:/4-attachment/multi-user.zip)
+  
 * 旧的方法
   
   * [V2Ray搭建详细图文教程](https://github.com/233boy/v2ray/wiki/V2Ray搭建详细图文教程)：注意脚本仅支持**Centos 7 **以上的系统，6不支持
@@ -213,11 +214,11 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 * 搭建流程
   
-  * [搭建Google 反代站（镜像:q
+  * [搭建Google 反代站（镜像站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)，`注意：配置文件使用下面的`
   
-  * 站）隐藏真实 IP ，轻轻松松上谷歌](https://www.madapang.com/technology/google-ghost.html)，`注意：配置文件使用下面的`
+    * [网页备份](file:///D:/4-attachment/Google-image.zip)
   
-  * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)，`注意：最新版nginx的默认端口的位置在文件/etc/nginx/nginx.conf中定义`
+  * [更改nginx默认端口,**重启nginx报错**](https://blog.csdn.net/w20101310/article/details/78835668)
   
   * 使用下面的命令打开防火墙端口：`ufw disable && ufw allow 8089 && ufw allow http && ufw allow https && ufw enable`
   
