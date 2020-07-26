@@ -55,6 +55,7 @@
 * [ubuntu1804远程桌面连接](#ubuntu1804%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
 * [Ubuntu中文路径改为英文](#ubuntu%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
 * [Ubuntu更换内核](#ubuntu%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8)
+* [Ubuntu文件<strong>切割</strong>、<strong>压缩</strong>、<strong>合并</strong>](#ubuntu%E6%96%87%E4%BB%B6%E5%88%87%E5%89%B2%E5%8E%8B%E7%BC%A9%E5%90%88%E5%B9%B6)
 * [Vim](#vim)
 * [VMware](#vmware)
 * [Wireshark](#wireshark)
@@ -955,6 +956,14 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 *  [Ubuntu更换Linux内核版本](https://blog.csdn.net/tenorange/article/details/80914559)
 *  [Ubuntu更换内核方法](https://blog.csdn.net/xin_yu_xin/article/details/42184899)
+
+## Ubuntu文件**切割**、**压缩**、**合并**
+
+*   split切割
+*   cmd压缩命令：`FOR %i IN (*.*) DO  "c:\Program Files\7-Zip\7z.exe" a -mx1 -mmt4 "%~ni.zip" "%i"`
+*   cat合并
+
+
 
 ## Vim
 
