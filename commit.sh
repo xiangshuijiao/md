@@ -49,9 +49,18 @@ else
 	echo "文件合并失败"
 fi
 
-
-
+echo ""
+echo "git diff"
 git diff
+echo ""
+echo "git add *"
 git add * 
+echo ""
+echo "git commit -m 1"
 git commit -m 1
+echo ""
+echo "git push"
 git push
+echo ""
+echo "git status"
+git status
