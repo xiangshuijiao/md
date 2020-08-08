@@ -62,7 +62,7 @@
   * [Ubuntu1604源码安装](#ubuntu1604%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85)
   * [抓802\.11](#%E6%8A%9380211)
   * [解密802\.11](#%E8%A7%A3%E5%AF%8680211)
-* [Win10磁贴布局重启后恢复原状](#win10%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
+* [Win10 磁贴布局重启后恢复原状](#win10-%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
 * [Win10 双网卡网络共享](#win10-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
@@ -1064,13 +1064,13 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
     *   Gotchas章节明确说明了要想解密wpa，必须抓取到完整4此握手eapol帧
     *   Examples章节给的有官方实例，可以发现里面有4个完整的eapol帧，而且解密后可以看到除了802.11管理控制帧还有其他解密出来的dhcp、dns等802.11数据帧。
 
-## Win10磁贴布局重启后恢复原状
+## Win10 磁贴布局重启后恢复原状
 
 *   [磁贴布局重启后恢复原状问题](https://blog.csdn.net/ai520587/article/details/83573230)
 
 ## Win10 双网卡网络共享
 
-*   背景
+*   拓扑
     *   网卡1可以访问内网，网卡2和另一台不能上内网的主机相连
 *   解决方法
     *   将网卡1和网卡2都卸载掉
