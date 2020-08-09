@@ -1078,6 +1078,15 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
     *   网卡1右键-》属性-》共享-》将网络共享给网卡2，此时网卡2会有一个192.168.137.1的Ip，且没有设置网关
     *   将不能上网的主机设置为与网卡2同网段IP、DNS设置为内网IP即可顺利访问内网，或者：
         *   网卡2接路由器WAN口，不能上内网的主机接路由器LAN口，路由器静态拨号IP设置为和网卡2同网段即可
+*   解决双网卡电脑重启之后另一台电脑不能访问内网
+    *   [如何开启 windows 路由转发功能](https://www.jianshu.com/p/3d5ada946a31)
+        *   `reg add HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters /v IPEnableRouter /D 1 /f`
+        *   sc config RemoteAccess start= auto
+        *   sc start RemoteAccess
+    *   [win10 系统在做双网卡共享Internet问题-已解决！！多谢帮助！！](https://social.technet.microsoft.com/Forums/zh-CN/efb64b6a-a90c-469c-ba42-53866ddde7ad/win10?forum=win10itprogeneralCN)
+        *   请先将“Internet Connection Sharing”这个服务设置为自动。
+        *   然后在这个路径下 HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\SharedAccess 添加一个注册表子项.
+        *   在空白处右击鼠标，新建“DWORD（32位）值（D）”，名称叫做“ EnableRebootPersistConnection ”，将数值数据改为1。
 
 
 
