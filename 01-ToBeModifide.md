@@ -22,6 +22,7 @@
 * [Python](#python)
 * [Samba](#samba)
 * [Securecrt](#securecrt)
+* [Software download](#software-download)
 * [Tmux](#tmux)
 * [Typora](#typora)
 * [ubuntu1804远程桌面连接](#ubuntu1804%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
@@ -325,6 +326,10 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 - [SecureCRT配置屏幕内容输出到log文件 - quietly_brilliant的专栏 - CSDN博客](https://blog.csdn.net/quietly_brilliant/article/details/78125599)
 - [10个提升工作效率的Secure CRT小窍门 - 你玩转了几个？-sandshell-51CTO博客](https://blog.51cto.com/sandshell/2118024)
 - [secureCRT配色](https://s2.ax1x.com/2020/03/10/8PH16x.png)
+
+## Software download
+
+*   [果核剥壳](https://www.ghpym.com/)
 
 ## Tmux
 
