@@ -84,6 +84,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 * Chrome浏览器插件离线下载
   * https://www.chromedownloads.net/
   * https://chromecj.com/
+  * https://www.extfans.com/
 
 ## CNKI Free Download
 
