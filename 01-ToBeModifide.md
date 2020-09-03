@@ -332,9 +332,9 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 *   [果核剥壳](https://www.ghpym.com/)
 *   WPS
     *   [WPS Office 2019 v11.8.6.8697 政府专业增强版](http://www.aichunjing.com/soft/2019-09-30/804.html)
-    *   [[WPS 2019政府版下载网址、激活序列号](https://baiyunju.cc/5170)](https://baiyunju.cc/5170)
-    *   [[WPS 2019专业版提示授权已到期的激活解决方法](https://baiyunju.cc/5005)](https://baiyunju.cc/5005)
-    *   [[让WPS专业版的序列号永远不再过期的方法](https://baiyunju.cc/5232)](https://baiyunju.cc/5232)
+    *   [WPS 2019政府版下载网址、激活序列号](https://baiyunju.cc/5170)
+    *   [WPS 2019专业版提示授权已到期的激活解决方法](https://baiyunju.cc/5005)
+    *   [让WPS专业版的序列号永远不再过期的方法](https://baiyunju.cc/5232)
 
 ## Tmux
 
