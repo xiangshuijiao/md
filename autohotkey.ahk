@@ -793,28 +793,7 @@ SetTitleMatchMode 2
 	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
 	NumpadEnter & NumpadDel::function_for_the_NumpadEnter_short_key("NumpadDel")
 	NumpadEnter & NumpadDot::function_for_the_NumpadEnter_short_key("NumpadDot")
-	/*
-		; 将输入法切换为英文，取消大小写锁定
-		if ( GetKeyState("CapsLock", "T") ) {
-			SetCapsLockState,Off
-		}
-		if ( WinExist("ahk_class SoPY_Comp") ) {
-			Send {Enter}
-		}
-		IME_SET(0)	
-	
-		; InputBox, UserInput, way
-		Input, UserInput, T4 L5, {Space}.{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
-		if (UserInput = "b1")
-			Send, T:\BBA_2_5_Platform_BCM.1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-		else if (UserInput = "b2")
-			Send, T:\BBA_2_5_Platform_BCM.2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-		else if (UserInput = "p1")
-			Send, T:\PON_trunk_bba_2_5.1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
-		else if (UserInput = "p2")
-			Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
-		return
-	*/
+
 	function_for_the_NumpadEnter_short_key(short_key)
 	{
 		; 将输入法切换为英文，取消大小写锁定
@@ -841,6 +820,7 @@ SetTitleMatchMode 2
 		{
 			; InputBox, UserInput, way
 			Input, UserInput, T4 L5, {Space}.{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
+			; 下面是路径
 			if (UserInput = "b1")
 				Send, T:\BBA_2_5_Platform_BCM.1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "b2")
@@ -848,7 +828,14 @@ SetTitleMatchMode 2
 			else if (UserInput = "p1")
 				Send, T:\PON_trunk_bba_2_5.1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			else if (UserInput = "p2")
-				Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image			
+				Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+			; 下面是账号密码
+			else if (UserInput = "ab")
+				Send, ab1127586911
+			else if (UserInput = "y0")
+				Send, Y0nN1uWqDCsi
+			else if (UserInput = "ji")
+				Send, jiangkainan@tp-link.com.cn
 		}
 		return
 	}
