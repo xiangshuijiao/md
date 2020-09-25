@@ -819,7 +819,7 @@ SetTitleMatchMode 2
 		else if (short_key = "NumpadDel" or short_key = "NumpadDot")
 		{
 			; InputBox, UserInput, way
-			Input, UserInput, T4 L5, {Space}.{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
+			Input, UserInput, T4 L5, {Space}{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
 			; 下面是路径
 			if (UserInput = "b1")
 				Send, T:\BBA_2_5_Platform_BCM.1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
