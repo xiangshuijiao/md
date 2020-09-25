@@ -698,6 +698,7 @@ SetTitleMatchMode 2
 	different_key_times_different_operation(v0 := 0, v1 := "", v2 := "", v3 := "", v4 := "" ;以逗号或任何其他表达式运算符(除了 ++ 和 --) 开头的行会自动与其正上方的行合并.
 											, v5 := "", v6 := "", v7 := "", v8 := "", v9 := "")
 	{
+		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
 		operation_type = %v0%
 		x1 = %v1%
 		x2 = %v2%
@@ -725,19 +726,20 @@ SetTitleMatchMode 2
 		{
 			if (intCount = 1) 
 				hyf_onekeyWindow(x1, x2, x3)
-			if (intCount = 2) 
+			else if (intCount = 2) 
 				hyf_onekeyWindow(x4, x5, x6)
-			if (intCount = 3)
+			else if (intCount = 3)
 				hyf_onekeyWindow(x7, x8, x9)
 		}
-		if (operation_type = 2) ; 2：win加数字切换任务栏程序
+		else if (operation_type = 2) ; 2：win加数字切换任务栏程序
 		{
 			if (intCount = 1) 
 				Send, %x1%
-			if (intCount = 2) 
+			else if (intCount = 2) 
 				Send, %x2%
 		}
 		;*/
+		
 		if (0)
 			MsgBox, intCount=%intCount%
 		intCount = 0
@@ -784,13 +786,23 @@ SetTitleMatchMode 2
 	NumpadEnter & z::
 		return
 	
-	NumpadEnter & 1::Send, 12345670`n
-	NumpadEnter & j::different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
-	NumpadEnter & a::Send, admin`n1234`n
-	NumpadEnter & p::Send, printf(`"\njkn3 [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
-	NumpadEnter & t::Send, tftp -i 192.168.1.1 put{Space}{Space}  
-	NumpadEnter & NumpadDel::
-	NumpadEnter & NumpadDot::
+	NumpadEnter & 1::function_for_the_NumpadEnter_short_key("1")
+	NumpadEnter & j::function_for_the_NumpadEnter_short_key("j")
+	NumpadEnter & a::function_for_the_NumpadEnter_short_key("a")
+	NumpadEnter & p::function_for_the_NumpadEnter_short_key("p")
+	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
+	NumpadEnter & NumpadDel::function_for_the_NumpadEnter_short_key("NumpadDel")
+	NumpadEnter & NumpadDot::function_for_the_NumpadEnter_short_key("NumpadDot")
+	/*
+		; 将输入法切换为英文，取消大小写锁定
+		if ( GetKeyState("CapsLock", "T") ) {
+			SetCapsLockState,Off
+		}
+		if ( WinExist("ahk_class SoPY_Comp") ) {
+			Send {Enter}
+		}
+		IME_SET(0)	
+	
 		; InputBox, UserInput, way
 		Input, UserInput, T4 L5, {Space}.{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
 		if (UserInput = "b1")
@@ -802,6 +814,44 @@ SetTitleMatchMode 2
 		else if (UserInput = "p2")
 			Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 		return
+	*/
+	function_for_the_NumpadEnter_short_key(short_key)
+	{
+		; 将输入法切换为英文，取消大小写锁定
+		if ( GetKeyState("CapsLock", "T") ) {
+			SetCapsLockState,Off
+		}
+		if ( WinExist("ahk_class SoPY_Comp") ) {
+			Send {Enter}
+		}
+		IME_SET(0)	
+
+		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
+		if(short_key = "1")
+			Send, 12345670`n
+		else if(short_key = "j")
+			different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
+		else if(short_key = "a")
+			Send, admin`n1234`n
+		else if(short_key = "p")
+			Send, printf(`"\njkn3 [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
+		else if(short_key = "t")
+			Send, tftp -i 192.168.1.1 put{Space}{Space}  
+		else if (short_key = "NumpadDel" or short_key = "NumpadDot")
+		{
+			; InputBox, UserInput, way
+			Input, UserInput, T4 L5, {Space}.{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
+			if (UserInput = "b1")
+				Send, T:\BBA_2_5_Platform_BCM.1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+			else if (UserInput = "b2")
+				Send, T:\BBA_2_5_Platform_BCM.2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+			else if (UserInput = "p1")
+				Send, T:\PON_trunk_bba_2_5.1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+			else if (UserInput = "p2")
+				Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image			
+		}
+		return
+	}
 }
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
