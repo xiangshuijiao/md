@@ -377,9 +377,10 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 ## ubuntu1804远程桌面连接
 
+* [连接教程](https://m.linuxidc.com/Linux/2019-08/159848.htm)
+* [Ubuntu 18.04 上使用xrdp远程桌面登录蓝屏解决（包括闪退）](https://blog.csdn.net/cxn304/article/details/99733711?utm_medium=distribute.pc_relevant.none-task-blog-title-7&spm=1001.2101.3001.4242)
 * [Windows 远程桌面连接ubuntu及xrdp的一些小问题](https://blog.csdn.net/u014447845/article/details/80291678) 
     * 远程桌面闪退、连接失败、tab补全功能，无菜单栏，error - problem connecting  
-* [连接教程](https://m.linuxidc.com/Linux/2019-08/159848.htm)
 
 ## Ubuntu中文路径改为英文
 
