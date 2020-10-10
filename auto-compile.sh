@@ -10,16 +10,16 @@ target_path=/opt/bba/auto_compile/image
 logfile=/tmp/jkn.script.auto_compile.log
 
 # changes needed
-git_clone_command="git clone ssh://jiangkainan@172.29.88.140:29418/BBA_2_5_Platform_BCM -b EX220_USSP_v1.2" # 注意要加上-b参数指定分支
-commit_msg_hook_command="scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg BBA_2_5_Platform_BCM/.git/hooks/"
-project_name=BBA_2_5_Platform_BCM
-branch=EX220_USSP_v1.2
-build_path=platform/build
-image_path=platform/targets/EX220-G2uV1/USSP/image
-image_file_name="EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin"
-the_file_used_to_check_if_the_compile_was_successful="EX220-G2u_FLASH.bin.w"
-MODEL=EX220-G2uV1
-SPEC=USSP
+project_name=PON_trunk_bba_2_5
+branch=feature_XC220_mesh
+git_clone_command="git clone git@spcodes.rd.tp-link.net:PON/PON_trunk_bba_2_5.git -b $branch" # 注意要加上-b参数指定分支
+commit_msg_hook_command=
+build_path=BBA2.5_platform/build
+image_path=EN7528DU_SDK/tplink/output/XC220G3vv1/image
+image_file_name="XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin XC220-G3v(SP)v1_1.1.0_0.8.0_up_boot.bin rootfs"
+the_file_used_to_check_if_the_compile_was_successful="XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin"
+MODEL=XC220G3vv1
+SPEC=
 
 # 检查使用的容器是否正确
 if [ ! -d /opt/bba/$project_name ]
