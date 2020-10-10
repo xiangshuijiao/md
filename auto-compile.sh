@@ -54,7 +54,7 @@ then
 		echo "$local_commit_date < $remote_commit_date 有最新的提交，需要重新clone编译" >> $logfile 2>&1 </dev/null
 	fi
 else
-	echo "【本地仓库不存在】或者【编译失败了】" >> $logfile 2>&1 </dev/null
+	echo "【本地仓库不存在】或者【编译失败了】，下面将自动重新clone代码并编译" >> $logfile 2>&1 </dev/null
 fi
 
 
