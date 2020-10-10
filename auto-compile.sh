@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # 宿主机的/etc/crontab
-# 0  10  * * * root  docker exec docker容器名 docker脚本路径
-# 0  18  * * * root  docker exec docker容器名 docker脚本路径
+# 0  10  * * * root  docker exec docker容器名 docker脚本绝对路径
+# 0  18  * * * root  docker exec docker容器名 docker脚本绝对路径
 
 # No changes needed
 work_path=/opt/bba/auto_compile 
