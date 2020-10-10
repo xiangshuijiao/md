@@ -3,8 +3,8 @@ VarSetCapacity(APPBARDATA, A_PtrSize=4 ? 36:48) ; 这行代码必须放第一行
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode 2   
-
-
+global FPRINTF_FILE_PATH = "/tmp/1.txt" ; 默认fprintf会写入的路径，可以用NumberEnter+c修改这个值
+global JKN_FLAGS = "jkn1"
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;左Shift强制切换到英文输入法，
 ;右Shift强制切换到中文输入法，
@@ -755,7 +755,7 @@ SetTitleMatchMode 2
 	$NumpadEnter::NumpadEnter      
 
 	NumpadEnter & 2::
-	NumpadEnter & 3::
+	
 	NumpadEnter & 4::
 	NumpadEnter & 5::
 	NumpadEnter & 6::
@@ -764,10 +764,9 @@ SetTitleMatchMode 2
 	NumpadEnter & 9::
 	NumpadEnter & 0::
 	NumpadEnter & b::
-	NumpadEnter & c::
 	NumpadEnter & d::
 	NumpadEnter & e::
-	NumpadEnter & f::
+	
 	NumpadEnter & g::
 	NumpadEnter & h::
 	NumpadEnter & i::
@@ -791,8 +790,14 @@ SetTitleMatchMode 2
 	NumpadEnter & a::function_for_the_NumpadEnter_short_key("a")
 	NumpadEnter & p::function_for_the_NumpadEnter_short_key("p")
 	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
+	NumpadEnter & c::function_for_the_NumpadEnter_short_key("c")
+	NumpadEnter & f::function_for_the_NumpadEnter_short_key("f")
+	NumpadEnter & 3::function_for_the_NumpadEnter_short_key("3")
+	NumpadEnter & ?::function_for_the_NumpadEnter_short_key("?") ;给出帮助信息
 	NumpadEnter & NumpadDel::function_for_the_NumpadEnter_short_key("NumpadDel")
 	NumpadEnter & NumpadDot::function_for_the_NumpadEnter_short_key("NumpadDot")
+	
+
 
 	function_for_the_NumpadEnter_short_key(short_key)
 	{
@@ -808,25 +813,50 @@ SetTitleMatchMode 2
 		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
 		if(short_key = "1")
 			Send, 12345670`n
+		else if(short_key = "3")
+			Send, \\PC3.jkn\bba
 		else if(short_key = "j")
 			different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
 		else if(short_key = "a")
 			Send, admin`n1234`n
 		else if(short_key = "p")
-			Send, printf(`"\njkn3 [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
+			Send, `nprintf(`"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
+		else if(short_key = "f")
+			Send, `nFILE* fp_jkn = fopen(`"%FPRINTF_FILE_PATH%`", "a{+}"); fprintf(fp_jkn, `"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__); fclose(fp_jkn);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		else if(short_key = "t")
 			Send, tftp -i 192.168.1.1 put{Space}{Space}  
+		else if(short_key = "?")
+			MsgBox "
+(
+
+【1】12345670
+【3】\\PC3.jkn\bba
+【j】Jkn12345
+【a】admin 1234
+【p】printf
+【f】fprintf
+【t】tftp -i 192.168.1.1 put{Space}{Space}
+【.b1】T:\BBA_2_5_Platform_BCM\...\image
+【.b2】T:\BBA_2_5_Platform_BCM.2\...\image
+【.p1】T:\PON_trunk_bba_2_5\...\image
+【.p2】T:\PON_trunk_bba_2_5.2\...\image
+【.ab】ab1127586911
+【.y0】Y0nN1uWqDCsi
+【.ji】jiangkainan@tp-link.com.cn
+
+)"  
+; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
 		else if (short_key = "NumpadDel" or short_key = "NumpadDot")
 		{
-			; InputBox, UserInput, way
+			; InputBox, UserInput
 			Input, UserInput, T4 L5, {Space}{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
 			; 下面是路径
 			if (UserInput = "b1")
-				Send, T:\BBA_2_5_Platform_BCM.1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+				Send, T:\BBA_2_5_Platform_BCM\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "b2")
 				Send, T:\BBA_2_5_Platform_BCM.2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "p1")
-				Send, T:\PON_trunk_bba_2_5.1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+				Send, T:\PON_trunk_bba_2_5\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			else if (UserInput = "p2")
 				Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			; 下面是账号密码
@@ -841,6 +871,88 @@ SetTitleMatchMode 2
 	}
 }
 
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;NumpadSub 修改全局变量的值
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	#IfWinActive
+	$NumpadSub::NumpadSub      
+	
+	NumpadSub & 1::
+	NumpadSub & a::
+	NumpadSub & p::
+	NumpadSub & t::
+	NumpadSub & c::
+	
+	NumpadSub & 2::
+	NumpadSub & 3::
+	NumpadSub & 4::
+	NumpadSub & 5::
+	NumpadSub & 6::
+	NumpadSub & 7::
+	NumpadSub & 8::
+	NumpadSub & 9::
+	NumpadSub & 0::
+	NumpadSub & b::
+	NumpadSub & d::
+	NumpadSub & e::
+	NumpadSub & g::
+	NumpadSub & h::
+	NumpadSub & i::
+	NumpadSub & k::
+	NumpadSub & l::
+	NumpadSub & m::
+	NumpadSub & n::
+	NumpadSub & o::
+	NumpadSub & q::
+	NumpadSub & r::
+	NumpadSub & s::
+	NumpadSub & u::
+	NumpadSub & v::
+	NumpadSub & x::
+	NumpadSub & y::
+	NumpadSub & z::
+		return
+		
+	NumpadSub & f::function_for_the_NumpadSub_short_key("f")
+	NumpadSub & j::function_for_the_NumpadSub_short_key("j")
+	NumpadSub & ?::function_for_the_NumpadSub_short_key("?")
+	
+	function_for_the_NumpadSub_short_key(short_key)	
+	{
+		; 将输入法切换为英文，取消大小写锁定
+		if ( GetKeyState("CapsLock", "T") ) {
+			SetCapsLockState,Off
+		}
+		if ( WinExist("ahk_class SoPY_Comp") ) {
+			Send {Enter}
+		}
+		IME_SET(0)	
+
+		if(short_key = "?")
+		{
+			MsgBox "
+(
+
+【f】FPRINTF_FILE_PATH
+【j】JKN_FLAGS
+
+)"  
+; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
+			return
+		}
+		
+		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
+		InputBox, UserInput
+		if(short_key = "f")
+			FPRINTF_FILE_PATH = %UserInput%
+		else if(short_key = "j")
+			JKN_FLAGS = %UserInput%
+		return
+	}
+}
+
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;Win+F1，每隔1s鼠标左键单击一次，再次按则取消
 ;Win+F2，每隔1s鼠标左键双击一次，再次按则取消
@@ -849,7 +961,7 @@ SetTitleMatchMode 2
 ;Win+F10：显示器切换为HDMI输入 
 ;		仅适用于DELL U2417H显示器
 ;		代码中/1为显示器的序号，DP与HDMI为指定的输入源
-;Win+F12：Sleep
+;Win+F12：只关闭屏幕，不sleep也不休眠
 ;Win+Shift+F12：Lock and sleep
 ;win+h：显示、隐藏桌面图标和任务栏
 ;win+t：窗口置顶, 再按取消
@@ -900,8 +1012,10 @@ SetTitleMatchMode 2
 
 	#IfWinActive
 	#F12::
+		; 只关闭屏幕，不sleep也不休眠
+		SendMessage, 0x112, 0xF170, 2,, Program Manager
 		; Sleep/Suspend:
-		DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0)
+		;DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0)
 		; Hibernate:
 		;DllCall("PowrProf\SetSuspendState", "int", 1, "int", 0, "int", 0)
 		Return
@@ -999,6 +1113,14 @@ SetTitleMatchMode 2
 
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;鼠标操作：
+;		点击关闭按钮执行最小化操作，用Alt+F4来关闭窗口
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+{}
+
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;另一台电脑运行的脚本备份
 ;功能：
 ;		后台静默执行cmd命令并获取输出，执行过程没有黑窗口，关闭NumLock后：
@@ -1057,6 +1179,8 @@ StdoutToVar_CreateProcess(sCmd, sEncoding:="CP0", sDir:="", ByRef nExitCode:=0) 
 ; number1：把以太网2、3设置为dhcp
 #IfWinActive 
 $NumpadEnd::
+StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network2") ; release旧的ip地址
+StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network3") ; release旧的ip地址
 StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network2 dhcp")
 StdoutToVar_CreateProcess("cmd /c  netsh interface ip set dns network2 dhcp")
 StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network3 dhcp")
