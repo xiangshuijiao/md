@@ -22,6 +22,7 @@ MODEL=XC220G3vv1
 SPEC=
 
 # 检查使用的容器是否正确
+echo "=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>start `date`" >> $logfile 2>&1 </dev/null
 if [ ! -d /opt/bba/$project_name ]
 then
 	echo The wrong container was used >> $logfile 2>&1 </dev/null
@@ -52,6 +53,7 @@ then
 		exit -1
 	else
 		echo "$local_commit_date < $remote_commit_date 有最新的提交，需要重新clone编译" >> $logfile 2>&1 </dev/null
+		echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
 	fi
 else
 	echo "【本地仓库不存在】或者【编译失败了】，下面将自动重新clone代码并编译" >> $logfile 2>&1 </dev/null
@@ -59,7 +61,6 @@ fi
 
 
 # prepare work
-echo "=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>start `date`" >> $logfile 2>&1 </dev/null
 mkdir -p $work_path
 cd 		 $work_path
 rm -rf   $work_path/$project_name
