@@ -112,6 +112,7 @@ then
 	current_time=$(date +%Y_%m_%d_%H_%M_%S)
 	mkdir -p $target_path/$current_time
 	cp -rf $image_file_name $target_path/$current_time
+	git log > $target_path/$current_time/git\ log
 else
 	echo Compile to generate image failed >> $logfile 2>&1 </dev/null
 fi
