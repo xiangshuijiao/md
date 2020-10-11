@@ -7,7 +7,7 @@ bool=false
 # $1为git仓库所在路径，$2为仓库目前的分支
 Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
 {
-	echo "=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>" >> $logfile 2>&1 </dev/null
+	echo "=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>start `date`" >> $logfile 2>&1 </dev/null
 	if [ -d $1 ]
 	then
 		cd $1
@@ -34,7 +34,7 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
 	else
 		echo "指定的仓库$1不存在，请手动重新clone" >> $logfile 2>&1 </dev/null
 	fi
-	echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=" >> $logfile 2>&1 </dev/null
+	echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
 }
 
 Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/BBA_2_5_Platform_BCM/BBA_2_5_Platform_BCM/" "EX220_USSP_v1.2"
