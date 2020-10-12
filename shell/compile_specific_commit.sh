@@ -69,9 +69,11 @@ A_function_that_compile_specified_commit()
 
 	# make
 	for i in ${specific_commit[*]}; do
+		commit_id=$i
 		cd /opt && ls | grep -v bba | grep -v share_data_folder | xargs rm -rf # 删除交叉编译工具
 		cd $work_path/$project_name && git clean -dfx
-		git reset --hard $i
+		echo git reset --hard $commit_id >> $logfile 2>&1 </dev/null
+		git reset --hard $commit_id >> $logfile 2>&1 </dev/null
 		
 		cd $work_path/$project_name/$build_path
 		if [[ "$SPEC" == "" ]]
@@ -95,9 +97,9 @@ A_function_that_compile_specified_commit()
 		then
 			echo Compile to generate image successfully >> $logfile 2>&1 </dev/null
 			current_time=$(date +%Y_%m_%d_%H_%M_%S)
-			mkdir -p $target_path/$current_time_$i
-			cp -rf $image_file_name $target_path/$current_time_$i
-			git log > $target_path/$current_time_$i/git\ log.txt
+			mkdir -p $target_path/$current_time\ $commit_id
+			cp -rf $image_file_name $target_path/$current_time\ $commit_id
+			git log > $target_path/$current_time\ $commit_id/git\ log.txt
 		else
 			echo Compile to generate image failed >> $logfile 2>&1 </dev/null
 		fi
