@@ -16,6 +16,7 @@
 # ${10}：MODEL # 注意，$10 不能获取第十个参数，获取第十个参数需要${10}。当n>=10时，需要使用${n}来获取参数。
 # ${11}：SPEC
 # ${12}：specific_commit
+need_to_re_clone_the_project=true
 A_function_that_compile_specified_commit()
 {	
 	# No changes needed
@@ -39,28 +40,30 @@ A_function_that_compile_specified_commit()
 	echo "=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>start `date`" >> $logfile 2>&1 </dev/null
 
 	# prepare work
-	mkdir -p $work_path
-	cd 		 $work_path
-	rm -rf   $work_path/$project_name
+	mkdir -p $work_path && cd $work_path
 
 	# git clone
-	eval `ssh-agent` && ssh-add
-	echo $git_clone_command >> $logfile 2>&1 </dev/null
-	nohup $git_clone_command >> $logfile 2>&1 </dev/null
-	if [[ "$commit_msg_hook_command" != "" ]]
+	if [ "$need_to_re_clone_the_project" == true ]
 	then
-		echo $commit_msg_hook_command  >> $logfile 2>&1 </dev/null
-		nohup $commit_msg_hook_command  >> $logfile 2>&1 </dev/null
+		rm -rf   $work_path/$project_name
+		eval `ssh-agent` && ssh-add
+		echo $git_clone_command >> $logfile 2>&1 </dev/null
+		nohup $git_clone_command >> $logfile 2>&1 </dev/null
+		if [[ "$commit_msg_hook_command" != "" ]]
+		then
+			echo $commit_msg_hook_command  >> $logfile 2>&1 </dev/null
+			nohup $commit_msg_hook_command  >> $logfile 2>&1 </dev/null
+		fi
+		if [ ! -d $work_path/$project_name/.git ]
+		then
+			echo git clone failed >> $logfile 2>&1 </dev/null
+			echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
+			return -1
+		fi
 	fi
-	if [ ! -d $work_path/$project_name/.git ]
-	then
-		echo git clone failed >> $logfile 2>&1 </dev/null
-		echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
-		return -1
-	fi
-	cd  $work_path/$project_name
 
 	# git checkout branch
+	cd $work_path/$project_name
 	echo git checkout -f $branch >> $logfile 2>&1 </dev/null
 	nohup git checkout -f $branch >> $logfile 2>&1 </dev/null
 
@@ -103,6 +106,7 @@ A_function_that_compile_specified_commit()
 }
 
 specific_commit=("71bf0883" "fc904db3" "c5045001" "e9f0e0f6" "7fa800a0" "cda511ae")
+need_to_re_clone_the_project=false
 A_function_that_compile_specified_commit \
 	"PON_trunk_bba_2_5.feature_XC220_mesh" "PON_trunk_bba_2_5" "feature_XC220_mesh"  \
 	"git@spcodes.rd.tp-link.net:PON/PON_trunk_bba_2_5.git" \
