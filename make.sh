@@ -1,4 +1,5 @@
 #!/bin/sh
+apt-get install psmisc # 安装后才会有killall命令
 
 if [[ "$2" == "" ]]
 then
@@ -16,4 +17,4 @@ nohup make $make_compile_options apps_build
 nohup make $make_compile_options cmm -B 
 nohup make $make_compile_options fs_build 
 nohup make $make_compile_options image_build 
-
+killall tail
