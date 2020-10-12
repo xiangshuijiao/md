@@ -1,6 +1,4 @@
 #!/bin/sh
-apt-get install psmisc # 安装后才会有killall命令
-
 if [[ "$2" == "" ]]
 then
 	make_compile_options="MODEL=$1"
