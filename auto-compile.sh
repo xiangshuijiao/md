@@ -120,7 +120,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 		current_time=$(date +%Y_%m_%d_%H_%M_%S)
 		mkdir -p $target_path/$current_time
 		cp -rf $image_file_name $target_path/$current_time
-		git log > $target_path/$current_time/git\ log
+		git log > $target_path/$current_time/git\ log.txt
 	else
 		echo Compile to generate image failed >> $logfile 2>&1 </dev/null
 	fi
