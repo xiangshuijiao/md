@@ -54,10 +54,10 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 		 
 		if [ $local_commit_date -gt $remote_commit_date ]; then
 			echo "$local_commit_date > $remote_commit_date 一般不会出现这种情况" >> $logfile 2>&1 </dev/null
-			exit -1
+			return -1
 		elif [ $local_commit_date -eq $remote_commit_date ]; then
 			echo "$local_commit_date = $remote_commit_date 没有最新的提交，不需要重新clone编译" >> $logfile 2>&1 </dev/null
-			exit -1
+			return -1
 		else
 			echo "$local_commit_date < $remote_commit_date 有最新的提交，需要重新clone编译" >> $logfile 2>&1 </dev/null
 			echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
@@ -81,11 +81,11 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 		echo $commit_msg_hook_command  >> $logfile 2>&1 </dev/null
 		nohup $commit_msg_hook_command  >> $logfile 2>&1 </dev/null
 	fi
-	if [ ! -d $work_path/$project_name ]
+	if [ ! -d $work_path/$project_name/.git ]
 	then
 		echo git clone failed >> $logfile 2>&1 </dev/null
 		echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
-		exit -1
+		return -1
 	fi
 	cd  $work_path/$project_name
 
