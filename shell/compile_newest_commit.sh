@@ -118,7 +118,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	then
 		echo Compile to generate image successfully >> $logfile 2>&1 </dev/null
 		current_time=$(date +%Y_%m_%d_%H_%M_%S)
-		destination_folder=$target_path/$project_name\ $branch\ `git rev-parse --short HEAD`\ newest\ $current_time
+		destination_folder=$target_path/$current_time\ $project_name\ $branch\ `git rev-parse --short HEAD`\ newest
 		mkdir -p $destination_folder
 		cp -rf $image_file_name $destination_folder
 		git log > $destination_folder/git\ log.txt
