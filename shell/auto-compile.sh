@@ -18,8 +18,8 @@
 A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 {	
 	# No changes needed
-	work_path=/opt/bba/$1 
-	target_path=/opt/bba/$1/image
+	work_path=/opt/bba/compile_newest_commit/$1 
+	target_path=/opt/bba/image
 	logfile=/tmp/jkn.script.$1.log
 
 	# changes needed
@@ -118,9 +118,10 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	then
 		echo Compile to generate image successfully >> $logfile 2>&1 </dev/null
 		current_time=$(date +%Y_%m_%d_%H_%M_%S)
-		mkdir -p $target_path/$current_time
-		cp -rf $image_file_name $target_path/$current_time
-		git log > $target_path/$current_time/git\ log.txt
+		destination_folder=$target_path/$project_name\ $branch\ `git rev-parse --short HEAD`\ $current_time
+		mkdir -p $destination_folder
+		cp -rf $image_file_name $destination_folder
+		git log > $destination_folder/git\ log.txt
 	else
 		echo Compile to generate image failed >> $logfile 2>&1 </dev/null
 	fi
@@ -151,4 +152,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs \
 	"platform/build/" "platform/targets/EX220-G2uV1/USSP/image" \
 	"EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin" \
 	"EX220-G2u_FLASH.bin.w" "EX220-G2uV1" "USSP"
+	
+	
+	
 	
