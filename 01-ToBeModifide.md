@@ -85,6 +85,8 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
   * https://www.chromedownloads.net/
   * https://chromecj.com/
   * https://www.extfans.com/
+* Chrome优化绿色软件
+  * 离线安装插件没有烦人的弹窗提醒 https://shuax.com/project/chrome/
 
 ## CNKI Free Download
 
