@@ -97,7 +97,7 @@ A_function_that_compile_specified_commit()
     then
       echo Compile to generate image successfully >> $logfile 2>&1 </dev/null
       current_time=$(date +%Y_%m_%d_%H_%M_%S)
-      destination_folder=$target_path/$current_time $project_name\ $branch\ `git rev-parse --short HEAD`\ specific
+      destination_folder=$target_path/$current_time\ $project_name\ $branch\ `git rev-parse --short HEAD`\ specific
       mkdir -p $destination_folder
       cp -rf $image_file_name $destination_folder
       git log > $destination_folder/git\ log.txt
