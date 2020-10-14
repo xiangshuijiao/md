@@ -167,11 +167,13 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 ## Over the wall
 
+### 可用账号
+
+* 谷歌搜索`v2ray 账号`
+
+* https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
+
 ### V2ray
-
-* 可用账号：谷歌搜索`v2ray 账号`
-
-  * https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
   
 * 新的方法（2020年4月1日）
   
