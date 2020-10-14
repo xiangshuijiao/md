@@ -87,21 +87,10 @@ else
 	echo "文件合并失败"
 fi
 
-echo ""
-echo "git pull -f"
-git pull
-echo ""
-echo "git diff"
-git diff
-echo ""
-echo "git add -A"
-git add * 
-echo ""
-echo "git commit -m `date`"
-git commit -m "`date`"
-echo ""
-echo "git push"
-git push
-echo ""
-echo "git status"
-git status
+
+echo "" && echo "git diff" 				&& git diff
+echo "" && echo "git add -A" 			&& git add -A
+echo "" && echo "git commit -m `date`" 	&& git commit -m "`date`"
+echo "" && echo "git push" 				&& git push
+echo "" && echo "git status" 			&& git status
+
