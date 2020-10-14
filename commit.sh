@@ -83,6 +83,9 @@ else
 fi
 
 echo ""
+echo "git pull"
+git pull
+echo ""
 echo "git diff"
 git diff
 echo ""
