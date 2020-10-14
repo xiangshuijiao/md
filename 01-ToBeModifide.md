@@ -169,6 +169,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 ### V2ray
 
+* 免费结点：谷歌搜索v2ray 账号
 * 新的方法（2020年4月1日）
   
   * centos 8系统
