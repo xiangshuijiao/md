@@ -83,17 +83,17 @@ else
 fi
 
 echo ""
-echo "git pull"
+echo "git pull -f"
 git pull
 echo ""
 echo "git diff"
 git diff
 echo ""
-echo "git add *"
+echo "git add -A"
 git add * 
 echo ""
-echo "git commit -m 1"
-git commit -m 1
+echo "git commit -m `date`"
+git commit -m "`date`"
 echo ""
 echo "git push"
 git push
