@@ -70,7 +70,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
     * 换种登录方式即可，`BaiduPCS-Go login -bduss=`
 
     * [GitHub issue中有BDUSS获取方式](https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS)
-
+  
 ## Beyond compare
 
 *   [beyond compare文本文件内容一样却标记为不同的解决方法](https://www.beyondcompare.cc/wenti/wenjian-chayi.html)
@@ -94,7 +94,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
     *   [在家里如何免费使用中国知网？](https://www.zhihu.com/question/20188973)
     *   [浙大图书馆官网](https://www.zjlib.cn/)：151365
 
-## Docker
+## Docker 
 
 * [Docker镜像的导入导出](https://blog.csdn.net/ncdx111/article/details/79878098)
 * [ssh连接docker容器](https://blog.csdn.net/vincent2610/article/details/52490397)
@@ -169,7 +169,10 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 ### V2ray
 
-* 免费结点：谷歌搜索v2ray 账号
+* 可用账号：谷歌搜索`v2ray 账号`
+
+  * https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
+  
 * 新的方法（2020年4月1日）
   
   * centos 8系统
