@@ -20,14 +20,7 @@
   * [git fetch失败](#git-fetch%E5%A4%B1%E8%B4%A5)
   * [git pull、git stash apply冲突](#git-pullgit-stash-apply%E5%86%B2%E7%AA%81)
   * [git stash](#git-stash)
-  * [git diff <strong>后面的、工作区、暂存区</strong>](#git-diff-%E5%90%8E%E9%9D%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E6%9A%82%E5%AD%98%E5%8C%BA)
-  * [git 命令自动补全](#git-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8)
-  * [<a href="https://blog\.csdn\.net/liuhaomatou/article/details/54410361" rel="nofollow">git 生成patch 和打入patch</a>](#git-%E7%94%9F%E6%88%90patch-%E5%92%8C%E6%89%93%E5%85%A5patch)
-  * [git blame](#git-blame)
   * [git 加速](#git-%E5%8A%A0%E9%80%9F)
-  * [git 只显示add的文件](#git-%E5%8F%AA%E6%98%BE%E7%A4%BAadd%E7%9A%84%E6%96%87%E4%BB%B6)
-  * [git pull多出新的空提交](#git-pull%E5%A4%9A%E5%87%BA%E6%96%B0%E7%9A%84%E7%A9%BA%E6%8F%90%E4%BA%A4)
-  * [git 查看指定文件的指定代码是由谁增、删、改](#git-%E6%9F%A5%E7%9C%8B%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E7%9A%84%E6%8C%87%E5%AE%9A%E4%BB%A3%E7%A0%81%E6%98%AF%E7%94%B1%E8%B0%81%E5%A2%9E%E5%88%A0%E6%94%B9)
 * [Graphviz](#graphviz)
 * [Make](#make)
   * [加速编译](#%E5%8A%A0%E9%80%9F%E7%BC%96%E8%AF%91)
@@ -38,6 +31,7 @@
 * [Shell](#shell)
 * [SSH](#ssh)
   * [<a href="https://segmentfault\.com/a/1190000011289092" rel="nofollow">nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】</a>](#nohup-%E8%A7%A3%E5%86%B3linux%E5%85%B3%E9%97%AD%E7%BB%88%E7%AB%AF%E5%85%B3%E9%97%ADssh%E7%AD%89%E5%90%8E%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%88%96%E8%80%85%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F)
+  * [SSH 显示图形化界面](#ssh-%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2)
 * [TCPDump](#tcpdump)
 * [Telnet](#telnet)
 * [TFTP](#tftp)
@@ -419,6 +413,8 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 ### 常用命令
 
+git 常用
+
 * `git log -p filename `查看与文件相关的提交记录，-p参数会显示每次提交的diff
 
 * `git show commit-id filename `只看某次提交的文件变化
@@ -442,6 +438,42 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
   git config --add core.filemode false
   git status -uno . | grep -v \\.o$ | grep -v \\.cmd$ | grep -v \\.i$ | grep -v \\.Plo$ | grep -v \\.Po$ | grep -v \\.so$ | grep -v \\.order$| grep -v \\.symvers$ | grep -v \\.ko$ | grep -v \\.mod$ 
   ```
+
+git diff **后面的、工作区、暂存区**
+
+*   ```shell
+    git diff 工作区在暂存区的基础上修改了什么
+    git diff stash@{0} 工作区在stash的基础上修改了什么
+    git diff HEAD 工作区在仓库HEAD的基础上修改了什么
+    git diff --cached 暂存区在HEAD的基础上修改了什么
+    git diff HEAD stash@{0}暂存区在HEAD的基础上修改了什么// 后面在前面的基础上修改了什么
+    git diff HEAD^ HEAD 和上次提交相比，本次提交修改了什么
+    ```
+
+git 命令自动补全：`apt install bash-completion -y // 自动补全，需要重新打开bash窗口`
+
+[git 生成patch 和打入patch](https://blog.csdn.net/liuhaomatou/article/details/54410361)
+
+git blame：`git blame 文件名`可以看到每一行最近是由谁更改的
+
+git 只显示add的文件：`git diff --cached --stat`
+
+git pull多出新的空提交解决方法：`git config --global pull.rebase true`对本地进行变基操作就可`git pull`和远程保持同步且不会产生新的空提交
+
+git 查看`指定文件的指定代码`是由谁`增、删、改`
+
+*   `git log -S <string> path/to/file`
+
+*   `git log -G <regex> path/to/file`  正则表达式
+
+git 图形化显示
+
+*   ```shell
+    git log --graph --oneline # 图形化显示当前分支的提交日志
+    git log --graph --patch # 图形化显示当前分支的提交日志及每次提交的变更内容
+    git log --graph --oneline --all # 图形化显示所有分支的提交日志
+    git log --graph --patch --all # 图形化显示所有分支的提交日志及每次提交的变更内容
+    ```
 
 ### 常见问题
 
@@ -634,28 +666,7 @@ git stash clear // 清空所有stash
     
 ```
 
-### git diff **后面的、工作区、暂存区**
 
-```c
-    git diff 工作区在暂存区的基础上修改了什么
-    git diff stash@{0} 工作区在stash的基础上修改了什么
-    git diff HEAD 工作区在仓库HEAD的基础上修改了什么
-    git diff --cached 暂存区在HEAD的基础上修改了什么
-    git diff HEAD stash@{0}暂存区在HEAD的基础上修改了什么// 后面在前面的基础上修改了什么
-    git diff HEAD^ HEAD 和上次提交相比，本次提交修改了什么
-```
-
-### git 命令自动补全
-
-```c
-apt install bash-completion -y // 自动补全，需要重新打开bash窗口
-```
-
-### [git 生成patch 和打入patch](https://blog.csdn.net/liuhaomatou/article/details/54410361)
-
-### git blame
-
-`git blame 文件名`可以看到每一行最近是由谁更改的
 
 ### git 加速
 
@@ -690,19 +701,7 @@ apt install bash-completion -y // 自动补全，需要重新打开bash窗口
     ```
 
 
-### git 只显示add的文件
 
-`git diff --cached --stat`
-
-### git pull多出新的空提交
-
-`git config --global pull.rebase true`对本地进行变基操作就可`git pull`和远程保持同步且不会产生新的空提交
-
-### git 查看`指定文件的指定代码`是由谁`增、删、改`
-
-`git log -S <string> path/to/file`
-
-`git log -G <regex> path/to/file`  正则表达式
 
 ## Graphviz
 
@@ -875,7 +874,7 @@ apt install bash-completion -y // 自动补全，需要重新打开bash窗口
 
 *   [调试逆向[原创]Windows逆向学习笔记——破解Source Insight 4 ](https://bbs.pediy.com/thread-261478.htm) 
 *   不能打开samba目录，报错为`not a valid directory T:`
-    *   解决：不要给sourceinsight管理员权限
+    *   解决：不要映射网络驱动器，直接使用`\\pc3.jkn\bba`的路径
 
 ## Shell
 
@@ -899,6 +898,20 @@ apt install bash-completion -y // 自动补全，需要重新打开bash窗口
     showArr "${regions[*]}"
     ```
 
+
+[循环获取参数：从第三个参数开始](https://blog.csdn.net/m0_37886429/article/details/89280852)
+
+*   ```shell
+    i=3;
+    while (( i <= $# ))
+    do
+    # 间接引用! 直接 $1 这样处理会出问题，不加 ! ，输出的就是数字!??因为外面的参数是 i 的值，而我们需要使用i,需要 ! 间接引用!
+    echo ${!i}; 
+    let i++;
+    # (( i++ ))  (( )) 的运算速度快一些!?
+    done
+    ```
+
 *   
 
 ## SSH 
@@ -906,6 +919,12 @@ apt install bash-completion -y // 自动补全，需要重新打开bash窗口
 ### [nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】](https://segmentfault.com/a/1190000011289092)
 
 *   `sudo nohup bash 脚本路径 >> /tmp/nohup.log 2>&1 </dev/null &` 指定输出文件
+
+### SSH 显示图形化界面
+
+[VcXsrv+putty远程访问linux图形界面](https://blog.csdn.net/jdzzgtc/article/details/86588537)
+
+*   注意：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`pc4.jkn:0.0`，这个地址必须要让服务器ping通，否则服务器不知道把图形界面转发给谁
 
 ## TCPDump
 
