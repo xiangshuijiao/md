@@ -14,6 +14,7 @@
 * [GitLab](#gitlab)
 * [Git](#git)
   * [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
+  * [git 图形化显示](#git-%E5%9B%BE%E5%BD%A2%E5%8C%96%E6%98%BE%E7%A4%BA)
   * [常见问题](#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
   * [解决换行符问题](#%E8%A7%A3%E5%86%B3%E6%8D%A2%E8%A1%8C%E7%AC%A6%E9%97%AE%E9%A2%98)
   * [push注意](#push%E6%B3%A8%E6%84%8F)
@@ -32,6 +33,7 @@
 * [SSH](#ssh)
   * [<a href="https://segmentfault\.com/a/1190000011289092" rel="nofollow">nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】</a>](#nohup-%E8%A7%A3%E5%86%B3linux%E5%85%B3%E9%97%AD%E7%BB%88%E7%AB%AF%E5%85%B3%E9%97%ADssh%E7%AD%89%E5%90%8E%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%88%96%E8%80%85%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F)
   * [SSH 显示图形化界面](#ssh-%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2)
+  * [WinSCP：linux 和电脑互传文件](#winscplinux-%E5%92%8C%E7%94%B5%E8%84%91%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6)
 * [TCPDump](#tcpdump)
 * [Telnet](#telnet)
 * [TFTP](#tftp)
@@ -176,13 +178,15 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
     ```c
     //通用
     	docker run --dns 172.31.1.1 -p 50001:22 -it -v  /home/bba/PON_trunk_bba_2_5:/opt/bba -v /home/share_data_folder:/opt/share_data_folder --name "PON_trunk_bba_2_5" -v /etc/localtime:/etc/localtime:ro jiang:kainan /bin/bash 
-        vim ~/.bashrc // 修改项目目录
+        vim ~/.bashrc
+            修改项目目录
+            添加 export DISPLAY=192.168.137.1:0.0
         dpkg-reconfigure tzdata // 同步时间 Asia->Shanghai
-        // 加入开机启动
         exit退出容器进入主机编辑`/etc/rc.local`脚本开自启容器
         docker restart 容器名
           
         git config --add core.filemode false // 忽略文件模式变化
+        
     ```
   
 * 使用c20sp.tar镜像
@@ -466,9 +470,13 @@ git 查看`指定文件的指定代码`是由谁`增、删、改`
 
 *   `git log -G <regex> path/to/file`  正则表达式
 
-git 图形化显示
+### git 图形化显示
 
-*   ```shell
+*   `gitk --all`：推荐配合[SSH 显示图形化界面](#SSH 显示图形化界面)使用会很舒服
+    
+*   `git log --graph`
+    
+    ```shell
     git log --graph --oneline # 图形化显示当前分支的提交日志
     git log --graph --patch # 图形化显示当前分支的提交日志及每次提交的变更内容
     git log --graph --oneline --all # 图形化显示所有分支的提交日志
@@ -924,7 +932,13 @@ git stash clear // 清空所有stash
 
 [VcXsrv+putty远程访问linux图形界面](https://blog.csdn.net/jdzzgtc/article/details/86588537)
 
-*   注意：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`pc4.jkn:0.0`，这个地址必须要让服务器ping通，否则服务器不知道把图形界面转发给谁
+*   **注意1**：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`192.168.137.1:0.0`，这个地址必须要让服务器能ping通，否则服务器不知道把图形界面转发给谁。
+*   **注意2**：docker中另外还需要定义下面的变量`export DISPLAY=192.168.137.1:0.0`并写死到`~/.bashrc`中
+*   **注意3**：连接ssh的电脑`192.168.137.243`可以和显示X11界面的电脑`192.168.137.1`不是同一台电脑，因为`192.168.137.1`电脑的显示器是U2417H的高清显示器，所以就讲X11的界面放到这台电脑上面了
+
+### WinSCP：linux 和电脑互传文件
+
+
 
 ## TCPDump
 
