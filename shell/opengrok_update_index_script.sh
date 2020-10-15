@@ -11,6 +11,7 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
 	if [ -d $1 ]
 	then
 		cd $1
+		git fetch -f
 		local_commit_date="git log -1 --format="%at" | xargs -I{} date -d @{} +%Y-%m-%d\ %H:%M:%S"
 		local_commit_date=`echo ${local_commit_date} |awk '{run=$0;system(run)}'`
 		
