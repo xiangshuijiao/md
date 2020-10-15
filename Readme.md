@@ -208,6 +208,7 @@ SwitchyOmega插件设置
 * 谷歌搜索`v2ray 账号`
 
 * https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
+* http://tr1.freeair888.club/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7/
 
 ### V2ray
 
