@@ -17,6 +17,7 @@
 * [NET Framework 3\.5离线安装](#net-framework-35%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85)
 * [NFC](#nfc)
 * [Over the wall](#over-the-wall)
+  * [Chrome SwitchyOmega插件配置](#chrome-switchyomega%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE)
   * [可用账号](#%E5%8F%AF%E7%94%A8%E8%B4%A6%E5%8F%B7)
   * [V2ray](#v2ray)
   * [谷歌镜像搭建](#%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BA)
@@ -71,7 +72,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
     * 换种登录方式即可，`BaiduPCS-Go login -bduss=`
 
     * [GitHub issue中有BDUSS获取方式](https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS)
-  
+
 ## Beyond compare
 
 *   [beyond compare文本文件内容一样却标记为不同的解决方法](https://www.beyondcompare.cc/wenti/wenjian-chayi.html)
@@ -168,6 +169,35 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 ## Over the wall
 
+### Chrome SwitchyOmega插件配置
+
+v2rayN配置
+
+* `参数设置`->`Core:基础设置`->`本地监听端口`->`10808改为1080`
+* `HTTP代理`：`选择全局模式`
+
+SwitchyOmega插件设置
+
+* `情景模式`->`proxy`->`代理协议：SOCKS5`->`代理服务器：127.0.0.1`->`代理端口：1080`
+
+* `情景模式`->`proxy`->`不代理的地址列表``
+
+  ```
+  127.0.0.1
+  ::1
+  localhost
+  ```
+
+* `自动切换模式`->`切换规则`->`条件类型：域名通配符`->`条件设置：*.google.com`->`情景模式：proxy`
+
+* `自动切换模式`->`条件类型：勾选《规则列表规则》复选框`->`情景模式：proxy`
+
+* `自动切换模式`->`条件类型：默认情景模式`->`情景模式：直接连接`
+
+* `自动切换模式`->`规则列表设置`->`规则列表格式：Auto Proxy`->`规则列表网址`：`https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt`
+
+* 点击chrome插件，选择自动切换模式即可实现外网走代理内网走直连
+
 ### 可用账号
 
 * 谷歌搜索`v2ray 账号`
@@ -175,7 +205,7 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 * https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
 
 ### V2ray
-  
+
 * 新的方法（2020年4月1日）
   
   * centos 8系统
