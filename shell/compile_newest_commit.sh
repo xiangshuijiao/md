@@ -40,6 +40,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	if [ -f $work_path/$project_name/$image_path/$the_file_used_to_check_if_the_compile_was_successful ]
 	then
 		cd $work_path/$project_name
+		git fetch -f
 		local_commit_date="git log -1 --format="%at" | xargs -I{} date -d @{} +%Y-%m-%d\ %H:%M:%S"
 		local_commit_date=`echo ${local_commit_date} |awk '{run=$0;system(run)}'`
 		
