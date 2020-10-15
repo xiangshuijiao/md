@@ -17,6 +17,7 @@
 * [NET Framework 3\.5离线安装](#net-framework-35%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85)
 * [NFC](#nfc)
 * [Over the wall](#over-the-wall)
+  * [同一个v2ray账号，手机可以用电脑不行](#%E5%90%8C%E4%B8%80%E4%B8%AAv2ray%E8%B4%A6%E5%8F%B7%E6%89%8B%E6%9C%BA%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%94%B5%E8%84%91%E4%B8%8D%E8%A1%8C)
   * [Chrome SwitchyOmega插件配置](#chrome-switchyomega%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE)
   * [可用账号](#%E5%8F%AF%E7%94%A8%E8%B4%A6%E5%8F%B7)
   * [V2ray](#v2ray)
@@ -169,18 +170,22 @@ VMware Workstation 与 Device/Credential Guard 不兼容。在禁用 Device/Cred
 
 ## Over the wall
 
+### 同一个v2ray账号，手机可以用电脑不行
+
+绝逼是你电脑的时间有问题，v2ray要求服务器的时间和客户端的时间相差不能超过3min否则就会出问题，所以将本地时间和服务器时间都和网络时间进行同步即可。
+
 ### Chrome SwitchyOmega插件配置
 
 v2rayN配置
 
-* `参数设置`->`Core:基础设置`->`本地监听端口`->`10808改为1080`
+* `参数设置`->`Core:基础设置`->`本地监听端口`->`10808保持默认不变`
 * `HTTP代理`：`选择全局模式`
 
 SwitchyOmega插件设置
 
-* `情景模式`->`proxy`->`代理协议：SOCKS5`->`代理服务器：127.0.0.1`->`代理端口：1080`
+* `情景模式`->`proxy`->`代理协议：SOCKS5`->`代理服务器：127.0.0.1`->`代理端口：10808`
 
-* `情景模式`->`proxy`->`不代理的地址列表``
+* `情景模式`->`proxy`->`不代理的地址列表`
 
   ```
   127.0.0.1
