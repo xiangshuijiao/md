@@ -52,8 +52,10 @@
 * [Vim](#vim)
 * [VMware Station](#vmware-station)
   * [虚拟机和主机之间不能复制粘贴](#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4)
-* [Win10防火墙](#win10%E9%98%B2%E7%81%AB%E5%A2%99)
-* [Win10双网卡](#win10%E5%8F%8C%E7%BD%91%E5%8D%A1)
+* [Win10](#win10)
+  * [防火墙](#%E9%98%B2%E7%81%AB%E5%A2%99)
+  * [双网卡](#%E5%8F%8C%E7%BD%91%E5%8D%A1)
+  * [查看进程启动时的参数](#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E7%9A%84%E5%8F%82%E6%95%B0)
 * [Xmind](#xmind)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
@@ -935,6 +937,7 @@ git stash clear // 清空所有stash
 *   **注意1**：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`192.168.137.1:0.0`，这个地址必须要让服务器能ping通，否则服务器不知道把图形界面转发给谁。
 *   **注意2**：docker中另外还需要定义下面的变量`export DISPLAY=192.168.137.1:0.0`并写死到`~/.bashrc`中
 *   **注意3**：连接ssh的电脑`192.168.137.243`可以和显示X11界面的电脑`192.168.137.1`不是同一台电脑，因为`192.168.137.1`电脑的显示器是U2417H的高清显示器，所以就讲X11的界面放到这台电脑上面了
+*   开机启动：参考本文链接：[查看进程启动时的参数](#%e6%9f%a5%e7%9c%8b%e8%bf%9b%e7%a8%8b%e5%90%af%e5%8a%a8%e6%97%b6%e7%9a%84%e5%8f%82%e6%95%b0)
 
 ### WinSCP：linux 和电脑互传文件
 
@@ -1120,20 +1123,26 @@ git stash clear // 清空所有stash
 * `虚拟机设置-》选项-》客户机隔离-》启用复制粘贴、启用拖放`先关闭再打开
 * 或者也可以重装Vmware-tool
 
-## Win10防火墙
+## Win10
+
+### 防火墙
 
 *   无线客户端ping不通和自己在同一个网段的电脑
     *   将防火墙**`入栈规则`**中所有的**`文件和打印机共享(回显请求 - ICMPv4-In)`**全部都启用即可
 *   外网无法访问DMZ主机中的共享文件夹
     *   将所有的防火墙**`入栈规则`**全部都启用即可 
 
-## Win10双网卡
+### 双网卡
 
 * 内网或192.168.1.1访问失败
 * 原因在于两个网卡有两个默认网关
   * 将网卡2的默认网关设为空
   * route -4 print   && route
   * route -p add 192.168.1.0 mask 255.255.255.0 192.168.1.1 metric 3 if 16
+
+### 查看进程启动时的参数
+
+cmd窗口运行`wmic process where caption="vcxsrv.exe" get caption,commandline /value`可以获取`vcxsrv.exe`进程的启动参数，然后给进程`vcxsrv.exe`创建快捷方式并在属性中添加启动参数放到`startup`开机自启动菜单就可以实现开机运行带参数的进程，进程参数的内容可以使用刚刚提到的命令获取。
 
 ## Xmind
 
