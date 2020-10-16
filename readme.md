@@ -1,51 +1,4 @@
 
-* [能<strong>上网查到</strong>的就不要记了](#%E8%83%BD%E4%B8%8A%E7%BD%91%E6%9F%A5%E5%88%B0%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%A6%81%E8%AE%B0%E4%BA%86)
-* [书签备份](#%E4%B9%A6%E7%AD%BE%E5%A4%87%E4%BB%BD)
-* [Autohotkey](#autohotkey)
-* [BaiduPCS\-Go](#baidupcs-go)
-* [Beyond compare](#beyond-compare)
-* [C](#c)
-* [Chrome](#chrome)
-* [CNKI Free Download](#cnki-free-download)
-* [Docker](#docker)
-* [Excel](#excel)
-* [Find](#find)
-* [Flameshot](#flameshot)
-* [Git](#git)
-* [Install system](#install-system)
-* [Makefile](#makefile)
-* [NET Framework 3\.5离线安装](#net-framework-35%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85)
-* [NFC](#nfc)
-* [Over the wall](#over-the-wall)
-  * [同一个v2ray账号，手机可以用电脑不行](#%E5%90%8C%E4%B8%80%E4%B8%AAv2ray%E8%B4%A6%E5%8F%B7%E6%89%8B%E6%9C%BA%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%94%B5%E8%84%91%E4%B8%8D%E8%A1%8C)
-  * [Chrome SwitchyOmega插件配置](#chrome-switchyomega%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE)
-  * [可用账号](#%E5%8F%AF%E7%94%A8%E8%B4%A6%E5%8F%B7)
-  * [V2ray](#v2ray)
-  * [谷歌镜像搭建](#%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BA)
-* [Python](#python)
-* [Samba](#samba)
-* [Securecrt](#securecrt)
-* [Software download](#software-download)
-* [Tmux](#tmux)
-* [Typora](#typora)
-* [Ubuntu](#ubuntu)
-  * [远程桌面连接](#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
-  * [中文路径改为英文](#%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
-  * [更换内核](#%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8)
-  * [文件<strong>切割</strong>、<strong>压缩</strong>、<strong>合并</strong>](#%E6%96%87%E4%BB%B6%E5%88%87%E5%89%B2%E5%8E%8B%E7%BC%A9%E5%90%88%E5%B9%B6)
-* [Vim](#vim)
-* [VMware](#vmware)
-* [Wireshark](#wireshark)
-  * [Ubuntu1604源码安装](#ubuntu1604%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85)
-  * [抓802\.11](#%E6%8A%9380211)
-  * [解密802\.11](#%E8%A7%A3%E5%AF%8680211)
-* [Win10](#win10)
-  * [磁贴布局重启后恢复原状](#%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
-  * [双网卡网络共享](#%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB)
-  * [后台运行命令行程序](#%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F)
-  * [开机执行bash脚本](#%E5%BC%80%E6%9C%BA%E6%89%A7%E8%A1%8Cbash%E8%84%9A%E6%9C%AC)
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
   ------------------分隔符------------------不要删除------------------分隔符------------------不要删除------------------分隔符------------------
 
 ## 能**上网查到**的就不要记了
@@ -582,10 +535,12 @@ SwitchyOmega插件设置
 [Windows 后台运行程序的简单方法](https://xiaoxiang.io/5c921a43eaf1f20001bbb882/)
 
 * 安装 Git Windows 客户端会自动安装 Mingw-w64，然后就可以使用`--daemon`（windows不支持这个参数所以才需要按照git）和&启动程序了
+* 上面的方法如果不信就用--help查看exe程序的帮助文档，注意：`git --help`会生成一个名为`git-bash.html`的文件，但是因为没有任何提醒所以不容易注意到，需要用everything搜索才能发现，所以执行--help时还需要用`*`搜索everything，看看有什么最新生成的文件
 
 ### 开机执行bash脚本
 
 将下面的命令放到计划任务中执行，或者创建git-bash.exe 的快捷方式，然后将执行的参数放到快捷方式属性中启动软件的地方
 
-* `D:\4-\4-green_software\Git-Portable-2.20.1-64-bit\git-bash.exe  --daemon D:\Desktop\md\shell\6-Run_the_container_after_Windows_Docker_is_started.sh &`
+* `git-bash.exe --hide D:\Desktop\md\shell\6-Run_the_container_after_Windows_Docker_is_started.sh`
+* 值得注意的是`--hide`这个参数是如何找到的，`git --help`会生成一个名为`git-bash.html`的文件，但是因为没有任何提醒所以不容易注意到，需要用everything搜索才能发现，所以执行--help时还需要用`*`搜索everything，看看有什么最新生成的文件
 
