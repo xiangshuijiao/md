@@ -28,21 +28,25 @@
 * [Software download](#software-download)
 * [Tmux](#tmux)
 * [Typora](#typora)
-* [ubuntu1804远程桌面连接](#ubuntu1804%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
-* [Ubuntu中文路径改为英文](#ubuntu%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
-* [Ubuntu更换内核](#ubuntu%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8)
-* [Ubuntu文件<strong>切割</strong>、<strong>压缩</strong>、<strong>合并</strong>](#ubuntu%E6%96%87%E4%BB%B6%E5%88%87%E5%89%B2%E5%8E%8B%E7%BC%A9%E5%90%88%E5%B9%B6)
+* [Ubuntu](#ubuntu)
+  * [远程桌面连接](#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5)
+  * [中文路径改为英文](#%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87)
+  * [更换内核](#%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8)
+  * [文件<strong>切割</strong>、<strong>压缩</strong>、<strong>合并</strong>](#%E6%96%87%E4%BB%B6%E5%88%87%E5%89%B2%E5%8E%8B%E7%BC%A9%E5%90%88%E5%B9%B6)
 * [Vim](#vim)
 * [VMware](#vmware)
 * [Wireshark](#wireshark)
   * [Ubuntu1604源码安装](#ubuntu1604%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85)
   * [抓802\.11](#%E6%8A%9380211)
   * [解密802\.11](#%E8%A7%A3%E5%AF%8680211)
-* [Win10 磁贴布局重启后恢复原状](#win10-%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
-* [Win10 双网卡网络共享](#win10-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB)
+* [Win10](#win10)
+  * [磁贴布局重启后恢复原状](#%E7%A3%81%E8%B4%B4%E5%B8%83%E5%B1%80%E9%87%8D%E5%90%AF%E5%90%8E%E6%81%A2%E5%A4%8D%E5%8E%9F%E7%8A%B6)
+  * [双网卡网络共享](#%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB)
+  * [后台运行命令行程序](#%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F)
+  * [开机执行bash脚本](#%E5%BC%80%E6%9C%BA%E6%89%A7%E8%A1%8Cbash%E8%84%9A%E6%9C%AC)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
-------------------分隔符------------------不要删除------------------分隔符------------------不要删除------------------分隔符------------------
+  ------------------分隔符------------------不要删除------------------分隔符------------------不要删除------------------分隔符------------------
 
 ## 能**上网查到**的就不要记了
 
@@ -420,14 +424,16 @@ SwitchyOmega插件设置
     }
     ```
 
-## ubuntu1804远程桌面连接
+## Ubuntu
+
+### 远程桌面连接
 
 * [连接教程](https://m.linuxidc.com/Linux/2019-08/159848.htm)
 * [Ubuntu 18.04 上使用xrdp远程桌面登录蓝屏解决（包括闪退）](https://blog.csdn.net/cxn304/article/details/99733711?utm_medium=distribute.pc_relevant.none-task-blog-title-7&spm=1001.2101.3001.4242)
 * [Windows 远程桌面连接ubuntu及xrdp的一些小问题](https://blog.csdn.net/u014447845/article/details/80291678) 
     * 远程桌面闪退、连接失败、tab补全功能，无菜单栏，error - problem connecting  
 
-## Ubuntu中文路径改为英文
+### 中文路径改为英文
 
 * 在**普通模式**下执行以下命令
 
@@ -437,12 +443,12 @@ SwitchyOmega插件设置
     xdg-user-dirs-gtk-update
     reboot
     ```
-## Ubuntu更换内核
+### 更换内核
 
 *  [Ubuntu更换Linux内核版本](https://blog.csdn.net/tenorange/article/details/80914559)
 *  [Ubuntu更换内核方法](https://blog.csdn.net/xin_yu_xin/article/details/42184899)
 
-## Ubuntu文件**切割**、**压缩**、**合并**
+### 文件**切割**、**压缩**、**合并**
 
 *   split切割
 *   cmd压缩命令：`FOR %i IN (*.*) DO  "c:\Program Files\7-Zip\7z.exe" a -mx1 -mmt4 "%~ni.zip" "%i"`
@@ -545,11 +551,13 @@ SwitchyOmega插件设置
     *   Gotchas章节明确说明了要想解密wpa，必须抓取到完整4此握手eapol帧
     *   Examples章节给的有官方实例，可以发现里面有4个完整的eapol帧，而且解密后可以看到除了802.11管理控制帧还有其他解密出来的dhcp、dns等802.11数据帧。
 
-## Win10 磁贴布局重启后恢复原状
+## Win10 
+
+### 磁贴布局重启后恢复原状
 
 *   [磁贴布局重启后恢复原状问题](https://blog.csdn.net/ai520587/article/details/83573230)
 
-## Win10 双网卡网络共享
+### 双网卡网络共享
 
 *   拓扑
     *   网卡1可以访问内网，网卡2和另一台不能上内网的主机相连
@@ -569,5 +577,15 @@ SwitchyOmega插件设置
         *   然后在这个路径下 HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\SharedAccess 添加一个注册表子项.
         *   在空白处右击鼠标，新建“DWORD（32位）值（D）”，名称叫做“ EnableRebootPersistConnection ”，将数值数据改为1。
 
+### 后台运行命令行程序
 
+[Windows 后台运行程序的简单方法](https://xiaoxiang.io/5c921a43eaf1f20001bbb882/)
+
+* 安装 Git Windows 客户端会自动安装 Mingw-w64，然后就可以使用--daemon（windows不支持这个参数所以才需要按照git）和&启动程序了
+
+### 开机执行bash脚本
+
+将下面的命令放到计划任务中执行，或者创建gitbash.exe的快捷方式，然后将执行的参数放到快捷方式属性中启动软件的地方
+
+* `D:\4-\4-green_software\Git-Portable-2.20.1-64-bit\git-bash.exe  &`
 
