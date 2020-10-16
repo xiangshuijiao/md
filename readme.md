@@ -541,6 +541,6 @@ SwitchyOmega插件设置
 
 将下面的命令放到计划任务中执行，或者创建git-bash.exe 的快捷方式，然后将执行的参数放到快捷方式属性中启动软件的地方
 
-* `git-bash.exe --hide D:\Desktop\md\shell\6-Run_the_container_after_Windows_Docker_is_started.sh`
+* `"C:\Program Files\Git\git-bash.exe" --hide D:\Desktop\md\shell\6-Run_the_container_after_Windows_Docker_is_started.sh`
 * 值得注意的是`--hide`这个参数是如何找到的，`git --help`会生成一个名为`git-bash.html`的文件，但是因为没有任何提醒所以不容易注意到，需要用everything搜索才能发现，所以执行--help时还需要用`*`搜索everything，看看有什么最新生成的文件
 
