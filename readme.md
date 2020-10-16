@@ -581,11 +581,11 @@ SwitchyOmega插件设置
 
 [Windows 后台运行程序的简单方法](https://xiaoxiang.io/5c921a43eaf1f20001bbb882/)
 
-* 安装 Git Windows 客户端会自动安装 Mingw-w64，然后就可以使用--daemon（windows不支持这个参数所以才需要按照git）和&启动程序了
+* 安装 Git Windows 客户端会自动安装 Mingw-w64，然后就可以使用`--daemon`（windows不支持这个参数所以才需要按照git）和&启动程序了
 
 ### 开机执行bash脚本
 
-将下面的命令放到计划任务中执行，或者创建gitbash.exe的快捷方式，然后将执行的参数放到快捷方式属性中启动软件的地方
+将下面的命令放到计划任务中执行，或者创建git-bash.exe 的快捷方式，然后将执行的参数放到快捷方式属性中启动软件的地方
 
-* `D:\4-\4-green_software\Git-Portable-2.20.1-64-bit\git-bash.exe  &`
+* `D:\4-\4-green_software\Git-Portable-2.20.1-64-bit\git-bash.exe  --daemon D:\Desktop\md\shell\6-Run_the_container_after_Windows_Docker_is_started.sh &`
 
