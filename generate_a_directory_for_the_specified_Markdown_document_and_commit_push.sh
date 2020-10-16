@@ -48,29 +48,15 @@ do
 done < $1
 
 
-# 临时文件 $generated_TOC_directory 已经存在则删除
-if [ -f "$generated_TOC_directory" ]
-then
-	rm $generated_TOC_directory
-	echo 清理旧的文件$generated_TOC_directory
-else
-	echo 旧的文件$generated_TOC_directory不存在，所以不需要清理
-fi
-
-
-# 临时文件 $A_temporary_file_composed_of_directories_and_text 已经存在则删除
-if [ -f "$A_temporary_file_composed_of_directories_and_text" ]
-then
-        rm  $A_temporary_file_composed_of_directories_and_text
-        echo 清理旧的文件 $A_temporary_file_composed_of_directories_and_text
-else
-        echo 旧的文件 $A_temporary_file_composed_of_directories_and_text 不存在，所以不需要清理
-fi
+# 删除临时文件 $generated_TOC_directory $A_temporary_file_composed_of_directories_and_text
+rm -rf $generated_TOC_directory
+rm -rf $A_temporary_file_composed_of_directories_and_text
+echo 临时文件清理完成
 
 
 # 生成目录
-./00-gh-md-toc.exe $1 > $generated_TOC_directory
-
+./00-gh-md-toc.exe $1 > $generated_TOC_directory || (echo 生成目录失败; exit -1)
+echo 生成目录完成
 
 # 删除目录前3行对应的一级标题 Table of Contents
 sed -i '1,3d' $generated_TOC_directory
