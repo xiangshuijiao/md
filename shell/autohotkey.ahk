@@ -289,7 +289,7 @@ global JKN_FLAGS = "jkn1"
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;`+h：代替ctrl+Home返回文档首页
 ;`+q：代替alt+F4关闭软件
-;`+f：有道词典鼠标取词开关
+;`+y：有道词典鼠标取词开关
 ;`+2、3：最大化最小化窗口
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
@@ -303,6 +303,7 @@ global JKN_FLAGS = "jkn1"
 	` & c::
 	` & d::
 	` & e::
+	` & f::
 	` & g::
 	` & i::
 	` & j::
@@ -319,13 +320,12 @@ global JKN_FLAGS = "jkn1"
 	` & v::
 	` & w::
 	` & x::
-	` & y::
 	` & z::
 		return
 	
 	` & h::Send, ^{Home}
 	` & q::Send, !{F4}
-	` & f::Send, !+F
+	` & y::Send, !+y
 	
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -414,7 +414,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & k::
 	F1 & l::
 	F1 & m::
-	F1 & o::
+	
 	F1 & q::
 	F1 & r::
 	F1 & u::
@@ -432,6 +432,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & e::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S") ;excel
 	;F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S") ;ppt
 	F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S") ;pdf
+	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
 	
 	^+z::only_for_everything() ;everything
 	
@@ -447,6 +448,7 @@ global JKN_FLAGS = "jkn1"
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S", "et.exe") ;excel
 		;show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S", "wpp.exe") ;ppt
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S", "wpspdf.exe") ;pdf
+		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
 	return
 	
 	F1 & 1::send_win_number_and_winMaximize("#1")	; ~表示触发热键时, 热键中按键原有的功能不会被屏蔽
@@ -836,13 +838,17 @@ global JKN_FLAGS = "jkn1"
 【p】printf
 【f】fprintf
 【t】tftp -i 192.168.1.1 put{Space}{Space}
-【.b1】T:\BBA_2_5_Platform_BCM\...\image
-【.b2】T:\BBA_2_5_Platform_BCM.2\...\image
-【.p1】T:\PON_trunk_bba_2_5\...\image
-【.p2】T:\PON_trunk_bba_2_5.2\...\image
+【.b1】\\pc3.jkn\bba\docker1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+【.b2】\\pc3.jkn\bba\docker2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+【.p1】\\pc3.jkn\bba\docker1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+【.p2】\\pc3.jkn\bba\docker2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 【.ab】ab1127586911
 【.y0】Y0nN1uWqDCsi
 【.ji】jiangkainan@tp-link.com.cn
+【.git】git grep -n -I  ""{left 1}
+【.t1】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.feature_XC220_mesh.log`n
+【.t2】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.linux_XC220-G3v_v1.log`n
+【.t3】tail -n 100 /tmp/jkn.script.BBA_2_5_Platform_BCM.EX220_USSP_v1.2.log`n
 
 )"  
 ; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
@@ -852,13 +858,13 @@ global JKN_FLAGS = "jkn1"
 			Input, UserInput, T4 L5, {Space}{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
 			; 下面是路径
 			if (UserInput = "b1")
-				Send, T:\BBA_2_5_Platform_BCM\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+				Send, \\pc3.jkn\bba\docker1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "b2")
-				Send, T:\BBA_2_5_Platform_BCM.2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+				Send, \\pc3.jkn\bba\docker2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "p1")
-				Send, T:\PON_trunk_bba_2_5\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+				Send, \\pc3.jkn\bba\docker1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			else if (UserInput = "p2")
-				Send, T:\PON_trunk_bba_2_5.2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+				Send, \\pc3.jkn\bba\docker2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			; 下面是账号密码
 			else if (UserInput = "ab")
 				Send, ab1127586911
@@ -866,6 +872,14 @@ global JKN_FLAGS = "jkn1"
 				Send, Y0nN1uWqDCsi
 			else if (UserInput = "ji")
 				Send, jiangkainan@tp-link.com.cn
+			else if (UserInput = "git")
+				Send, git grep -n -I  ""{left 1}
+			else if (UserInput = "t1")
+				Send, tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.feature_XC220_mesh.log`n
+			else if (UserInput = "t2")
+				Send, tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.linux_XC220-G3v_v1.log`n
+			else if (UserInput = "t3")
+				Send, tail -n 100 /tmp/jkn.script.BBA_2_5_Platform_BCM.EX220_USSP_v1.2.log`n
 		}
 		return
 	}
@@ -1084,6 +1098,7 @@ global JKN_FLAGS = "jkn1"
 ;		ctrl&shift&c注释，ctrl&shift&x取消注释，ctrl&k格式化代码，F5运行代码，F9调试时跳到光标处
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
+	; vs
 	#IfWinActive ahk_exe C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\devenv.exe
 	{
 		^+c::Send, {Ctrl down}k{Ctrl up}{Ctrl down}c{Ctrl up}
@@ -1092,6 +1107,7 @@ global JKN_FLAGS = "jkn1"
 		return
 	}
 
+	; pycharm
 	#IfWinActive ahk_exe C:\Program Files\JetBrains\PyCharm 2018.2.3\bin\pycharm64.exe
 	{
 		^+c::Send, {Ctrl down}/{Ctrl up}
@@ -1102,10 +1118,34 @@ global JKN_FLAGS = "jkn1"
 		return
 	}
 	
+	; source insight
 	#IfWinActive ahk_exe C:\Program Files (x86)\Source Insight 4.0\sourceinsight4.exe
 	{
 		F8::Send, +{F8}
 		F9::Send, +{F9}
+		
+		; ^+f：在所有文件中搜索的快捷键本来就有
+		; F3、F4：往后、往前搜索的快捷键本来就有
+		; 下面的快捷键需要自己在sourceinsight中自己设置
+		; 		^!+r：项目重命名
+		; 		^!+s：更改项目设置
+		; 		^!+a：增删文件
+		; 		^!+b：Project: Synchronize Files...
+		` & r::Send, ^!+r
+		` & s::Send, ^!+s
+		` & a::Send, ^!+a
+		` & b::Send, ^!+b
+
+		return
+	}
+	
+	;notepad 
+	#IfWinActive ahk_exe C:\Program Files\Notepad++\notepad++.exe
+	{
+		; ^!+r	：文件重命名，
+		; ^+r	：软件自带的文本替换快捷键
+		` & r::Send, ^!+r
+
 		return
 	}
 	
@@ -1181,6 +1221,12 @@ StdoutToVar_CreateProcess(sCmd, sEncoding:="CP0", sDir:="", ByRef nExitCode:=0) 
 $NumpadEnd::
 StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network2") ; release旧的ip地址
 StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network3") ; release旧的ip地址
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.0.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.1.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.66.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.0.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.1.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.66.233 255.255.255.0")
 StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network2 dhcp")
 StdoutToVar_CreateProcess("cmd /c  netsh interface ip set dns network2 dhcp")
 StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network3 dhcp")
@@ -1190,10 +1236,12 @@ return
 
 ; number2：把以太网2、3设置为静态IP
 $NumpadDown::
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network2 static 192.168.1.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.0.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network3 static 192.168.1.233 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.0.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network2 static 192.168.0.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.1.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.66.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network3 static 192.168.0.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.1.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.66.233 255.255.255.0")
 return
 
 ; number3：查看以太网2、3的IP
