@@ -777,18 +777,18 @@ git stash clear // 清空所有stash
     *   [搭建大型源码阅读环境——使用 OpenGrok](https://zhuanlan.zhihu.com/p/24369747)
 
     *   [Vim 8 中 C/C++ 符号索引：GTags 篇](https://zhuanlan.zhihu.com/p/36279445)
-    
+
     *   [有哪些不错的大型项目代码浏览工具？](https://www.zhihu.com/question/33505693)
-    
+
     *   <span id="#time_issue">
             <a href="https://class.pub/blog/post/haiyang/34-x">34-搭建最新版本opengrok的详细流程及说明 - Ronny Public Class</a>
         </span>
-    
-    *   ```shell
+
+        ```shell
         mkdir -p /home/opengrok/src /home/opengrok/data /home/opengrok/etc
         docker search opengrok
         docker pull opengrok/docker
-    docker images
+        docker images
         docker run -d --dns 172.31.1.1 -p 50005:22 -p 8089:8080/tcp --name opengrok -e REINDEX=0 -v /home/opengrok/src/:/opengrok/src/  -v /home/opengrok/data/:/opengrok/data/ -v /home/opengrok/etc/:/opengrok/etc/  -v /etc/localtime:/etc/localtime:ro opengrok/docker:latest
         #进入后台运行的docker
         docker exec -it opengrok bash 
@@ -805,9 +805,6 @@ git stash clear // 清空所有stash
         # 在docker的index.sh脚本中添加如下代码保证能够正常git pull拉取最新代码
         nano /scripts/index.sh
         eval `ssh-agent` && ssh-add
-                
-        
-        	
         # 明天定时更新索引
         vim /etc/crontab 
         0  9  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
@@ -822,6 +819,8 @@ git stash clear // 清空所有stash
         0 19  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
         0 20  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
         ```
+        
+        
 
 *   检查是否有新的提交来判断是否更新索引的脚本，可以直接放到`/etc/crontab`中定时执行
 
@@ -837,6 +836,304 @@ git stash clear // 清空所有stash
 
   * `apt-get install samba samba-common smbfs cifs-utils system-config-samba`
       * **注意：**Ubuntu1804只需要安装`apt-get install samba samba-common system-config-samba`即可
+  * `touch /etc/libuser.conf`
+  * 普通账户输入`sudo system-config-samba`选择`Access-》allow access to everyone`
+  * `setfacl -R -m u:nobody:rwx /home`给所有用户读、写、可执行权限
+
+* 命令行配置
+
+  * [Ubuntu 16.04安装配置Samba服务 - wbaction的博客 - CSDN博客_2](D:\0-attachment\Ubuntu 16.04安装配置Samba服务 - wbaction的博客 - CSDN博客_2.mhtml)
+  * 将配置文件中的user改为自己的用户名jiangkainan
+  * 配置文件中加入：writable     = yes
+  * 最后要给共享目录输入权限：sudo     chmod -R 777 /home/jiangkainan
+  * `watch -n 15 chmod     777 -R /home/bba & ` 每10秒给一次可执行权限，可放到开机自启脚本`/etc/rc.local`里面
+
+  ```makefile
+  [share]
+  comment = Share Folder require password
+  browseable = yes
+  path = /home/tplink/code
+  create mask = 0777
+  directory mask = 0777
+  valid users = tplink
+  force user = nobody
+  force group = nogroup
+  public = yes
+  writable = yes
+  available = yes
+  ```
+
+## Source insight
+
+*   [调试逆向[原创]Windows逆向学习笔记——破解Source Insight 4 ](https://bbs.pediy.com/thread-261478.htm) 
+*   不能打开samba目录，报错为`not a valid directory T:`
+    *   解决：不要映射网络驱动器，直接使用`\\pc3.jkn\bba`的路径
+
+## Shell
+
+执行变量中存放的命令
+
+*   ```shell
+    v2="ls -al /root"
+    echo ${v2} |awk '{run=$0;system(run)}' # $0为整行，把整行内容赋值给run变量然后system(run)
+    ```
+
+数组传参
+
+*   ```shell
+    function showArr(){
+        arr=$1
+        for i in ${arr[*]}; do
+            echo $i
+        done
+    }
+    regions=("GZ" "SH" "BJ")
+    showArr "${regions[*]}"
+    ```
+
+
+[循环获取参数：从第三个参数开始](https://blog.csdn.net/m0_37886429/article/details/89280852)
+
+*   ```shell
+    i=3;
+    while (( i <= $# ))
+    do
+    # 间接引用! 直接 $1 这样处理会出问题，不加 ! ，输出的就是数字!??因为外面的参数是 i 的值，而我们需要使用i,需要 ! 间接引用!
+    echo ${!i}; 
+    let i++;
+    # (( i++ ))  (( )) 的运算速度快一些!?
+    done
+    ```
+
+*   
+
+## SSH 
+
+### [nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】](https://segmentfault.com/a/1190000011289092)
+
+*   `sudo nohup bash 脚本路径 >> /tmp/nohup.log 2>&1 </dev/null &` 指定输出文件
+
+### SSH 显示图形化界面
+
+[VcXsrv+putty远程访问linux图形界面](https://blog.csdn.net/jdzzgtc/article/details/86588537)
+
+*   **注意1**：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`192.168.137.1:0.0`，这个地址必须要让服务器能ping通，否则服务器不知道把图形界面转发给谁。
+*   **注意2**：docker中另外还需要定义下面的变量`export DISPLAY=192.168.137.1:0.0`并写死到`~/.bashrc`中
+*   **注意3**：连接ssh的电脑`192.168.137.243`可以和显示X11界面的电脑`192.168.137.1`不是同一台电脑，因为`192.168.137.1`电脑的显示器是U2417H的高清显示器，所以就讲X11的界面放到这台电脑上面了
+*   开机启动：参考本文链接：[查看进程启动时的参数](#%e6%9f%a5%e7%9c%8b%e8%bf%9b%e7%a8%8b%e5%90%af%e5%8a%a8%e6%97%b6%e7%9a%84%e5%8f%82%e6%95%b0)
+
+### WinSCP：linux 和电脑互传文件
+
+
+
+## TCPDump
+
+*    [Linux基础：用tcpdump抓包](https://www.cnblogs.com/chyingp/p/linux-command-tcpdump.html)
+*    [Linux tcpdump命令详解](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html&sa=U&ved=2ahUKEwits43f0OzrAhVBHzQIHVUsAGEQFjAAegQIBBAB&usg=AOvVaw1DmMDp3SljpnxgHa19WUre)
+
+## Telnet
+
+* secureCRT就有Telnet功能，连接后输入密码`admin`、`sh`命令 
+* 或者cmd输入`telnet 192.168.1.1`进入Telnet（要在windows服务中开启Telnet功能）
+* telnet使用命令：`prolinecmd restore default`恢复出厂设置，Jio样机没有恢复出厂设置会有相应的led灯闪烁，恢复后就不会闪烁了。
+* 一般telnet中输入sh（shell）就可以进入管理员模式
+
+## TFTP
+
+* 问题1
+
+  ```c
+  tftp总是传输到一半终止，
+  或者一个tftp传输命令却在服务端建立了多个传输进度为0的连接
+  或者在客户端体现为出现多个T也就是建立了多个tftp的连接传输进度却都是0
+      
+  解决：
+      问题出在你使用的交换机上面有一个自己的默认的静态IP：192.168.0.1，你需要将它的IP设置为自动获取而不是静态IP
+  ```
+
+* 问题2
+
+  ```c
+  tftp请求没有任何响应
+      
+  解决：
+      尝试1：关闭防火墙
+      尝试2：这是双网卡的问题导致的，将另一个和tftp传输无关的网卡禁用掉，重启服务器即可
+      
+  ```
+
+* 问题3
+
+    ```
+    tftp 192.168.1.200 -gr networkMap.htm 
+    tftp: server error: (256) Access to networkMap.htm denied
+    
+    不要以管理员权限运行tftp服务器
+    只能用普通权限运行tftp服务器
+    ```
+
+    
+
+
+
+## Ubuntu
+
+### 查看当前目录下各个文件、文件夹大小
+
+* `du -ah --max-depth=1`
+
+### 查看端口占用
+
+* `netstat -ano | findstr 21`
+
+### 查看ID对应进程
+
+* `tasklist | findstr 21552` 
+
+### 终端颜色配置
+
+* 普通模式 `PS1="\[\e[30;40m\][\u@\W \T]\\$\[\e[0m\]"`
+* 管理员模式`PS1="\[\e[31;47m\][\w]\\$\[\e[0m\]"`
+* [修改Linux终端命令提示符颜色、PS1 - 心之所向，不负初衷 - CSDN博客_2](file:///D:/0-attachment/修改Linux终端命令提示符颜色、PS1 - 心之所向，不负初衷 - CSDN博客_2.mhtml)
+
+### Ubuntu1804开机启动
+
+[Ubuntu Server 18.04 LTS 开机自动启动脚本 SVN自动启动 rc.local](https://zhuanlan.zhihu.com/p/56020157)
+
+*   **注意：**要额外执行以下两条命令
+
+    ```shell
+    chmod +x /etc/rc.local
+    systemctl daemon-reload
+    ```
+
+### 定时任务脚本
+
+`vim /etc/crontab `
+
+`service cron status`
+
+` /var/log/syslog`会记录crontab任务是否被执行情况，但无法看到执行结果，所以还是推荐将执行结果用`>>`追加的方式写入文件`/tmp/jkn.txt`
+
+```shell
+[/home/bba]#cat /etc/crontab
+0 19  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log 
+0 20  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log
+
+0  9  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script  
+0 12  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
+0 17  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
+0 20  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
+```
+
+
+
+### Archer T9E网卡驱动安装
+
+`apt install bcmwl-kernel-source`
+
+### 重装系统
+
+[ubuntu 18.04/16.04/14.04 双硬盘分区方案](https://blog.csdn.net/u010801439/article/details/80485251)
+
+[三种方法修改docker的默认存储位置](#[三种方法修改docker的默认存储位置](https://blog.csdn.net/BigData_Mining/article/details/104921479))
+
+[Ubuntu1804开机启动](#Ubuntu1804开机启动)
+
+[SSD安装ubuntu系统的优化](https://blog.csdn.net/hzwwpgmwy/article/details/80313272)
+
+*   [Ubuntu使用SSD需要做的配置和优化](http://blog.sina.com.cn/s/blog_6cc181070101rty5.html)
+*   [prelink加速的配置](https://www.geek-share.com/detail/2547147141.html)
+*   [怎么查看SATA硬盘是否处于AHCI开启状态?](http://ask.zol.com.cn/x/3008824.html)
+
+[Ubuntu定时任务脚本](#Ubuntu定时任务脚本)：下面为每天九点定时执行的脚本
+
+*   [Linux crontab 输出重定向不生效问题解决、重定向到文件不生效的解决方法](https://blog.csdn.net/mengalong/article/details/83578738)：重定向命令的末尾加上` 2>&1 </dev/null `
+
+    *   [Shell重定向 ＆>file、2>&1、1>&2 、/dev/null的区别](https://blog.csdn.net/u011630575/article/details/52151995)
+    *   0：标准输入，1：标准输出，2：错误输出
+
+*   ```shell
+    #!/bin/sh
+    
+    logpath=/tmp/jkn.script.runs.regularly.log
+    
+    date >> $logpath 2>&1 </dev/null 
+    
+    sudo fstrim -v / >> $logpath 2>&1 </dev/null 
+    sudo fstrim -v /boot >> $logpath 2>&1 </dev/null 
+    /usr/sbin/prelink -afmR >> $logpath 2>&1 </dev/null 
+    
+    date >> $logpath 2>&1 </dev/null
+    ```
+
+### 终端切换其他用户`su - 用户名`
+
+### 网络分析工具
+
+[LinSSID：一款Linux下的图形化Wi-Fi扫描器](https://linux.cn/article-5120-1.html)
+
+[Sparrow-WiFi：一款Linux平台下的图形化WiFi及蓝牙分析工具](https://www.bbsmax.com/A/q4zVKKp7JK/)
+
+[是否有用于ubuntu的wifi分析器之类的工具？](https://qastack.cn/ubuntu/237777/is-there-a-tool-like-wifi-analyzer-for-ubuntu)
+
+### 查看实时变化的文件`tail -f`
+
+## Vim
+
+* `:setlocal nowrap `当前文档设置为不自动换行
+
+* `:set mouse=r `解决不能在secureCrt中使用vim选中复制的问题，[完美解决vim在终端不能复制的问题](https://www.cnblogs.com/cheerupforyou/p/6958695.html)
+
+* `:set paste`解决**粘贴缩进问题**
+
+* Spacevim
+
+    ```shell
+    curl -sLf https://spacevim.org/install.sh | bash -s -- --install vim # 下载
+    vim中执行:VimProcInstall #原因：https://www.cnblogs.com/zhuxiaoxi/p/8466846.html
+    cp -rf /opt/docker/spacevim/.SpaceVim.d/ ~/   #修改主题配置：colorscheme = "SpaceVim"  colorscheme_bg = "light"
+    vim ~/.SpaceVim/vimrc 末尾添加如下配置
+    	:set mouse=r
+    ```
+
+    
+
+## VMware Station
+
+### 虚拟机和主机之间不能复制粘贴
+
+* `虚拟机设置-》选项-》客户机隔离-》启用复制粘贴、启用拖放`先关闭再打开
+* 或者也可以重装Vmware-tool
+
+## Win10
+
+### 防火墙
+
+*   无线客户端ping不通和自己在同一个网段的电脑
+    *   将防火墙**`入栈规则`**中所有的**`文件和打印机共享(回显请求 - ICMPv4-In)`**全部都启用即可
+*   外网无法访问DMZ主机中的共享文件夹
+    *   将所有的防火墙**`入栈规则`**全部都启用即可 
+
+### 双网卡
+
+* 内网或192.168.1.1访问失败
+* 原因在于两个网卡有两个默认网关
+  * 将网卡2的默认网关设为空
+  * route -4 print   && route
+  * route -p add 192.168.1.0 mask 255.255.255.0 192.168.1.1 metric 3 if 16
+
+### 查看进程启动时的参数
+
+cmd窗口运行`wmic process where caption="vcxsrv.exe" get caption,commandline /value`可以获取`vcxsrv.exe`进程的启动参数，然后给进程`vcxsrv.exe`创建快捷方式并在属性中添加启动参数放到`startup`开机自启动菜单就可以实现开机运行带参数的进程，进程参数的内容可以使用刚刚提到的命令获取。
+
+## Xmind
+
+*   拖动画布
+    *   mac下 鼠标中键空白处 按住滚轮可实现抓手
+    *   window下 鼠标右键空白处 按住右键可实现抓手
+
+安装`apt-get install samba samba-common system-config-samba`即可
   * `touch /etc/libuser.conf`
   * 普通账户输入`sudo system-config-samba`选择`Access-》allow access to everyone`
   * `setfacl -R -m u:nobody:rwx /home`给所有用户读、写、可执行权限
