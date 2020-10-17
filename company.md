@@ -1,5 +1,4 @@
 
-* [Account、Password](#accountpassword)
 * [Autohotkey](#autohotkey)
 * [BOIS](#bois)
 * [C](#c)
@@ -61,19 +60,6 @@
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 ------------------分隔符------------------不要删除------------------分隔符------------------不要删除------------------分隔符------------------
 
-## Account、Password
-
-* ```c
-  jiangkainan@tp-link.com.cn
-  Y0nN1uWqDCsi
-      
-  \\software.tp-link.net（账号：tplink，密码为空）
-  \\exfile.tp-link.net
-  \\file.tp-link.net
-  ftp://pubftp.tp-link.net
-  ftp://ftp.tp-link.net
-  ftp://labpub.tp-link.net/
-  ```
 ## Autohotkey
 
 [快速参考](https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm)
@@ -106,32 +92,33 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 *   方法1（已测试失败不能用）
 
     ```
-    找到快捷方式：
-    C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\AutoHotkey
-    右键->属性->快捷方式->目标修改为如下：
-    "C:\Program Files\AutoHotkey\AutoHotkey.exe" "D:\Documents\4-Green Softwore\autohotkey.ahk"
+    找到快捷方式：C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\AutoHotkey
+    右键->属性->快捷方式->目标修改为如下："C:\Program Files\AutoHotkey\AutoHotkey.exe" "D:\Documents\4-Green Softwore\autohotkey.ahk"
     快捷方式->高级中勾选以管理员权限运行
     兼容性勾选以管理员权限运行
-    快捷方式复制到启动菜单：
-    C:\Users\admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+    快捷方式复制到启动菜单：C:\Users\admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
     重启测试
     ```
-
+    
 *   方法2（经测试成功）
 
     ```
     找到AutoHotkey.exe，右键->属性->默认管理员权限运行
     右键我的电脑->管理->系统工具->任务计划程序->创建任务
-    常规一栏：勾选只在用户登录时运行、勾选使用最高权限运行、配置中选择windows 10
-    触发器：新建->登录时触发（不要选启动时触发,自测该选项不能重启运行软件）
+    常规一栏：
+    	勾选只在用户登录时运行、勾选使用最高权限运行、配置中选择windows 10
+    触发器：
+    	新建->登录时触发（不要选启动时触发,自测该选项不能重启运行软件）
     操作：
-    新建->启动程序
-    程序或脚本中输入"C:\Program Files\AutoHotkey\AutoHotkey.exe"
-    添加参数中输入"D:\Documents\4-Green Softwore\autohotkey.ahk"
-    条件：只勾选唤醒计算机运行此任务，其他都不选
-    设置：保持默认
+        新建->启动程序
+        程序或脚本中输入"C:\Program Files\AutoHotkey\AutoHotkey.exe"
+        添加参数中输入"D:\Documents\4-Green Softwore\autohotkey.ahk"
+    条件：
+    	只勾选唤醒计算机运行此任务，其他都不选
+    设置：
+    	保持默认
     测试：
-    可以先右键运行实例进行测试，然后开机启动进行测试
+    	可以先右键运行实例进行测试，然后开机启动进行测试
     ```
 
 ## BOIS
@@ -671,9 +658,6 @@ git stash clear // 清空所有stash
     // 分别比较仓库、stash，工作区、stash来判断stash中的文件是否恢复成功
     git diff 【--stat】 HEAD stash@{0} platform/apps/private/user/cos/cos_gpio.c
     git diff 【--stat】 stash@{0} platform/apps/private/user/cos/cos_gpio.c
-    
-
-    
 ```
 
 
