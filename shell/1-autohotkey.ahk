@@ -5,6 +5,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode 2   
 global FPRINTF_FILE_PATH = "/tmp/1.txt" ; 默认fprintf会写入的路径，可以用NumberEnter+c修改这个值
 global JKN_FLAGS = "jkn1"
+
+
+
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;左Shift强制切换到英文输入法，
 ;右Shift强制切换到中文输入法，
@@ -291,6 +294,12 @@ global JKN_FLAGS = "jkn1"
 ;`+q：代替alt+F4关闭软件
 ;`+y：有道词典鼠标取词开关
 ;`+2、3：最大化最小化窗口
+;`+2：剪切板/替换为\
+;`+1：剪切板\替换为/
+;`+r：secureCRT重新连接
+;`+d：secureCRT关闭连接
+;`+Up：滚轮向上滚动8次
+;`+Down：滚轮向下滚动8次
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	
@@ -300,8 +309,7 @@ global JKN_FLAGS = "jkn1"
 	
 	` & a::
 	` & b::
-	` & c::
-	` & d::
+
 	` & e::
 	` & f::
 	` & g::
@@ -313,7 +321,6 @@ global JKN_FLAGS = "jkn1"
 	` & n::
 	` & o::
 	` & p::
-	` & r::
 	` & s::
 	` & t::
 	` & u::
@@ -326,7 +333,18 @@ global JKN_FLAGS = "jkn1"
 	` & h::Send, ^{Home}
 	` & q::Send, !{F4}
 	` & y::Send, !+y
-	
+	` & 1::
+		clipboard := StrReplace(clipboard, "\", "/")
+		Send, +{vk2dsc152}`n  ; shift+insert
+		return
+	` & 2::
+		clipboard := StrReplace(clipboard, "/", "\")
+		Send, +{vk2dsc152}`n  ; shift+insert
+		return
+	` & r::Send, ^!+r
+	` & d::Send, ^!+d
+	` & Up::MouseClick,WheelUp,,,8,0,D,R
+	` & Down::MouseClick,WheelDown,,,8,0,D,R
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;		`+2、3最大化最小化窗口
@@ -407,7 +425,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & a::
 	F1 & d::
 	F1 & f::
-	F1 & g::
+	
 	F1 & h::
 	F1 & i::
 	F1 & j::
@@ -433,6 +451,8 @@ global JKN_FLAGS = "jkn1"
 	;F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S") ;ppt
 	F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S") ;pdf
 	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
+	F1 & g::hyf_onekeyWindow("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S") ;GitHub Desktop
+	
 	
 	^+z::only_for_everything() ;everything
 	
@@ -449,6 +469,7 @@ global JKN_FLAGS = "jkn1"
 		;show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S", "wpp.exe") ;ppt
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S", "wpspdf.exe") ;pdf
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
+		show_specific_hide_software("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S", "GitHubDesktop.exe") ;GitHub Desktop
 	return
 	
 	F1 & 1::send_win_number_and_winMaximize("#1")	; ~表示触发热键时, 热键中按键原有的功能不会被屏蔽
@@ -820,7 +841,7 @@ global JKN_FLAGS = "jkn1"
 		else if(short_key = "j")
 			different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
 		else if(short_key = "a")
-			Send, admin`n1234`n
+			different_key_times_different_operation(2, "admin`n", "admin`tadmin`n")
 		else if(short_key = "p")
 			Send, `nprintf(`"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		else if(short_key = "f")
@@ -838,10 +859,10 @@ global JKN_FLAGS = "jkn1"
 【p】printf
 【f】fprintf
 【t】tftp -i 192.168.1.1 put{Space}{Space}
-【.b1】\\pc3.jkn\bba\docker1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-【.b2】\\pc3.jkn\bba\docker2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-【.p1】\\pc3.jkn\bba\docker1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
-【.p2】\\pc3.jkn\bba\docker2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+【.b1】\\pc3.jkn\bba\docker1\1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+【.b2】\\pc3.jkn\bba\docker1\2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+【.p1】\\pc3.jkn\bba\docker1\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+【.p2】\\pc3.jkn\bba\docker1\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 【.ab】ab1127586911
 【.y0】Y0nN1uWqDCsi
 【.ji】jiangkainan@tp-link.com.cn
@@ -858,13 +879,13 @@ global JKN_FLAGS = "jkn1"
 			Input, UserInput, T4 L5, {Space}{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
 			; 下面是路径
 			if (UserInput = "b1")
-				Send, \\pc3.jkn\bba\docker1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+				Send, \\pc3.jkn\bba\docker1\1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "b2")
-				Send, \\pc3.jkn\bba\docker2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
+				Send, \\pc3.jkn\bba\docker1\2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
 			else if (UserInput = "p1")
-				Send, \\pc3.jkn\bba\docker1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+				Send, \\pc3.jkn\bba\docker1\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			else if (UserInput = "p2")
-				Send, \\pc3.jkn\bba\docker2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+				Send, \\pc3.jkn\bba\docker1\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 			; 下面是账号密码
 			else if (UserInput = "ab")
 				Send, ab1127586911
@@ -1149,6 +1170,8 @@ global JKN_FLAGS = "jkn1"
 		return
 	}
 	
+	
+	#IfWinActive
 }
 
 
@@ -1171,6 +1194,7 @@ global JKN_FLAGS = "jkn1"
 ;		AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
+
 /*
 
 ; AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
