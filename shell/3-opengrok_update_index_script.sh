@@ -3,6 +3,7 @@
 
 logfile=/tmp/opengrok.log
 bool=false
+eval `ssh-agent` && ssh-add
 
 # $1为git仓库所在路径，$2为仓库目前的分支
 Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
