@@ -15,6 +15,7 @@
 # $9：the_file_used_to_check_if_the_compile_was_successful
 # ${10}：MODEL # 注意，$10 不能获取第十个参数，获取第十个参数需要${10}。当n>=10时，需要使用${n}来获取参数。
 # ${11}：SPEC
+eval `ssh-agent` && ssh-add
 A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 {	
 	# No changes needed
