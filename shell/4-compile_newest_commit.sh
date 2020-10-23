@@ -21,6 +21,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	# No changes needed
 	work_path=/opt/bba/compile_newest_commit/$1 
 	target_path=/opt/bba/image
+	tar_path=/opt/bba/tar
 	logfile=/tmp/jkn.script.$1.log
 
 	# changes needed
@@ -114,16 +115,22 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	nohup make $make_compile_options fs_build >> $logfile 2>&1 </dev/null
 	nohup make $make_compile_options image_build >> $logfile 2>&1 </dev/null
 
-	# copy image
+	# Copy the image and create the archive file
 	cd $work_path/$project_name/$image_path
 	if [ -f $the_file_used_to_check_if_the_compile_was_successful ]
 	then
 		echo Compile to generate image successfully >> $logfile 2>&1 </dev/null
+
+		# Copy the image
 		current_time=$(date +%Y_%m_%d_%H_%M_%S)
 		destination_folder=$target_path/$current_time-$project_name-$branch-`git rev-parse --short HEAD`-newest
 		mkdir -p $destination_folder
 		cp -rf $image_file_name $destination_folder
 		git log > $destination_folder/git\ log.txt
+
+		# create the archive file
+		cd $tar_path && rm -rf $1.tar
+		cd $work_path && tar -c $project_name > $tar_path/$1.tar
 	else
 		echo Compile to generate image failed >> $logfile 2>&1 </dev/null
 	fi
