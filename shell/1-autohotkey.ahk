@@ -290,19 +290,9 @@ global JKN_FLAGS = "jkn1"
 }
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;`+h：代替ctrl+Home返回文档首页
-;`+q：代替alt+F4关闭软件
-;`+y：有道词典鼠标取词开关
-;`+2、3：最大化最小化窗口
-;`+2：剪切板/替换为\
-;`+1：剪切板\替换为/
-;`+r：secureCRT重新连接
-;`+d：secureCRT关闭连接
-;`+Up：滚轮向上滚动8次
-;`+Down：滚轮向下滚动8次
+; `开头的快捷键
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	
 	#IfWinActive
 	$`::Send, `` ; 发送模拟按键 `，第一个`是转义字符的前缀，第二个`表示转义字符本身
 	$~::Send, ~
@@ -313,6 +303,7 @@ global JKN_FLAGS = "jkn1"
 	` & e::
 	` & f::
 	` & g::
+	` & h::
 	` & i::
 	` & j::
 	` & k::
@@ -330,7 +321,7 @@ global JKN_FLAGS = "jkn1"
 	` & z::
 		return
 	
-	` & h::Send, ^{Home}
+	
 	` & q::Send, !{F4}
 	` & y::Send, !+y
 	` & 1::
@@ -345,6 +336,22 @@ global JKN_FLAGS = "jkn1"
 	` & d::Send, ^!+d
 	` & Up::MouseClick,WheelUp,,,8,0,D,R
 	` & Down::MouseClick,WheelDown,,,8,0,D,R
+	` & ?::
+		MsgBox "
+(
+
+【``+h】代替ctrl+Home返回文档首页
+【``+q】代替alt+F4关闭软件
+【``+y】有道词典鼠标取词开关
+【``+1】剪切板\替换为/
+【``+2】剪切板/替换为\
+【``+r】secureCRT重新连接
+【``+d】secureCRT关闭连接
+【``+Up】滚轮向上滚动8次
+【``+Down】滚轮向下滚动8次
+
+)"  
+		return
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;		`+2、3最大化最小化窗口
@@ -424,7 +431,7 @@ global JKN_FLAGS = "jkn1"
 	#MaxThreadsPerHotkey 5
 	F1 & a::
 	F1 & d::
-	F1 & f::
+	
 	
 	F1 & h::
 	F1 & i::
@@ -452,6 +459,27 @@ global JKN_FLAGS = "jkn1"
 	F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S") ;pdf
 	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
 	F1 & g::hyf_onekeyWindow("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S") ;GitHub Desktop
+	F1 & f::hyf_onekeyWindow("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S") ;Firefox
+	F1 & ?::
+		MsgBox "
+(
+
+Chrome
+Source Insight 4.0
+XMind
+Typora
+Notepad++ 
+Beyond Compare 4
+wps
+excel
+ppt、pdf
+outlook
+GitHub Desktop
+Firefox
+
+)"  
+		return	
+	
 	
 	
 	^+z::only_for_everything() ;everything
@@ -470,6 +498,7 @@ global JKN_FLAGS = "jkn1"
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S", "wpspdf.exe") ;pdf
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
 		show_specific_hide_software("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S", "GitHubDesktop.exe") ;GitHub Desktop
+		show_specific_hide_software("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S", "firefox.exe") ;Firefox
 	return
 	
 	F1 & 1::send_win_number_and_winMaximize("#1")	; ~表示触发热键时, 热键中按键原有的功能不会被屏蔽
@@ -787,7 +816,7 @@ global JKN_FLAGS = "jkn1"
 	NumpadEnter & 9::
 	NumpadEnter & 0::
 	NumpadEnter & b::
-	NumpadEnter & d::
+	
 	NumpadEnter & e::
 	
 	NumpadEnter & g::
@@ -809,13 +838,16 @@ global JKN_FLAGS = "jkn1"
 		return
 	
 	NumpadEnter & 1::function_for_the_NumpadEnter_short_key("1")
+	NumpadEnter & 3::function_for_the_NumpadEnter_short_key("3")
 	NumpadEnter & j::function_for_the_NumpadEnter_short_key("j")
 	NumpadEnter & a::function_for_the_NumpadEnter_short_key("a")
 	NumpadEnter & p::function_for_the_NumpadEnter_short_key("p")
+	NumpadEnter & f::function_for_the_NumpadEnter_short_key("f")
 	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
 	NumpadEnter & c::function_for_the_NumpadEnter_short_key("c")
-	NumpadEnter & f::function_for_the_NumpadEnter_short_key("f")
-	NumpadEnter & 3::function_for_the_NumpadEnter_short_key("3")
+	NumpadEnter & d::function_for_the_NumpadEnter_short_key("d")
+	
+	
 	NumpadEnter & ?::function_for_the_NumpadEnter_short_key("?") ;给出帮助信息
 	NumpadEnter & NumpadDel::function_for_the_NumpadEnter_short_key("NumpadDel")
 	NumpadEnter & NumpadDot::function_for_the_NumpadEnter_short_key("NumpadDot")
@@ -848,6 +880,10 @@ global JKN_FLAGS = "jkn1"
 			Send, `nFILE* fp_jkn = fopen(`"%FPRINTF_FILE_PATH%`", "a{+}"); fprintf(fp_jkn, `"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__); fclose(fp_jkn);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		else if(short_key = "t")
 			Send, tftp -i 192.168.1.1 put{Space}{Space}  
+		else if(short_key = "c")
+			Send, time rsync -ah --info=progress2{Space} 
+		else if(short_key = "d")
+			Send, time rsync --delete-before --info=progress2 -d  /usr/blank/{Space} 
 		else if(short_key = "?")
 			MsgBox "
 (
@@ -859,17 +895,17 @@ global JKN_FLAGS = "jkn1"
 【p】printf
 【f】fprintf
 【t】tftp -i 192.168.1.1 put{Space}{Space}
-【.b1】\\pc3.jkn\bba\docker1\1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-【.b2】\\pc3.jkn\bba\docker1\2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-【.p1】\\pc3.jkn\bba\docker1\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
-【.p2】\\pc3.jkn\bba\docker1\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+【.b1】\\pc3.jkn\bba\docker1\1\...\targets\EX221-G2uV1\THSP\image
+【.b2】\\pc3.jkn\bba\docker1\2\...\EX221-G2uV1\THSP\image
+【.p1】\\pc3.jkn\bba\docker1\1\...\XC220G3vv1\image
+【.p2】\\pc3.jkn\bba\docker1\2\...\XC220G3vv1\image
 【.ab】ab1127586911
 【.y0】Y0nN1uWqDCsi
 【.ji】jiangkainan@tp-link.com.cn
 【.git】git grep -n -I  ""{left 1}
-【.t1】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.feature_XC220_mesh.log`n
-【.t2】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.linux_XC220-G3v_v1.log`n
-【.t3】tail -n 100 /tmp/jkn.script.BBA_2_5_Platform_BCM.EX220_USSP_v1.2.log`n
+【.t1】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.feature_XC220_mesh.log
+【.t2】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.linux_XC220-G3v_v1.log
+【.t3】tail -n 100 /tmp/jkn.script.BBA_2_5_Platform_BCM.EX220_USSP_v1.2.log
 
 )"  
 ; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
@@ -976,6 +1012,7 @@ global JKN_FLAGS = "jkn1"
 )"  
 ; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
 			return
+			
 		}
 		
 		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
@@ -986,6 +1023,7 @@ global JKN_FLAGS = "jkn1"
 			JKN_FLAGS = %UserInput%
 		return
 	}
+	
 }
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1169,6 +1207,45 @@ global JKN_FLAGS = "jkn1"
 
 		return
 	}
+	
+	; chrome
+	; F1后退
+	; F2前进
+	#IfWinActive ahk_exe D:\3-big-software\7-chrome\Chrome\App\chrome.exe
+	{
+		F1::
+			MouseGetPos, xpos, ypos
+			MouseClick , Left , 20, 60, 1, 0
+			MouseMove, xpos, ypos , 0
+			return
+		F2::
+			MouseGetPos, xpos, ypos
+			MouseClick , Left , 60, 60, 1, 0
+			MouseMove, xpos, ypos , 0
+			return		
+			
+		return
+	}
+	
+	; firefox
+	; F1后退
+	; F2前进
+	#IfWinActive ahk_exe C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+	{
+		F1::
+			MouseGetPos, xpos, ypos
+			MouseClick , Left , 20, 60, 1, 0
+			MouseMove, xpos, ypos , 0
+			return
+		F2::
+			MouseGetPos, xpos, ypos
+			MouseClick , Left , 60, 60, 1, 0
+			MouseMove, xpos, ypos , 0
+			return		
+			
+		return
+	}
+	
 	
 	
 	#IfWinActive
