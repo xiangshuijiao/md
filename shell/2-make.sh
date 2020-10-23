@@ -3,7 +3,9 @@
 # 编译选项个数不定
 
 # killall -V命令执行失败说明不存在该命令，需要重新安装
+echo "*********************************************"
 killall -V
+echo "*********************************************"
 if [ $? != 0 ]
 then
 	apt-get install psmisc # 安装后才会有killall命令
@@ -18,10 +20,14 @@ fi
 
 timer_start=`date "+%Y-%m-%d %H:%M:%S"`
 
-rm -rf nohup.out && touch nohup.out && tail -f nohup.out&
+rm -rf nohup.out && touch nohup.out
+tail -f nohup.out&
+pid_of_tail=$!
+
 if [ $3 = "all" ]
 then
-  make_compile_options="$make_compile_options env_build boot_build kernel_build modules_build apps_build fs_build image_build"
+  echo -e "\\n\\n\\nThe ALL compile option is not supported\\n\\n\\n"
+  exit -1
 else
   i=3;
   while (( i <= $# ))
@@ -31,8 +37,8 @@ else
      let i++;
   done
 fi
-nohup make $make_compile_options
-killall tail
+make $make_compile_options 
+kill $pid_of_tail
 
 timer_end=`date "+%Y-%m-%d %H:%M:%S"`
 converts_the_entered_seconds_into_minutes_and_displays_them()
