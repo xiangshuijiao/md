@@ -136,7 +136,3 @@ A_function_that_compile_specified_commit \
   "EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin" \
   "EX220-G2u_FLASH.bin.w" "EX220-G2uV1" "USSP"
 COMMENT 
-
-	
-	
-	
