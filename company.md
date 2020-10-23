@@ -8,7 +8,9 @@
   * [<a href="https://blog\.csdn\.net/BigData\_Mining/article/details/104921479" rel="nofollow">三种方法修改docker的默认存储位置</a>](#%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E4%BF%AE%E6%94%B9docker%E7%9A%84%E9%BB%98%E8%AE%A4%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE)
   * [<a href="https://blog\.51cto\.com/lidefu/2369147" rel="nofollow">docker资源分配篇</a>](#docker%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E7%AF%87)
   * [定时执行docker中的脚本](#%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8Cdocker%E4%B8%AD%E7%9A%84%E8%84%9A%E6%9C%AC)
+  * [实时查看docker容器日志](#%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8Bdocker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97)
 * [Ftp](#ftp)
+* [GDB](#gdb)
 * [Gerrit](#gerrit)
 * [GitLab](#gitlab)
 * [Git](#git)
@@ -22,7 +24,7 @@
   * [git stash](#git-stash)
   * [git 加速](#git-%E5%8A%A0%E9%80%9F)
 * [Graphviz](#graphviz)
-* [Make](#make)
+* [Makefile](#makefile)
   * [加速编译](#%E5%8A%A0%E9%80%9F%E7%BC%96%E8%AF%91)
 * [Menuconfig](#menuconfig)
 * [OpenGrok](#opengrok)
@@ -37,17 +39,14 @@
 * [Telnet](#telnet)
 * [TFTP](#tftp)
 * [Ubuntu](#ubuntu)
-  * [查看当前目录下各个文件、文件夹大小](#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%90%84%E4%B8%AA%E6%96%87%E4%BB%B6%E6%96%87%E4%BB%B6%E5%A4%B9%E5%A4%A7%E5%B0%8F)
-  * [查看端口占用](#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8)
-  * [查看ID对应进程](#%E6%9F%A5%E7%9C%8Bid%E5%AF%B9%E5%BA%94%E8%BF%9B%E7%A8%8B)
+  * [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1)
   * [终端颜色配置](#%E7%BB%88%E7%AB%AF%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE)
   * [Ubuntu1804开机启动](#ubuntu1804%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8)
   * [定时任务脚本](#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%84%9A%E6%9C%AC)
   * [Archer T9E网卡驱动安装](#archer-t9e%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85)
   * [重装系统](#%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F)
-  * [终端切换其他用户su \- 用户名](#%E7%BB%88%E7%AB%AF%E5%88%87%E6%8D%A2%E5%85%B6%E4%BB%96%E7%94%A8%E6%88%B7su---%E7%94%A8%E6%88%B7%E5%90%8D)
   * [网络分析工具](#%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7)
-  * [查看实时变化的文件tail \-f](#%E6%9F%A5%E7%9C%8B%E5%AE%9E%E6%97%B6%E5%8F%98%E5%8C%96%E7%9A%84%E6%96%87%E4%BB%B6tail--f)
+  * [大量文件快速拷贝、删除](#%E5%A4%A7%E9%87%8F%E6%96%87%E4%BB%B6%E5%BF%AB%E9%80%9F%E6%8B%B7%E8%B4%9D%E5%88%A0%E9%99%A4)
 * [Vim](#vim)
 * [VMware Station](#vmware-station)
   * [虚拟机和主机之间不能复制粘贴](#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4)
@@ -170,11 +169,15 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
         vim ~/.bashrc
             修改项目目录
             添加 export DISPLAY=192.168.137.1:0.0
+            添加 umask 000
+            添加 export RSYNC_RSH="ssh -T -c aes128-ctr -o Compression=no -x"
         dpkg-reconfigure tzdata // 同步时间 Asia->Shanghai
         exit退出容器进入主机编辑`/etc/rc.local`脚本开自启容器
+        
         docker restart 容器名
           
         git config --add core.filemode false // 忽略文件模式变化
+        
         
     ```
   
@@ -186,7 +189,9 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
     //通用
     	docker run --dns 172.31.1.1 -p 50001:22 -it -v  /home/bba/ex220:/opt/bba -v /home/bba/docker:/opt/docker --name "ex220" jiang:kainan /bin/bash 
         apt update && apt install openssh-server
-        vim /etc/ssh/sshd_config//将PermitRootLogin的值从withoutPassword改为yes
+        vim /etc/ssh/sshd_config
+            PermitRootLogin改为yes
+            StrictModes改为no  
         service ssh restart # 重启动ssh服务
         vim ~/.bashrc
             行尾添加：
@@ -239,7 +244,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
             locate libfakeroot.so
             ln -s /opt/trendchip/mips-linux-glibc-4.6.3/usr/lib/libfakeroot.so /usr/lib/
     
-    ```
+  ```
   
 * 镜像的导出与导入
 
@@ -316,10 +321,23 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 编辑宿主机的`/etc/crontab`文件添加如下内容`0 20  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log`
 
+### 实时查看docker容器日志
+
+`sudo docker logs -f -t --tail 行数 容器名`
+
 ## Ftp
 
 * **每次连接服务器都要输入binary**，用二进制传输文件，否则默认用文本格式传输文件
 
+## GDB
+
+[交叉编译GDB工具链](https://segmentfault.com/a/1190000021029824)
+
+[gcc版本和运行环境gdb版本不匹配所引发的调试问题](https://blog.csdn.net/csq_year/article/details/78845684)
+
+http://ispproject.rd.tp-link.net/redmine/boards/3/topics/25
+
+*   注意：如果SDK中有了就不要再重新编译了
 
 ## Gerrit
 
@@ -388,19 +406,29 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 ## GitLab
 
-*   [使用Docker安装GitLab](https://segmentfault.com/a/1190000021593151)
+*   [使用Docker安装GitLab](https://juejin.im/post/6844903998487527432)
 
     ```shell
     mkdir -p /home/gitlab/config /home/gitlab/logs /home/gitlab/data
-    docker run -p 9000:443 -p 9001:80 -p 9002:22 --name gitlab -v /home/gitlab/config/:/etc/gitlab -v /home/gitlab/logs/:/var/log/gitlab -v /home/gitlab/data/:/var/opt/gitlab -d gitlab/gitlab-ce 
-    访问页面 IP:9001
+    docker run -p 9000:443 -p 9001:80 -p 9002:22 --name gitlab -v /home/gitlab/config/:/etc/gitlab -v /home/gitlab/logs/:/var/log/gitlab -v /home/gitlab/data/:/var/opt/gitlab -d gitlab/gitlab-ce  # 9000（https）、9001（http）、9002（ssh）
+    vim /home/gitlab/config/gitlab.rb
+        external_url 'http://192.168.137.180:9001'
+        nginx['listen_port'] = 80
+        gitlab_rails['gitlab_shell_ssh_port'] =9002
+        gitlab_rails['gitlab_ssh_host'] = "192.168.137.180"
+    访问页面会要求给root用户设置初始密码，然后用root账户登录即可
     ```
 
-    
+*   [Git使用(二)：本地仓库关联多个远程仓库](https://juejin.im/entry/6844903757356990477)
+
+    ```shell
+    git remote add gitlab ssh://git@192.168.137.180:9002/root/bba_2_5_platform_bcm.git # 添加远程仓库
+    git remote -v #查看远程仓库有哪些
+    git branch
+    git push gitlab VX420-G2h-P1 # 向指定仓库push指定分支
+    ```
 
 *   [【docker】【Gitlab】gitlab中clone项目时，IP地址是一串数字（内网Gitlab的IP地址不正确）的问题解决](https://www.cnblogs.com/sxdcgaq8080/p/10511936.html)
-
-*   [Git使用(二)：本地仓库关联多个远程仓库](https://juejin.im/entry/6844903757356990477)
 
 ## Git
 
@@ -471,6 +499,8 @@ git 查看`指定文件的指定代码`是由谁`增、删、改`
     git log --graph --oneline --all # 图形化显示所有分支的提交日志
     git log --graph --patch --all # 图形化显示所有分支的提交日志及每次提交的变更内容
     ```
+
+*   [`github desktop`的测试版](https://github.com/desktop/desktop/blob/development/README.md#beta-channel)可以`side-by-side`并排显示commit差异
 
 ### 常见问题
 
@@ -733,9 +763,10 @@ git stash clear // 清空所有stash
 * [Graphviz入门](https://www.cnblogs.com/born2run/p/9581386.html) [离线网页](D:\0-attachment\graphviz\Graphviz入门 - MarvinChan - 博客园 (2020-06-06 下午4_34_58).html)
 
 
-## Make
+## Makefile
 
 * make的目标文件要比依赖文件新，如果目标文件不存在或者目标文件比依赖文件旧就会执行目标文件下编写的规则，因为伪目标永远不存在，所以为伪目标下对应的规则永远都会被执行。
+* **makefile执行时会将执行的命令本身和命令的执行结果都打印出来**，所以通过观察make的输出就能知道Makefile的执行流程
 
 ### 加速编译
 
@@ -838,6 +869,320 @@ git stash clear // 清空所有stash
       * **注意：**Ubuntu1804只需要安装`apt-get install samba samba-common system-config-samba`即可
   * `touch /etc/libuser.conf`
   * 普通账户输入`sudo system-config-samba`选择`Access-》allow access to everyone`
+  * `setfacl -R -m u:nobody:rwx /home`给所有用户读、写、可执行权限
+  * `~/.bashrc`文件中添加`umask 000`修改新建文件、文件夹权限的掩码
+
+* 命令行配置
+
+  * [Ubuntu 16.04安装配置Samba服务 - wbaction的博客 - CSDN博客_2](D:\0-attachment\Ubuntu 16.04安装配置Samba服务 - wbaction的博客 - CSDN博客_2.mhtml)
+  * 将配置文件中的user改为自己的用户名jiangkainan
+  * 配置文件中加入：writable     = yes
+  * 最后要给共享目录输入权限：sudo     chmod -R 777 /home/jiangkainan
+  * `watch -n 15 chmod     777 -R /home/bba & ` 每10秒给一次可执行权限，可放到开机自启脚本`/etc/rc.local`里面
+
+  ```makefile
+  [share]
+  comment = Share Folder require password
+  browseable = yes
+  path = /home/tplink/code
+  create mask = 0777
+  directory mask = 0777
+  valid users = tplink
+  force user = nobody
+  force group = nogroup
+  public = yes
+  writable = yes
+  available = yes
+  ```
+
+## Source insight
+
+*   [调试逆向[原创]Windows逆向学习笔记——破解Source Insight 4 ](https://bbs.pediy.com/thread-261478.htm) 
+*   不能打开samba目录，报错为`not a valid directory T:`
+    *   解决：不要映射网络驱动器，直接使用`\\pc3.jkn\bba`的路径
+*   有些函数定`义无法识别
+    *   在 source insight 安装目录下，修改文件 c.tom文件 (对应C/C++)，添加如下内容`PJ_DEF(type)`
+
+## Shell
+
+执行变量中存放的命令
+
+*   ```shell
+    v2="ls -al /root"
+    echo ${v2} |awk '{run=$0;system(run)}' # $0为整行，把整行内容赋值给run变量然后system(run)
+    ```
+
+数组传参
+
+*   ```shell
+    function showArr(){
+        arr=$1
+        for i in ${arr[*]}; do
+            echo $i
+        done
+    }
+    regions=("GZ" "SH" "BJ")
+    showArr "${regions[*]}"
+    ```
+
+
+[循环获取参数：从第三个参数开始](https://blog.csdn.net/m0_37886429/article/details/89280852)
+
+*   ```shell
+    i=3;
+    while (( i <= $# ))
+    do
+    # 间接引用! 直接 $1 这样处理会出问题，不加 ! ，输出的就是数字!??因为外面的参数是 i 的值，而我们需要使用i,需要 ! 间接引用!
+    echo ${!i}; 
+    let i++;
+    # (( i++ ))  (( )) 的运算速度快一些!?
+    done
+    ```
+
+*   
+
+## SSH 
+
+### [nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】](https://segmentfault.com/a/1190000011289092)
+
+*   `sudo nohup bash 脚本路径 >> /tmp/nohup.log 2>&1 </dev/null &` 指定输出文件
+
+### SSH 显示图形化界面
+
+[VcXsrv+putty远程访问linux图形界面](https://blog.csdn.net/jdzzgtc/article/details/86588537)
+
+*   **注意1**：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`192.168.137.1:0.0`，这个地址必须要让服务器能ping通，否则服务器不知道把图形界面转发给谁。
+*   **注意2**：docker中另外还需要定义下面的变量`export DISPLAY=192.168.137.1:0.0`并写死到`~/.bashrc`中
+*   **注意3**：连接ssh的电脑`192.168.137.243`可以和显示X11界面的电脑`192.168.137.1`不是同一台电脑，因为`192.168.137.1`电脑的显示器是U2417H的高清显示器，所以就讲X11的界面放到这台电脑上面了
+*   开机启动：参考本文链接：[查看进程启动时的参数](#%e6%9f%a5%e7%9c%8b%e8%bf%9b%e7%a8%8b%e5%90%af%e5%8a%a8%e6%97%b6%e7%9a%84%e5%8f%82%e6%95%b0)
+
+### WinSCP：linux 和电脑互传文件
+
+
+
+## TCPDump
+
+*    [Linux基础：用tcpdump抓包](https://www.cnblogs.com/chyingp/p/linux-command-tcpdump.html)
+*    [Linux tcpdump命令详解](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html&sa=U&ved=2ahUKEwits43f0OzrAhVBHzQIHVUsAGEQFjAAegQIBBAB&usg=AOvVaw1DmMDp3SljpnxgHa19WUre)
+
+## Telnet
+
+* secureCRT就有Telnet功能，连接后输入密码`admin`、`sh`命令 
+* 或者cmd输入`telnet 192.168.1.1`进入Telnet（要在windows服务中开启Telnet功能）
+* telnet使用命令：`prolinecmd restore default`恢复出厂设置，Jio样机没有恢复出厂设置会有相应的led灯闪烁，恢复后就不会闪烁了。
+* 一般telnet中输入sh（shell）就可以进入管理员模式
+
+## TFTP
+
+* 问题1
+
+  ```c
+  tftp总是传输到一半终止，
+  或者一个tftp传输命令却在服务端建立了多个传输进度为0的连接
+  或者在客户端体现为出现多个T也就是建立了多个tftp的连接传输进度却都是0
+      
+  解决：
+      问题出在你使用的交换机上面有一个自己的默认的静态IP：192.168.0.1，你需要将它的IP设置为自动获取而不是静态IP
+  ```
+
+* 问题2
+
+  ```c
+  tftp请求没有任何响应
+      
+  解决：
+      尝试1：关闭防火墙
+      尝试2：这是双网卡的问题导致的，将另一个和tftp传输无关的网卡禁用掉，重启服务器即可
+      
+  ```
+
+* 问题3
+
+    ```
+    tftp 192.168.1.200 -gr networkMap.htm 
+    tftp: server error: (256) Access to networkMap.htm denied
+    
+    不要以管理员权限运行tftp服务器，只能用普通权限运行tftp服务器
+    不要用绝对路径传文件，cd到目录里面用相对路径传文件
+    ```
+
+    
+
+
+
+## Ubuntu
+
+### 常用命令
+
+`du -ah --max-depth=1` ：查看当前目录下各个文件、文件夹大小
+
+`netstat -ano | findstr 21`：查看端口占用
+
+`tasklist | findstr 21552` ：查看ID对应进程
+
+`su - jkn`：终端切换到用户jkn
+
+`tail -f`：查看实时变化的文件
+
+`time make all`：time命令打印时间消耗
+
+`cat /etc/issue`：查看Ubuntu版本
+
+### 终端颜色配置
+
+* 普通模式 `PS1="\[\e[30;40m\][\u@\W \T]\\$\[\e[0m\]"`
+* 管理员模式`PS1="\[\e[31;47m\][\w]\\$\[\e[0m\]"`
+* [修改Linux终端命令提示符颜色、PS1 - 心之所向，不负初衷 - CSDN博客_2](file:///D:/0-attachment/修改Linux终端命令提示符颜色、PS1 - 心之所向，不负初衷 - CSDN博客_2.mhtml)
+
+### Ubuntu1804开机启动
+
+[Ubuntu Server 18.04 LTS 开机自动启动脚本 SVN自动启动 rc.local](https://zhuanlan.zhihu.com/p/56020157)
+
+*   **注意：**要额外执行以下两条命令
+
+    ```shell
+    chmod +x /etc/rc.local
+    systemctl daemon-reload
+    ```
+
+### 定时任务脚本
+
+`vim /etc/crontab `
+
+`service cron status`
+
+` /var/log/syslog`会记录crontab任务是否被执行情况，但无法看到执行结果，所以还是推荐将执行结果用`>>`追加的方式写入文件`/tmp/jkn.txt`
+
+```shell
+[/home/bba]#cat /etc/crontab
+0 19  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log 
+0 20  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log
+
+0  9  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script  
+0 12  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
+0 17  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
+0 20  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
+```
+
+### Archer T9E网卡驱动安装
+
+`apt install bcmwl-kernel-source`
+
+### 重装系统
+
+[ubuntu 18.04/16.04/14.04 双硬盘分区方案](https://blog.csdn.net/u010801439/article/details/80485251)
+
+[三种方法修改docker的默认存储位置](#[三种方法修改docker的默认存储位置](https://blog.csdn.net/BigData_Mining/article/details/104921479))
+
+[Ubuntu1804开机启动](#Ubuntu1804开机启动)
+
+[SSD安装ubuntu系统的优化](https://blog.csdn.net/hzwwpgmwy/article/details/80313272)
+
+*   [Ubuntu使用SSD需要做的配置和优化](http://blog.sina.com.cn/s/blog_6cc181070101rty5.html)
+*   [prelink加速的配置](https://www.geek-share.com/detail/2547147141.html)
+*   [怎么查看SATA硬盘是否处于AHCI开启状态?](http://ask.zol.com.cn/x/3008824.html)
+
+[Ubuntu定时任务脚本](#Ubuntu定时任务脚本)：下面为每天九点定时执行的脚本
+
+*   [Linux crontab 输出重定向不生效问题解决、重定向到文件不生效的解决方法](https://blog.csdn.net/mengalong/article/details/83578738)：重定向命令的末尾加上` 2>&1 </dev/null `
+
+    *   [Shell重定向 ＆>file、2>&1、1>&2 、/dev/null的区别](https://blog.csdn.net/u011630575/article/details/52151995)
+    *   0：标准输入，1：标准输出，2：错误输出
+
+*   ```shell
+    #!/bin/sh
+    
+    logpath=/tmp/jkn.script.runs.regularly.log
+    
+    date >> $logpath 2>&1 </dev/null 
+    
+    sudo fstrim -v / >> $logpath 2>&1 </dev/null 
+    sudo fstrim -v /boot >> $logpath 2>&1 </dev/null 
+    /usr/sbin/prelink -afmR >> $logpath 2>&1 </dev/null 
+    
+    date >> $logpath 2>&1 </dev/null
+    ```
+
+### 网络分析工具
+
+[LinSSID：一款Linux下的图形化Wi-Fi扫描器](https://linux.cn/article-5120-1.html)
+
+[Sparrow-WiFi：一款Linux平台下的图形化WiFi及蓝牙分析工具](https://www.bbsmax.com/A/q4zVKKp7JK/)
+
+[是否有用于ubuntu的wifi分析器之类的工具？](https://qastack.cn/ubuntu/237777/is-there-a-tool-like-wifi-analyzer-for-ubuntu)
+
+### 大量文件快速拷贝、删除
+
+[linux 快速复制大量文件](https://blog.csdn.net/agq358/article/details/95486341)
+
+[linux 快速删除大量/大文件](https://blog.csdn.net/liuxiao723846/article/details/51626305)
+
+[rsync性能终极优化【Optimize rsync performance】](https://www.cnblogs.com/sunsky303/p/11775432.html)
+
+*   `export RSYNC_RSH="ssh -T -c aes128-ctr -o Compression=no -x"`加入.bashrc里面
+*   `rsync -ah --info=progress2 source目录  Dest目录 ` ：快速复制大量文件，复制单个文件去掉参数`-a`，`-v`可以显示详细信息不过不推荐因为IO会拖慢复制的性能，各种参数拷贝同一个项目时间如下：
+    *   `-avzh `：380s
+    *   `-avh`：209s
+    *   `-ah`：
+*   `rsync --delete-before -d /usr/blank/ Dest目录`：将空
+
+## Vim
+
+* `:setlocal nowrap `当前文档设置为不自动换行
+
+* `:set mouse=r `解决不能在secureCrt中使用vim选中复制的问题，[完美解决vim在终端不能复制的问题](https://www.cnblogs.com/cheerupforyou/p/6958695.html)
+
+* `:set paste`解决**粘贴缩进问题**
+
+* Spacevim
+
+    ```shell
+    curl -sLf https://spacevim.org/install.sh | bash -s -- --install vim # 下载
+    vim中执行:VimProcInstall #原因：https://www.cnblogs.com/zhuxiaoxi/p/8466846.html
+    在Ubuntu1804中安装spacevim时~/.SpaceVim.d是自动生成的，但是在Ubuntu1204中安装时却没有，所以需要拷贝过去
+    cp -rf /opt/docker/spacevim/.SpaceVim.d/ ~/   #修改主题配置：colorscheme = "SpaceVim"  colorscheme_bg = "light"
+    vim ~/.SpaceVim/vimrc 末尾添加如下配置
+    	:set mouse=r
+	:set paste
+    ```
+    
+    
+
+## VMware Station
+
+### 虚拟机和主机之间不能复制粘贴
+
+* `虚拟机设置-》选项-》客户机隔离-》启用复制粘贴、启用拖放`先关闭再打开
+* 或者也可以重装Vmware-tool
+
+## Win10
+
+### 防火墙
+
+*   无线客户端ping不通和自己在同一个网段的电脑
+    *   将防火墙**`入栈规则`**中所有的**`文件和打印机共享(回显请求 - ICMPv4-In)`**全部都启用即可
+*   外网无法访问DMZ主机中的共享文件夹
+    *   将所有的防火墙**`入栈规则`**全部都启用即可 
+
+### 双网卡
+
+* 内网或192.168.1.1访问失败
+* 原因在于两个网卡有两个默认网关
+  * 将网卡2的默认网关设为空
+  * route -4 print   && route
+  * route -p add 192.168.1.0 mask 255.255.255.0 192.168.1.1 metric 3 if 16
+
+### 查看进程启动时的参数
+
+cmd窗口运行`wmic process where caption="vcxsrv.exe" get caption,commandline /value`可以获取`vcxsrv.exe`进程的启动参数，然后给进程`vcxsrv.exe`创建快捷方式并在属性中添加启动参数放到`startup`开机自启动菜单就可以实现开机运行带参数的进程，进程参数的内容可以使用刚刚提到的命令获取。
+
+## Xmind
+
+*   拖动画布
+    *   mac下 鼠标中键空白处 按住滚轮可实现抓手
+    *   window下 鼠标右键空白处 按住右键可实现抓手
+
+ access to everyone`
   * `setfacl -R -m u:nobody:rwx /home`给所有用户读、写、可执行权限
 
 * 命令行配置
