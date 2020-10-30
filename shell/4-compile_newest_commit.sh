@@ -21,7 +21,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	# No changes needed
 	work_path=/opt/bba/compile_newest_commit/$1 
 	target_path=/opt/bba/image
-	tar_path=/opt/bba/tar
+	tar_path=/opt/share_data_folder/9-tar
 	logfile=/tmp/jkn.script.$1.log
 
 	# changes needed
