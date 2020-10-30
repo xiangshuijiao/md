@@ -3,6 +3,7 @@ VarSetCapacity(APPBARDATA, A_PtrSize=4 ? 36:48) ; 这行代码必须放第一行
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode 2   
+BlockInput SendAndMouse ;正在执行 Send、SendRaw、 Click、MouseMove、MouseClick、MouseClickDrag命令时用户的键盘和鼠标输入被忽略，当鼠标命令、Send结束时会重新启用输入
 global FPRINTF_FILE_PATH = "/tmp/1.txt" ; 默认fprintf会写入的路径，可以用NumberEnter+c修改这个值
 global JKN_FLAGS = "jkn1"
 
@@ -313,7 +314,7 @@ global JKN_FLAGS = "jkn1"
 	` & o::
 	` & p::
 	` & s::
-	` & t::
+	
 	` & u::
 	` & v::
 	` & w::
@@ -321,7 +322,7 @@ global JKN_FLAGS = "jkn1"
 	` & z::
 		return
 	
-	
+	` & t::send %A_YYYY%_%A_MM%_%A_DD%_%A_Hour%%A_Min%%A_Sec% ; 2020-10-26-152424
 	` & q::Send, !{F4}
 	` & y::Send, !+y
 	` & 1::
@@ -337,9 +338,10 @@ global JKN_FLAGS = "jkn1"
 	` & Up::MouseClick,WheelUp,,,8,0,D,R
 	` & Down::MouseClick,WheelDown,,,8,0,D,R
 	` & ?::
-		MsgBox "
-(
+		Gui, Add, Text,, "
+		(
 
+【``+t】输入当前时间
 【``+h】代替ctrl+Home返回文档首页
 【``+q】代替alt+F4关闭软件
 【``+y】有道词典鼠标取词开关
@@ -350,7 +352,8 @@ global JKN_FLAGS = "jkn1"
 【``+Up】滚轮向上滚动8次
 【``+Down】滚轮向下滚动8次
 
-)"  
+		)"
+		Gui, Show
 		return
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -439,7 +442,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & k::
 	F1 & l::
 	F1 & m::
-	
+	F1 & o::
 	F1 & q::
 	F1 & r::
 	F1 & u::
@@ -457,7 +460,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & e::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S") ;excel
 	;F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S") ;ppt
 	F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S") ;pdf
-	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
+	
 	F1 & g::hyf_onekeyWindow("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S") ;GitHub Desktop
 	F1 & f::hyf_onekeyWindow("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S") ;Firefox
 	F1 & ?::
@@ -496,7 +499,6 @@ Firefox
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S", "et.exe") ;excel
 		;show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S", "wpp.exe") ;ppt
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S", "wpspdf.exe") ;pdf
-		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
 		show_specific_hide_software("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S", "GitHubDesktop.exe") ;GitHub Desktop
 		show_specific_hide_software("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S", "firefox.exe") ;Firefox
 	return
@@ -816,10 +818,10 @@ Firefox
 	NumpadEnter & 9::
 	NumpadEnter & 0::
 	NumpadEnter & b::
-	
+	NumpadEnter & d::
 	NumpadEnter & e::
 	
-	NumpadEnter & g::
+	
 	NumpadEnter & h::
 	NumpadEnter & i::
 	NumpadEnter & k::
@@ -845,7 +847,8 @@ Firefox
 	NumpadEnter & f::function_for_the_NumpadEnter_short_key("f")
 	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
 	NumpadEnter & c::function_for_the_NumpadEnter_short_key("c")
-	NumpadEnter & d::function_for_the_NumpadEnter_short_key("d")
+	NumpadEnter & g::function_for_the_NumpadEnter_short_key("g")
+	NumpadEnter & w::function_for_the_NumpadEnter_short_key("w")
 	
 	
 	NumpadEnter & ?::function_for_the_NumpadEnter_short_key("?") ;给出帮助信息
@@ -873,7 +876,7 @@ Firefox
 		else if(short_key = "j")
 			different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
 		else if(short_key = "a")
-			different_key_times_different_operation(2, "admin`n", "admin`tadmin`n")
+			Send,  `n`n`n`nadmin`n1234`n`n`n`n
 		else if(short_key = "p")
 			Send, `nprintf(`"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		else if(short_key = "f")
@@ -881,12 +884,15 @@ Firefox
 		else if(short_key = "t")
 			Send, tftp -i 192.168.1.1 put{Space}{Space}  
 		else if(short_key = "c")
-			Send, time rsync -ah --info=progress2{Space} 
-		else if(short_key = "d")
-			Send, time rsync --delete-before --info=progress2 -d  /usr/blank/{Space} 
+			Send, time tar -xf /opt/share_data_folder/9-tar/PON_trunk_bba_2_5.linux_XC220-G3v_v1.tar -C{Space} 
+		else if(short_key = "g")
+			Send, git grep -n -I  ""{left 1}
+		else if(short_key = "w")
+			Send, "C:\Program Files\Wireshark\editcap.exe" -d{Space}
 		else if(short_key = "?")
-			MsgBox "
-(
+		{
+			Gui, Add, Text,, "
+			(
 
 【1】12345670
 【3】\\PC3.jkn\bba
@@ -895,56 +901,105 @@ Firefox
 【p】printf
 【f】fprintf
 【t】tftp -i 192.168.1.1 put{Space}{Space}
-【.b1】\\pc3.jkn\bba\docker1\1\...\targets\EX221-G2uV1\THSP\image
-【.b2】\\pc3.jkn\bba\docker1\2\...\EX221-G2uV1\THSP\image
-【.p1】\\pc3.jkn\bba\docker1\1\...\XC220G3vv1\image
-【.p2】\\pc3.jkn\bba\docker1\2\...\XC220G3vv1\image
-【.ab】ab1127586911
+【c】copy project
+【g】git grep -n -I  ""{left 1}
+【w】"C:\Program Files\Wireshark\editcap.exe" -d{Space}
 【.y0】Y0nN1uWqDCsi
 【.ji】jiangkainan@tp-link.com.cn
-【.git】git grep -n -I  ""{left 1}
-【.t1】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.feature_XC220_mesh.log
-【.t2】tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.linux_XC220-G3v_v1.log
-【.t3】tail -n 100 /tmp/jkn.script.BBA_2_5_Platform_BCM.EX220_USSP_v1.2.log
 
-)"  
-; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
+			)"
+			Gui, Show
+		}
+		; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
 		else if (short_key = "NumpadDel" or short_key = "NumpadDot")
 		{
 			; InputBox, UserInput
 			Input, UserInput, T4 L5, {Space}{NumpadEnter} ; 4秒无输出则超时，最长接受5字符输入，输入以空格或者小键盘的enter结尾
-			; 下面是路径
-			if (UserInput = "b1")
-				Send, \\pc3.jkn\bba\docker1\1\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-			else if (UserInput = "b2")
-				Send, \\pc3.jkn\bba\docker1\2\BBA_2_5_Platform_BCM\platform\targets\EX221-G2uV1\THSP\image
-			else if (UserInput = "p1")
-				Send, \\pc3.jkn\bba\docker1\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
-			else if (UserInput = "p2")
-				Send, \\pc3.jkn\bba\docker1\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+
 			; 下面是账号密码
-			else if (UserInput = "ab")
-				Send, ab1127586911
-			else if (UserInput = "y0")
+			if (UserInput = "y0")
 				Send, Y0nN1uWqDCsi
 			else if (UserInput = "ji")
 				Send, jiangkainan@tp-link.com.cn
-			else if (UserInput = "git")
-				Send, git grep -n -I  ""{left 1}
-			else if (UserInput = "t1")
-				Send, tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.feature_XC220_mesh.log`n
-			else if (UserInput = "t2")
-				Send, tail -n 100 /tmp/jkn.script.PON_trunk_bba_2_5.linux_XC220-G3v_v1.log`n
-			else if (UserInput = "t3")
-				Send, tail -n 100 /tmp/jkn.script.BBA_2_5_Platform_BCM.EX220_USSP_v1.2.log`n
+				
 		}
+		
 		return
 	}
 }
 
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;NumpadSub 修改全局变量的值
+;热字符串
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	
+	::1pb::cd /opt/bba/1/PON_trunk_bba_2_5/BBA2.5_platform/build`n
+	::1pi::\\pc3.jkn\bba\container_data\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+	::1px::cd /opt/bba/1/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
+	::1bb::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/build`n
+	::1bi::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/targets/EX220-G2uV1/USSP/image`n
+	::2pb::cd /opt/bba/2/PON_trunk_bba_2_5/BBA2.5_platform/build`n
+	::2pi::\\pc3.jkn\bba\container_data\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+	::2px::cd /opt/bba/2/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
+	::2bb::cd /opt/bba/2/BBA_2_5_Platform_BCM/platform/build`n
+	::3pb::cd /opt/bba/3/PON_trunk_bba_2_5/BBA2.5_platform/build`n
+	::3pi::\\pc3.jkn\bba\container_data\3\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+	::3px::cd /opt/bba/3/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
+	::3bb::cd /opt/bba/3/BBA_2_5_Platform_BCM/platform/build`n
+	::4pb::cd /opt/bba/4/PON_trunk_bba_2_5/BBA2.5_platform/build`n
+	::4pi::\\pc3.jkn\bba\container_data\4\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+	::4px::cd /opt/bba/4/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
+	::4bb::cd /opt/bba/4/BBA_2_5_Platform_BCM/platform/build`n
+	
+	::flash8::flash 80000 800a0000 1300000
+	::flash0::flash 0 80020000 1800000
+	
+	::1..::cd ../.`n
+	::2..::cd ../../.`n
+	::3..::cd ../../../.`n
+	::4..::cd ../../../../.`n
+	::5..::cd ../../../../../.`n
+
+	::???::
+		Gui, Add, Text,, "
+		(
+
+::1pb::cd /opt/bba/1/PON_trunk_bba_2_5/BBA2.5_platform/build
+::1pi::\\pc3.jkn\bba\container_data\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+::1px::cd /opt/bba/1/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
+::1bb::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/build
+::1bi::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/targets/EX220-G2uV1/USSP/image
+::2pb::cd /opt/bba/2/PON_trunk_bba_2_5/BBA2.5_platform/build
+::2pi::\\pc3.jkn\bba\container_data\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+::2px::cd /opt/bba/2/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
+::2bb::cd /opt/bba/2/BBA_2_5_Platform_BCM/platform/build
+::3pb::cd /opt/bba/3/PON_trunk_bba_2_5/BBA2.5_platform/build
+::3pi::\\pc3.jkn\bba\container_data\3\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+::3px::cd /opt/bba/3/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
+::3bb::cd /opt/bba/3/BBA_2_5_Platform_BCM/platform/build
+::4pb::cd /opt/bba/4/PON_trunk_bba_2_5/BBA2.5_platform/build
+::4pi::\\pc3.jkn\bba\container_data\4\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
+::4px::cd /opt/bba/4/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
+::4bb::cd /opt/bba/4/BBA_2_5_Platform_BCM/platform/build
+
+::flash8::flash 80000 800a0000 1300000
+::flash0::flash 0 80020000 1800000
+
+::1..::cd ../.
+::2..::cd ../../. 
+::3..::cd ../../../.
+::4..::cd ../../../../.
+::5..::cd ../../../../../.
+
+		)"
+		Gui, Show
+		return
+	
+
+}
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;NumpadSub 和`一样作为功能键使用
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	#IfWinActive
@@ -977,7 +1032,7 @@ Firefox
 	NumpadSub & n::
 	NumpadSub & o::
 	NumpadSub & q::
-	NumpadSub & r::
+	
 	NumpadSub & s::
 	NumpadSub & u::
 	NumpadSub & v::
@@ -986,8 +1041,10 @@ Firefox
 	NumpadSub & z::
 		return
 		
-	NumpadSub & f::function_for_the_NumpadSub_short_key("f")
-	NumpadSub & j::function_for_the_NumpadSub_short_key("j")
+	NumpadSub & f::
+	NumpadSub & j::
+		return
+	NumpadSub & r::function_for_the_NumpadSub_short_key("r")
 	NumpadSub & ?::function_for_the_NumpadSub_short_key("?")
 	
 	function_for_the_NumpadSub_short_key(short_key)	
@@ -1006,8 +1063,7 @@ Firefox
 			MsgBox "
 (
 
-【f】FPRINTF_FILE_PATH
-【j】JKN_FLAGS
+【r】重新加载autohotkey脚本
 
 )"  
 ; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
@@ -1016,15 +1072,13 @@ Firefox
 		}
 		
 		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
-		InputBox, UserInput
-		if(short_key = "f")
-			FPRINTF_FILE_PATH = %UserInput%
-		else if(short_key = "j")
-			JKN_FLAGS = %UserInput%
+		if(short_key = "r")
+			Reload ; 重新加载autohotkey脚本
 		return
 	}
 	
 }
+
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;Win+F1，每隔1s鼠标左键单击一次，再次按则取消
@@ -1213,12 +1267,12 @@ Firefox
 	; F2前进
 	#IfWinActive ahk_exe D:\3-big-software\7-chrome\Chrome\App\chrome.exe
 	{
-		F1::
+		F3::
 			MouseGetPos, xpos, ypos
 			MouseClick , Left , 20, 60, 1, 0
 			MouseMove, xpos, ypos , 0
 			return
-		F2::
+		F4::
 			MouseGetPos, xpos, ypos
 			MouseClick , Left , 60, 60, 1, 0
 			MouseMove, xpos, ypos , 0
@@ -1232,12 +1286,12 @@ Firefox
 	; F2前进
 	#IfWinActive ahk_exe C:\Program Files (x86)\Mozilla Firefox\firefox.exe
 	{
-		F1::
+		F3::
 			MouseGetPos, xpos, ypos
 			MouseClick , Left , 20, 60, 1, 0
 			MouseMove, xpos, ypos , 0
 			return
-		F2::
+		F4::
 			MouseGetPos, xpos, ypos
 			MouseClick , Left , 60, 60, 1, 0
 			MouseMove, xpos, ypos , 0
@@ -1362,6 +1416,53 @@ $NumpadSub::
 $NumpadDiv::
 $NumpadMult::
 	return
+	
+*/
+}
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;另一台电脑运行的脚本备份
+;功能： 开关机测试脚本
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+/*	
+
+; 开关机测试脚本
+F7::
+	CoordMode, Mouse, Screen ; 作用于 MouseGetPos, Click 以及 MouseMove/Click/Drag. 坐标相对于桌面(整个屏幕).
+	Gui, Add, Edit, r30 vMyEdit w700, % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：start"
+	Gui, Show
+	winset,ALwaysOnTop,, A
+	loop_outside := 0 ; 记录这是第几次测试
+	While ++loop_outside > 0 ; 先++然后再比较
+	{
+		; 点击登录宏
+		MouseClick , Left , 100, 210, 1, 0 
+		loop_inner := 0
+		while loop_inner++ < 15
+		{
+			sleep, 1000
+			GuiControl, Text, MyEdit , % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在登陆中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
+		}	
+		
+		; 点击执行命令宏
+		MouseClick , Left , 100, 240, 1, 0 
+		loop_inner := 0
+		while loop_inner++ < 20
+		{
+			sleep, 1000
+			GuiControl, Text, MyEdit , % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在执行命令中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
+		}
+		
+		; 点击样机重启宏
+		MouseClick , Left , 100, 270, 1, 0 
+		loop_inner := 0
+		while loop_inner++ < 240
+		{
+			sleep, 1000
+			GuiControl, Text, MyEdit , % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在重启样机中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
+		}
+	}
 	
 */
 }
