@@ -442,7 +442,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & k::
 	F1 & l::
 	F1 & m::
-	F1 & o::
+	
 	F1 & q::
 	F1 & r::
 	F1 & u::
@@ -460,7 +460,7 @@ global JKN_FLAGS = "jkn1"
 	F1 & e::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S") ;excel
 	;F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S") ;ppt
 	F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S") ;pdf
-	
+	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
 	F1 & g::hyf_onekeyWindow("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S") ;GitHub Desktop
 	F1 & f::hyf_onekeyWindow("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S") ;Firefox
 	F1 & ?::
@@ -499,8 +499,10 @@ Firefox
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S", "et.exe") ;excel
 		;show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S", "wpp.exe") ;ppt
 		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S", "wpspdf.exe") ;pdf
+		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
 		show_specific_hide_software("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S", "GitHubDesktop.exe") ;GitHub Desktop
-		show_specific_hide_software("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S", "firefox.exe") ;Firefox
+		show_specific_hide_software("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S", "firefox.exe") ;Firefox 
+		
 	return
 	
 	F1 & 1::send_win_number_and_winMaximize("#1")	; ~表示触发热键时, 热键中按键原有的功能不会被屏蔽
@@ -521,7 +523,21 @@ Firefox
 		If !hyf_processExist(exeName)
 		{
 			;hyf_tooltip("启动中，请稍等...")
-			Run,% exePath
+			
+			; Chrome管理员启动会导致点击链接时无法弹出Chrome窗口
+			; outlook管理员启动会导致无法使用搜索功能
+			; notepad++管理员启动会导致右键使用notepad++打开时无法弹出notepad++窗口
+			; 所以以上软件需要使用系统自带快捷键启动
+			if (exeName = "OUTLOOK.EXE")
+				Send, +!o
+			else if (exeName = "notepad++.exe")
+				Send, +!n
+			else if (exeName = "chrome.exe")
+				Send, +!c
+			else
+				Run,% exePath
+			
+			
 			;打开后自动运行 TODO
 			funcName := noExt . "_runDo"
 			If IsFunc(funcName)
@@ -876,7 +892,13 @@ Firefox
 		else if(short_key = "j")
 			different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
 		else if(short_key = "a")
-			Send,  `n`n`n`nadmin`n1234`n`n`n`n
+		{
+			Send,  `n`n`n`n
+			Sleep, 500
+			Send, admin`n
+			Sleep, 500
+			Send, 1234`n`n`n`n
+		}
 		else if(short_key = "p")
 			Send, `nprintf(`"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		else if(short_key = "f")
@@ -886,7 +908,7 @@ Firefox
 		else if(short_key = "c")
 			Send, time tar -xf /opt/share_data_folder/9-tar/PON_trunk_bba_2_5.linux_XC220-G3v_v1.tar -C{Space} 
 		else if(short_key = "g")
-			Send, git grep -n -I  ""{left 1}
+			Send, git grep -n -i  ""{left 1}
 		else if(short_key = "w")
 			Send, "C:\Program Files\Wireshark\editcap.exe" -d{Space}
 		else if(short_key = "?")
@@ -902,7 +924,7 @@ Firefox
 【f】fprintf
 【t】tftp -i 192.168.1.1 put{Space}{Space}
 【c】copy project
-【g】git grep -n -I  ""{left 1}
+【g】git grep -n -i  ""{left 1}
 【w】"C:\Program Files\Wireshark\editcap.exe" -d{Space}
 【.y0】Y0nN1uWqDCsi
 【.ji】jiangkainan@tp-link.com.cn
@@ -1301,17 +1323,89 @@ Firefox
 	}
 	
 	
-	
 	#IfWinActive
 }
 
-
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;鼠标操作：
-;		点击关闭按钮执行最小化操作，用Alt+F4来关闭窗口
+; 接管鼠标点击事件：
+;     屏蔽指定活动窗口右上角关闭按钮所在区域的鼠标点击事件
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	#IfWinActive
+	
+	SetControlDelay -1
+	CoordMode, Mouse, Relative
+	
+	;F3::MsgBox, % WinActive("ahk_exe OUTLOOK.EXE")  ; 打印调试信息 
+	LButton::
+		/*
+		if WinActive("ahk_exe notepad++.exe")
+		{
+			MouseGetPos, X1, Y1
+			WinGetPos,,, W, H, ahk_exe notepad++.exe
+			;MsgBox, % X1 "`n" Y1 "`n" W "`n" H
+			if (W-X1>7 and W-X1<56 and Y1>0 and Y1<39) 
+				return
+		}
+		*/
+		
+		if WinActive("ahk_exe OUTLOOK.EXE")
+		{
+			MouseGetPos, X1, Y1
+			WinGetPos,,, W, H, ahk_exe OUTLOOK.EXE
+			;MsgBox, % X1 "`n" Y1 "`n" W "`n" H
+			if (W-X1>7 and W-X1<56 and Y1>0 and Y1<39) 
+				return
+		}
+		
+		SendEvent {Blind}{LButton down}		
+		KeyWait LButton ;防止键盘自动重复导致的重复鼠标点击.
+		SendEvent {Blind}{LButton up}
+		return
+	
+}
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; +^+#四个全用上
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+/*   使用前必须将下面的文本保存为reg注册表文件并执行，否则同时按下^+!#就会弹出office登录页面
+Windows Registry Editor Version 5.00
 
-{}
+[HKEY_CURRENT_USER\SOFTWARE\Classes\ms-officeapp\Shell\Open\Command]
+@="rundll32"
+;(C)2020, Dynameus
+*/	
+	^+!#d::
+		Gui, Add, Edit, r20 vMyEdit w400, % "正在关闭电脑..."
+		Gui, Show
+		; 先关闭远程电脑，再关闭自己
+		GuiControl,, MyEdit , % "正在关闭pc2..."
+		StdoutToVar_CreateProcess("cmd /c shutdown /s /m \\pc2.jkn -t 3")
+		; StdoutToVar_CreateProcess("cmd /c shutdown /s /m \\pc4.jkn -t 3") ; 因为pc4不能自动RTC开机（主板有问题），所以就干脆永不关机，需要时只重启就行了
+		GuiControl,, MyEdit , % "正在关闭pc3...，`n`n已关闭pc2"
+		StdoutToVar_CreateProcess("cmd /c ssh -l root -p 22 pc3.jkn shutdown -P now") ; 需要将自己的ssh公钥拷贝到远程电脑的authorized_keys
+		GuiControl,, MyEdit , % "正在关闭本机...，`n`n已关闭pc2、pc3"
+		StdoutToVar_CreateProcess("cmd /c shutdown /s -t 3")
+		GuiControl,, MyEdit , % "已关闭pc2、pc3、本机"
+		return
+		
+	^+!#r::
+		Gui, Add, Edit, r30 vMyEdit w400, % "正在重启电脑..."
+		Gui, Show
+		; 先重启远程电脑，再重启自己
+		GuiControl,, MyEdit , % "正在重启pc2..."
+		StdoutToVar_CreateProcess("cmd /c shutdown /r /m \\pc2.jkn -t 3")
+		GuiControl,, MyEdit , % "正在重启pc3...，`n`n已重启pc2"
+		StdoutToVar_CreateProcess("cmd /c ssh -l root -p 22 pc3.jkn reboot") ; 需要将自己的ssh公钥拷贝到远程电脑的authorized_keys
+		GuiControl,, MyEdit , % "正在重启pc4...，`n`n已重启pc2、pc3"
+		StdoutToVar_CreateProcess("cmd /c shutdown /r /m \\pc4.jkn -t 3")
+		GuiControl,, MyEdit , % "正在重启本机...，`n`n已重启pc2、pc3、pc4"
+		StdoutToVar_CreateProcess("cmd /c shutdown /r -t 3")
+		GuiControl,, MyEdit , % "已重启pc2、pc3、pc4、本机"
+		return
+	
+
+}
 
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1319,6 +1413,163 @@ Firefox
 ;功能：
 ;		后台静默执行cmd命令并获取输出，执行过程没有黑窗口，关闭NumLock后：
 ;		数字2、3分别把network2、network3设置为指定的静态IP
+;		数字5、6分别把network2、network3设置为dhcp
+;		数字8、9弹窗显示network2、network3的IP
+;参考链接:
+;		AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+
+
+
+; AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
+StdoutToVar_CreateProcess(sCmd, sEncoding:="CP0", sDir:="", ByRef nExitCode:=0) {
+    DllCall( "CreatePipe",           PtrP,hStdOutRd, PtrP,hStdOutWr, Ptr,0, UInt,0 )
+    DllCall( "SetHandleInformation", Ptr,hStdOutWr, UInt,1, UInt,1                 )
+
+            VarSetCapacity( pi, (A_PtrSize == 4) ? 16 : 24,  0 )
+    siSz := VarSetCapacity( si, (A_PtrSize == 4) ? 68 : 104, 0 )
+    NumPut( siSz,      si,  0,                          "UInt" )
+    NumPut( 0x100,     si,  (A_PtrSize == 4) ? 44 : 60, "UInt" )
+    NumPut( hStdOutWr, si,  (A_PtrSize == 4) ? 60 : 88, "Ptr"  )
+    NumPut( hStdOutWr, si,  (A_PtrSize == 4) ? 64 : 96, "Ptr"  )
+
+    If ( !DllCall( "CreateProcess", Ptr,0, Ptr,&sCmd, Ptr,0, Ptr,0, Int,True, UInt,0x08000000
+                                  , Ptr,0, Ptr,sDir?&sDir:0, Ptr,&si, Ptr,&pi ) )
+        Return ""
+      , DllCall( "CloseHandle", Ptr,hStdOutWr )
+      , DllCall( "CloseHandle", Ptr,hStdOutRd )
+
+    DllCall( "CloseHandle", Ptr,hStdOutWr ) ; The write pipe must be closed before reading the stdout.
+    While ( 1 )
+    { ; Before reading, we check if the pipe has been written to, so we avoid freezings.
+        If ( !DllCall( "PeekNamedPipe", Ptr,hStdOutRd, Ptr,0, UInt,0, Ptr,0, UIntP,nTot, Ptr,0 ) )
+            Break
+        If ( !nTot )
+        { ; If the pipe buffer is empty, sleep and continue checking.
+            Sleep, 100
+            Continue
+        } ; Pipe buffer is not empty, so we can read it.
+        VarSetCapacity(sTemp, nTot+1)
+        DllCall( "ReadFile", Ptr,hStdOutRd, Ptr,&sTemp, UInt,nTot, PtrP,nSize, Ptr,0 )
+        sOutput .= StrGet(&sTemp, nSize, sEncoding)
+    }
+    
+    ; * SKAN has managed the exit code through SetLastError.
+    DllCall( "GetExitCodeProcess", Ptr,NumGet(pi,0), UIntP,nExitCode )
+    DllCall( "CloseHandle",        Ptr,NumGet(pi,0)                  )
+    DllCall( "CloseHandle",        Ptr,NumGet(pi,A_PtrSize)          )
+    DllCall( "CloseHandle",        Ptr,hStdOutRd                     )
+    Return sOutput
+}
+
+/*
+
+;注意要先将网络适配器的名称分别改为network2和network3
+
+; number1：把以太网2、3设置为dhcp
+#IfWinActive 
+$NumpadEnd::
+StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network2") ; release旧的ip地址
+StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network3") ; release旧的ip地址
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.0.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.1.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.66.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.0.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.1.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.66.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network2 dhcp")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ip set dns network2 dhcp")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network3 dhcp")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ip set dns network3 dhcp")
+return
+
+
+; number2：把以太网2、3设置为静态IP
+$NumpadDown::
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network2 static 192.168.0.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.1.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.66.222 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network3 static 192.168.0.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.1.233 255.255.255.0")
+StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.66.233 255.255.255.0")
+return
+
+; number3：查看以太网2、3的IP
+$NumpadPgDn::MsgBox  % StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 show ipaddress interface=network2")  StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 show ipaddress interface=network3")
+
+
+$NumpadClear::
+$NumpadRight::
+$NumpadUp::
+$NumpadPgUp::
+$NumpadIns::
+$NumpadLeft::
+$NumpadHome::
+$NumpadDel::
+$NumpadAdd::
+$NumpadSub::
+$NumpadDiv::
+$NumpadMult::
+	return
+	
+*/
+}
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;另一台电脑运行的脚本备份
+;功能： 开关机测试脚本
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+/*	
+
+; 开关机测试脚本
+F7::
+	CoordMode, Mouse, Screen ; 作用于 MouseGetPos, Click 以及 MouseMove/Click/Drag. 坐标相对于桌面(整个屏幕).
+	Gui, Add, Edit, r30 vMyEdit w550, % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：start"
+	Gui, Show
+	winset,ALwaysOnTop,, A
+	loop_outside := 0 ; 记录这是第几次测试
+	
+	tell := "请不要拔掉网线、关闭样机、tftp服务器、串口、autohotkey脚本`n请不要拔掉网线、关闭样机、tftp服务器、串口、autohotkey脚本`n"
+	
+	While ++loop_outside > 0 ; 先++然后再比较
+	{
+		; 30s的登录时间
+		WinActivate, ahk_exe MobaXterm.exe
+		Send, {F1}
+		loop_inner := 0
+		while loop_inner++ < 30
+		{
+			sleep, 1000
+			GuiControl, Text, MyEdit , % tell tell tell tell "`n`n`n" A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在登陆中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
+		}	
+		
+		; 20h的执行脚本时间
+		WinActivate, ahk_exe MobaXterm.exe
+		Send, {F2}
+		loop_inner := 0
+		while loop_inner++ < (3600 * 20)
+		{
+			sleep, 1000
+			GuiControl, Text, MyEdit , % tell tell tell tell "`n`n`n" A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在执行命令中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
+		}
+		
+		; 240s的重启时间
+		WinActivate, ahk_exe MobaXterm.exe
+		Send, {F3}
+		loop_inner := 0
+		while loop_inner++ < 240
+		{
+			sleep, 1000
+			GuiControl, Text, MyEdit , % tell tell tell tell "`n`n`n" A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在重启样机中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
+		}
+	}
+
+F6::Reload ; 重新加载autohotkey脚本
+	
+*/
+}数字2、3分别把network2、network3设置为指定的静态IP
 ;		数字5、6分别把network2、network3设置为dhcp
 ;		数字8、9弹窗显示network2、network3的IP
 ;参考链接:
