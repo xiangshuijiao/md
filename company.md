@@ -50,7 +50,10 @@
   * [重装系统](#%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F)
   * [网络分析工具](#%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7)
   * [大量文件快速拷贝、删除](#%E5%A4%A7%E9%87%8F%E6%96%87%E4%BB%B6%E5%BF%AB%E9%80%9F%E6%8B%B7%E8%B4%9D%E5%88%A0%E9%99%A4)
+  * [路由配置](#%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE)
+  * [内存相关参数](#%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0)
 * [Vim](#vim)
+* [Vim](#vim-1)
 * [Visio](#visio)
 * [VMware Station](#vmware-station)
   * [虚拟机和主机之间不能复制粘贴](#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4)
@@ -59,6 +62,9 @@
   * [双网卡](#%E5%8F%8C%E7%BD%91%E5%8D%A1)
   * [查看进程启动时的参数](#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E7%9A%84%E5%8F%82%E6%95%B0)
   * [<a href="https://blog\.csdn\.net/avinswang/article/details/106651325" rel="nofollow">windows10任务栏预览变成列表</a>](#windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E9%A2%84%E8%A7%88%E5%8F%98%E6%88%90%E5%88%97%E8%A1%A8)
+  * [远程关闭windows和Ubuntu](#%E8%BF%9C%E7%A8%8B%E5%85%B3%E9%97%ADwindows%E5%92%8Cubuntu)
+  * [<a href="https://blog\.csdn\.net/weixin\_33772645/article/details/91793476?utm\_medium=distribute\.pc\_relevant\.none\-task\-blog\-BlogCommendFromMachineLearnPai2\-1\.channel\_param&amp;depth\_1\-utm\_source=distribute\.pc\_relevant\.none\-task\-blog\-BlogCommendFromMachineLearnPai2\-1\.channel\_param" rel="nofollow">远程桌面连接慢的问题解决</a>](#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3)
+  * [EmEditor打开超大文本文件](#emeditor%E6%89%93%E5%BC%80%E8%B6%85%E5%A4%A7%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6)
 * [Xmind](#xmind)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
@@ -1216,6 +1222,27 @@ git stash clear // 清空所有stash
 *   `tar -c $project_name > $tar_path/$1.tar`：创建归档文件，放在定时脚本中执行
 *   `tar -xf /opt/share_data_folder/9-tar/PON_trunk_bba_2_5.linux_XC220-G3v_v1.tar -C Dest目录`：解压归档文件
 
+### 路由配置
+
+`route add -net 10.0.1.0/24 gw 192.168.1.1 dev wlp4s0`
+
+### 内存相关参数
+
+`cat /proc/进程号/smaps`[内存耗用：VSS/RSS/PSS/USS 的介绍](https://www.jianshu.com/p/3bab26d25d2e)
+
+`cat /proc/zoneinfo` [Normal free    linux内存管理中系统内存相关的参数说明(一)](http://blog.chinaunix.net/uid-27177626-id-4197018.html)
+
+meminfo
+
+*   [曾文斌: /proc/meminfo之谜完全揭秘](https://blog.csdn.net/sunshineywz/article/details/105749264)
+*   [通过/proc/meminfo实时获取系统内存使用情况](https://langzi989.github.io/2016/12/19/%E9%80%9A%E8%BF%87-proc-meminfo%E5%AE%9E%E6%97%B6%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/)
+*   [MemAvailable](https://qastack.cn/superuser/980820/what-is-the-difference-between-memfree-and-memavailable-in-procmeminfo)
+*   [Buffers与cached啥区别](https://www.cnblogs.com/argb/p/3448744.html)
+
+## Vim
+
+*   `:setlocal nowrap `当前文档设置为不自动换行
+
 ## Vim
 
 * `:setlocal nowrap `当前文档设置为不自动换行
@@ -1271,6 +1298,31 @@ git stash clear // 清空所有stash
 cmd窗口运行`wmic process where caption="vcxsrv.exe" get caption,commandline /value`可以获取`vcxsrv.exe`进程的启动参数，然后给进程`vcxsrv.exe`创建快捷方式并在属性中添加启动参数放到`startup`开机自启动菜单就可以实现开机运行带参数的进程，进程参数的内容可以使用刚刚提到的命令获取。
 
 ### [windows10任务栏预览变成列表](https://blog.csdn.net/avinswang/article/details/106651325)
+
+### 远程关闭windows和Ubuntu
+
+windows
+
+*   本地安全策略-->本地策略-->用户权限分配-->从远程系统强制关机-->添加everyone用户
+
+*   本地安全策略-->本地策略-->用户权限分配-->拒接从网络访问这台计算机-->删除guest用户
+
+*   `shutdown /s /m \\192.168.137.20 -t 3`：3秒后远程关机
+
+Ubuntu
+
+*   将windows电脑的ssh公钥拷贝到Ubuntu的.ssh文件夹内的authorized_keys文件中（注：文件不存在可以自己创建）
+*   `ssh -l root -p 22 pc3.jkn "shutdown -P now"`远程关机
+
+### [远程桌面连接慢的问题解决](https://blog.csdn.net/weixin_33772645/article/details/91793476?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
+
+### EmEditor打开超大文本文件
+
+EmEditor注册码（序列号）分享
+
+姓 名：ttrar.com
+
+序 列 号：DKAZQ-R9TYP-5SM2A-9Z8KD-3E2RK
 
 ## Xmind
 
