@@ -22,6 +22,7 @@
   * [可用账号](#%E5%8F%AF%E7%94%A8%E8%B4%A6%E5%8F%B7)
   * [V2ray](#v2ray)
   * [谷歌镜像搭建](#%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BA)
+* [PDF](#pdf)
 * [Python](#python)
 * [Samba](#samba)
 * [Securecrt](#securecrt)
@@ -353,6 +354,9 @@ SwitchyOmega插件设置
   * http://scholar.hedasudi.com/
   * https://www.hurbai.com/resource/149
 
+## PDF
+
+[跪求大牛传授linux内核学习方法和路线](https://bbs.csdn.net/topics/390759060?page=2)
 
 ## Python
 
