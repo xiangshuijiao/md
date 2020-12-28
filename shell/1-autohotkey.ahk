@@ -7,8 +7,12 @@ BlockInput SendAndMouse ;正在执行 Send、SendRaw、 Click、MouseMove、Mous
 global FPRINTF_FILE_PATH = "/tmp/1.txt" ; 默认fprintf会写入的路径，可以用NumberEnter+c修改这个值
 global JKN_FLAGS = "jkn1"
 
-
-
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;启动autohotkey脚本时立刻执行的脚本，比如启动程序、执行ahk脚本
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	; run, MOUSEG~1.AHK, D:\Documents\4-GREE~1\MouseGestures ; https://wyagd001.github.io/zh-cn/docs/scripts/index.htm#MouseGestures 执行鼠标手势脚本
+}
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;左Shift强制切换到英文输入法，
 ;右Shift强制切换到中文输入法，
@@ -338,6 +342,7 @@ global JKN_FLAGS = "jkn1"
 	` & Up::MouseClick,WheelUp,,,8,0,D,R
 	` & Down::MouseClick,WheelDown,,,8,0,D,R
 	` & ?::
+		Gui, Destroy
 		Gui, Add, Text,, "
 		(
 
@@ -443,23 +448,22 @@ global JKN_FLAGS = "jkn1"
 	F1 & l::
 	F1 & m::
 	
+	F1 & t::
 	F1 & q::
 	F1 & r::
 	F1 & u::
 	F1 & v::
 	F1 & y::
 	F1 & z::
+	F1 & w::
+	F1 & e::
+	F1 & p::
 		return
 	F1 & c::hyf_onekeyWindow("D:\3-big-software\7-chrome\Chrome\App\chrome.exe", "Chrome_WidgetWin_1", "\S") ;Chrome
 	F1 & s::hyf_onekeyWindow("C:\Program Files (x86)\Source Insight 4.0\sourceinsight4.exe", "si4_Frame", "\S") ;Source Insight 4.0
 	F1 & x::hyf_onekeyWindow("D:\3-big-software\20-Xmind\XMind2020\XMind.exe", "Chrome_WidgetWin_1", "\S") ;XMind
-	F1 & t::hyf_onekeyWindow("C:\Program Files\Typora\Typora.exe", "Chrome_WidgetWin_1", "\S") ;Typora
 	F1 & n::hyf_onekeyWindow("C:\Program Files\Notepad++\notepad++.exe", "Notepad++", "\S") ;Notepad++ 
 	F1 & b::hyf_onekeyWindow("C:\Program Files\Beyond Compare 4\BCompare.exe", "TViewForm", "\S") ;Beyond Compare 4
-	F1 & w::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wps.exe", "OpusApp", "\S") ;wps
-	F1 & e::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S") ;excel
-	;F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S") ;ppt
-	F1 & p::hyf_onekeyWindow("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S") ;pdf
 	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
 	F1 & g::hyf_onekeyWindow("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S") ;GitHub Desktop
 	F1 & f::hyf_onekeyWindow("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S") ;Firefox
@@ -492,13 +496,8 @@ Firefox
 		show_specific_hide_software("D:\3-big-software\7-chrome\Chrome\App\chrome.exe", "Chrome_WidgetWin_1", "\S", "chrome.exe") ;Chrome
 		show_specific_hide_software("C:\Program Files (x86)\Source Insight 4.0\sourceinsight4.exe", "si4_Frame", "\S", "sourceinsight4.exe") ;Source Insight 4.0
 		show_specific_hide_software("D:\3-big-software\20-Xmind\XMind2020\XMind.exe", "Chrome_WidgetWin_1", "\S", "XMind.exe") ;XMind
-		show_specific_hide_software("C:\Program Files\Typora\Typora.exe", "Chrome_WidgetWin_1", "\S", "Typora.exe") ;Typora
 		show_specific_hide_software("C:\Program Files\Notepad++\notepad++.exe", "Notepad++", "\S", "notepad++.exe") ;Notepad++ 
 		show_specific_hide_software("C:\Program Files\Beyond Compare 4\BCompare.exe", "TViewForm", "\S", "BCompare.exe") ;Beyond Compare 4	
-		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wps.exe", "OpusApp", "\S", "wps.exe") ;wps
-		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\et.exe", "XLMAIN", "\S", "et.exe") ;excel
-		;show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpp.exe", "PP11FrameClass", "\S", "wpp.exe") ;ppt
-		show_specific_hide_software("D:\3-big-software\23-wps\WPSOffice2019.11.8.2.8875_Green\WPS Office 2019\office6\wpspdf.exe", "QWidget", "\S", "wpspdf.exe") ;pdf
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
 		show_specific_hide_software("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S", "GitHubDesktop.exe") ;GitHub Desktop
 		show_specific_hide_software("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S", "firefox.exe") ;Firefox 
@@ -824,9 +823,9 @@ Firefox
 	#IfWinActive
 	$NumpadEnter::NumpadEnter      
 
-	NumpadEnter & 2::
 	
-	NumpadEnter & 4::
+	
+	
 	NumpadEnter & 5::
 	NumpadEnter & 6::
 	NumpadEnter & 7::
@@ -834,6 +833,7 @@ Firefox
 	NumpadEnter & 9::
 	NumpadEnter & 0::
 	NumpadEnter & b::
+	NumpadEnter & c::
 	NumpadEnter & d::
 	NumpadEnter & e::
 	
@@ -845,10 +845,11 @@ Firefox
 	NumpadEnter & m::
 	NumpadEnter & n::
 	NumpadEnter & o::
+	NumpadEnter & p::
 	NumpadEnter & q::
 	NumpadEnter & r::
-	NumpadEnter & s::
-	NumpadEnter & u::
+	
+	
 	NumpadEnter & v::
 	NumpadEnter & x::
 	NumpadEnter & y::
@@ -856,13 +857,16 @@ Firefox
 		return
 	
 	NumpadEnter & 1::function_for_the_NumpadEnter_short_key("1")
+	NumpadEnter & 2::function_for_the_NumpadEnter_short_key("2")
 	NumpadEnter & 3::function_for_the_NumpadEnter_short_key("3")
+	NumpadEnter & 4::function_for_the_NumpadEnter_short_key("4")
 	NumpadEnter & j::function_for_the_NumpadEnter_short_key("j")
 	NumpadEnter & a::function_for_the_NumpadEnter_short_key("a")
-	NumpadEnter & p::function_for_the_NumpadEnter_short_key("p")
+	
 	NumpadEnter & f::function_for_the_NumpadEnter_short_key("f")
 	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
-	NumpadEnter & c::function_for_the_NumpadEnter_short_key("c")
+	NumpadEnter & u::function_for_the_NumpadEnter_short_key("u")
+	NumpadEnter & s::function_for_the_NumpadEnter_short_key("s")
 	NumpadEnter & g::function_for_the_NumpadEnter_short_key("g")
 	NumpadEnter & w::function_for_the_NumpadEnter_short_key("w")
 	
@@ -886,48 +890,77 @@ Firefox
 
 		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
 		if(short_key = "1")
-			Send, 12345670`n
+			Send, iwconfig ra0 && iwconfig rai0 && iwconfig ra4 && iwconfig rai4 && cat /var/Wireless/RT2860AP/RT2860AP.dat | grep -i psk && cat /var/Wireless/RT2860AP_AC/RT2860AP.dat | grep -i psk`n
+		else if(short_key = "2")
+		{
+			Send, bflag set 0`n
+			Sleep, 200
+			Send, bflag get 0`n
+			Sleep, 200
+			Send, flash 0 80020000 1800000`n
+		}
 		else if(short_key = "3")
-			Send, \\PC3.jkn\bba
+			Send, iwpriv ra0 set WriteCal=1 && iwpriv rai0 set WriteCal=1 `n
+		else if(short_key = "4")
+		{
+			Send, git branch`n
+			Sleep, 200
+			Send, git push origin HEAD:refs/for/
+		}
 		else if(short_key = "j")
 			different_key_times_different_operation(2, "Jkn12345`n", "Jkn12345`tJkn12345`n")
 		else if(short_key = "a")
 		{
 			Send,  `n`n`n`n
-			Sleep, 500
+			Sleep, 200
 			Send, admin`n
-			Sleep, 500
+			Sleep, 200
 			Send, 1234`n`n`n`n
 		}
-		else if(short_key = "p")
-			Send, `nprintf(`"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		else if(short_key = "f")
-			Send, `nFILE* fp_jkn = fopen(`"%FPRINTF_FILE_PATH%`", "a{+}"); fprintf(fp_jkn, `"\n%JKN_FLAGS% [`%s][`%d] \n`", __FUNCTION__, __LINE__); fclose(fp_jkn);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
+		{
+			Send, bflag set 0`n
+			Sleep, 200
+			Send, bflag get 0`n
+			Sleep, 200
+			Send, flash 80000 800a0000 1300000`n
+		}
 		else if(short_key = "t")
 			Send, tftp -i 192.168.1.1 put{Space}{Space}  
-		else if(short_key = "c")
+		else if(short_key = "u")
 			Send, time tar -xf /opt/share_data_folder/9-tar/PON_trunk_bba_2_5.linux_XC220-G3v_v1.tar -C{Space} 
+		else if(short_key = "s")
+		{
+			Send, export RSYNC_RSH="ssh -T -c aes128-ctr -o Compression=no -x"`n
+			Sleep, 200
+			Send, time rsync -ah --info=progress2{Space} 
+		}
 		else if(short_key = "g")
 			Send, git grep -n -i  ""{left 1}
 		else if(short_key = "w")
 			Send, "C:\Program Files\Wireshark\editcap.exe" -d{Space}
 		else if(short_key = "?")
 		{
+			Gui, Destroy
 			Gui, Add, Text,, "
 			(
 
-【1】12345670
-【3】\\PC3.jkn\bba
+【1】iwconfig ra0 && iwconfig rai0 && iwconfig ra4 && iwconfig rai4 && cat /var/Wireless/RT2860AP/RT2860AP.dat | grep -i psk && cat /var/Wireless/RT2860AP_AC/RT2860AP.dat | grep -i psk
+【2】flash 0 80020000 1800000
+【3】iwpriv ra0 set WriteCal=1 && iwpriv rai0 set WriteCal=1 
+【4】git push origin HEAD:refs/for/
 【j】Jkn12345
 【a】admin 1234
-【p】printf
-【f】fprintf
-【t】tftp -i 192.168.1.1 put{Space}{Space}
-【c】copy project
+【f】flash 80000 800a0000 1300000
+【t】tftp -i 192.168.1.1 put
+【u】unzip
+【s】sync
 【g】git grep -n -i  ""{left 1}
 【w】"C:\Program Files\Wireshark\editcap.exe" -d{Space}
 【.y0】Y0nN1uWqDCsi
 【.ji】jiangkainan@tp-link.com.cn
+【.pf】printf
+【.pk】printk
 
 			)"
 			Gui, Show
@@ -943,7 +976,12 @@ Firefox
 				Send, Y0nN1uWqDCsi
 			else if (UserInput = "ji")
 				Send, jiangkainan@tp-link.com.cn
-				
+			else if (UserInput = "ji")
+				Send, jiangkainan@tp-link.com.cn
+			else if (UserInput = "pf")
+				Send, printf(`"\n<<<<<%JKN_FLAGS% [`%s][`%d]>>>>> \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
+			else if (UserInput = "pk")
+				Send, printk(`"\n<<<<<%JKN_FLAGS% [`%s][`%d]>>>>> \n`", __FUNCTION__, __LINE__);  ; 特殊字符、转义字符https://ahkcn.github.io/docs/commands/_EscapeChar.htm
 		}
 		
 		return
@@ -959,19 +997,24 @@ Firefox
 	::1pb::cd /opt/bba/1/PON_trunk_bba_2_5/BBA2.5_platform/build`n
 	::1pi::\\pc3.jkn\bba\container_data\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 	::1px::cd /opt/bba/1/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
-	::1bb::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/build`n
-	::1bi::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/targets/EX220-G2uV1/USSP/image`n
+	::1pu::cd /opt/bba/1/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user`n
 	::2pb::cd /opt/bba/2/PON_trunk_bba_2_5/BBA2.5_platform/build`n
 	::2pi::\\pc3.jkn\bba\container_data\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 	::2px::cd /opt/bba/2/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
-	::2bb::cd /opt/bba/2/BBA_2_5_Platform_BCM/platform/build`n
+	::2pu::cd /opt/bba/2/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user`n
 	::3pb::cd /opt/bba/3/PON_trunk_bba_2_5/BBA2.5_platform/build`n
 	::3pi::\\pc3.jkn\bba\container_data\3\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 	::3px::cd /opt/bba/3/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
-	::3bb::cd /opt/bba/3/BBA_2_5_Platform_BCM/platform/build`n
+	::3pu::cd /opt/bba/3/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user`n
 	::4pb::cd /opt/bba/4/PON_trunk_bba_2_5/BBA2.5_platform/build`n
 	::4pi::\\pc3.jkn\bba\container_data\4\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 	::4px::cd /opt/bba/4/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1`n
+	::4pu::cd /opt/bba/4/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user`n
+	
+	::1bb::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/build`n
+	::1bi::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/targets/EX220-G2uV1/USSP/image`n	
+	::2bb::cd /opt/bba/2/BBA_2_5_Platform_BCM/platform/build`n
+	::3bb::cd /opt/bba/3/BBA_2_5_Platform_BCM/platform/build`n
 	::4bb::cd /opt/bba/4/BBA_2_5_Platform_BCM/platform/build`n
 	
 	::flash8::flash 80000 800a0000 1300000
@@ -984,25 +1027,31 @@ Firefox
 	::5..::cd ../../../../../.`n
 
 	::???::
+		Gui, Destroy
 		Gui, Add, Text,, "
 		(
 
 ::1pb::cd /opt/bba/1/PON_trunk_bba_2_5/BBA2.5_platform/build
 ::1pi::\\pc3.jkn\bba\container_data\1\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 ::1px::cd /opt/bba/1/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
-::1bb::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/build
-::1bi::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/targets/EX220-G2uV1/USSP/image
+::1pu::cd /opt/bba/1/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user
 ::2pb::cd /opt/bba/2/PON_trunk_bba_2_5/BBA2.5_platform/build
 ::2pi::\\pc3.jkn\bba\container_data\2\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 ::2px::cd /opt/bba/2/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
-::2bb::cd /opt/bba/2/BBA_2_5_Platform_BCM/platform/build
+::2pu::cd /opt/bba/2/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user
 ::3pb::cd /opt/bba/3/PON_trunk_bba_2_5/BBA2.5_platform/build
 ::3pi::\\pc3.jkn\bba\container_data\3\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 ::3px::cd /opt/bba/3/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
-::3bb::cd /opt/bba/3/BBA_2_5_Platform_BCM/platform/build
+::3pu::cd /opt/bba/3/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user
 ::4pb::cd /opt/bba/4/PON_trunk_bba_2_5/BBA2.5_platform/build
 ::4pi::\\pc3.jkn\bba\container_data\4\PON_trunk_bba_2_5\EN7528DU_SDK\tplink\output\XC220G3vv1\image
 ::4px::cd /opt/bba/4/PON_trunk_bba_2_5/EN7528DU_SDK/tplink/build/XC220G3vv1
+::4pu::cd /opt/bba/4/PON_trunk_bba_2_5/BBA2.5_platform/apps/private/user
+
+::1bb::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/build
+::1bi::cd /opt/bba/1/BBA_2_5_Platform_BCM/platform/targets/EX220-G2uV1/USSP/image	
+::2bb::cd /opt/bba/2/BBA_2_5_Platform_BCM/platform/build
+::3bb::cd /opt/bba/3/BBA_2_5_Platform_BCM/platform/build
 ::4bb::cd /opt/bba/4/BBA_2_5_Platform_BCM/platform/build
 
 ::flash8::flash 80000 800a0000 1300000
@@ -1094,8 +1143,10 @@ Firefox
 		}
 		
 		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
-		if(short_key = "r")
+		else if(short_key = "r")
 			Reload ; 重新加载autohotkey脚本
+		else if(short_key = "f")
+			Run, % "C:\Users\admin\AppData\Local\Programs\Python\Python39\python.exe" 
 		return
 	}
 	
@@ -1122,7 +1173,7 @@ Firefox
 	Sending:=!Sending ;每次切换Sending的值为 TRUE/FALSE
 	If Sending
 	{
-	SetTimer SendKey,1000 ;SetTimer是AHK中的定时器
+	SetTimer SendKey,10 ;SetTimer是AHK中的定时器
 	}
 	Else
 	SetTimer SendKey,Off
@@ -1223,6 +1274,8 @@ Firefox
 										, "Ptr", &APPBARDATA)
 	KeyWait, % A_ThisHotkey
 	Return
+	
+
 }
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1322,13 +1375,21 @@ Firefox
 		return
 	}
 	
+	#IfWinActive ahk_exe C:\Program Files\Microsoft Office\Office16\VISIO.EXE
+	{
+		F1::^1
+		F2::^3	
+	}	
+	
 	
 	#IfWinActive
 }
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; 接管鼠标点击事件：
-;     屏蔽指定活动窗口右上角关闭按钮所在区域的鼠标点击事件
+; 接管鼠标事件：
+;     LButton：屏蔽指定活动窗口右上角关闭按钮所在区域的鼠标点击事件
+;	  MButton：将xmind的鼠标中键替换为右键，这样就能用中键拖动画布了（右键被鼠标手势脚本托管了）
+;	  RButton：被`官方文档->优秀脚本展示->Mouse Gestures(鼠标手势)`给托管了
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	#IfWinActive
@@ -1337,6 +1398,7 @@ Firefox
 	CoordMode, Mouse, Relative
 	
 	;F3::MsgBox, % WinActive("ahk_exe OUTLOOK.EXE")  ; 打印调试信息 
+	;https://zhidao.baidu.com/question/197788326.html
 	LButton::
 		/*
 		if WinActive("ahk_exe notepad++.exe")
@@ -1362,20 +1424,32 @@ Firefox
 		KeyWait LButton ;防止键盘自动重复导致的重复鼠标点击.
 		SendEvent {Blind}{LButton up}
 		return
+		
+	#IfWinActive ahk_exe D:\3-big-software\20-Xmind\XMind2020\XMind.exe
+	MButton::
+		SendEvent {Blind}{RButton down}		
+		KeyWait MButton ;防止键盘自动重复导致的重复鼠标点击.
+		SendEvent {Blind}{RButton up}
+		return		
 	
+	#IfWinActive
 }
+
+
+
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; +^+#四个全用上
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
-/*   使用前必须将下面的文本保存为reg注册表文件并执行，否则同时按下^+!#就会弹出office登录页面
-Windows Registry Editor Version 5.00
+	/*   使用前必须将下面的文本保存为reg注册表文件并执行，否则同时按下^+!#就会弹出office登录页面
+	Windows Registry Editor Version 5.00
 
-[HKEY_CURRENT_USER\SOFTWARE\Classes\ms-officeapp\Shell\Open\Command]
-@="rundll32"
-;(C)2020, Dynameus
-*/	
+	[HKEY_CURRENT_USER\SOFTWARE\Classes\ms-officeapp\Shell\Open\Command]
+	@="rundll32"
+	;(C)2020, Dynameus
+	*/	
 	^+!#d::
+		Gui, Destroy
 		Gui, Add, Edit, r20 vMyEdit w400, % "正在关闭电脑..."
 		Gui, Show
 		; 先关闭远程电脑，再关闭自己
@@ -1390,6 +1464,7 @@ Windows Registry Editor Version 5.00
 		return
 		
 	^+!#r::
+		Gui, Destroy
 		Gui, Add, Edit, r30 vMyEdit w400, % "正在重启电脑..."
 		Gui, Show
 		; 先重启远程电脑，再重启自己
@@ -1404,6 +1479,44 @@ Windows Registry Editor Version 5.00
 		GuiControl,, MyEdit , % "已重启pc2、pc3、pc4、本机"
 		return
 	
+	/*
+	监控当前活动窗口是否需要进行某些自动操作，比如点击确定或关闭按钮
+	*/
+	; 注意：必须用utf-8 with bom的编码格式运行该脚本，否则字符串匹配中文会出问题
+	#Persistent  ;持续运行
+	#SingleInstance, Force ; 强制运行一个脚本
+	isRun:=True
+	SetTimer, WatchScrollBar, 100
+
+	^+!#m::
+		if (isRun=True)
+		{
+			SetTimer, WatchScrollBar, Off
+			ToolTip, 监控关闭
+			Sleep, 1000
+			ToolTip
+			isRun:=!isRun
+		}
+		else
+		{
+			SetTimer, WatchScrollBar, 100
+			ToolTip, 监控打开
+			Sleep, 1000
+			ToolTip
+			isRun:=!isRun
+		}
+		return
+
+		WatchScrollBar:
+		WinGetText, OutputVar , A
+		WinGet, proc_name, ProcessName, A  
+		If InStr(proc_name, "VISIO.EXE") and InStr(OutputVar, "某些文件可能含有病毒，或在其他方面对你的计算机有害")
+		{
+			; Click, 230, 220
+			Send, {Left}{Enter}
+		}
+		return
+
 
 }
 
@@ -1419,8 +1532,6 @@ Windows Registry Editor Version 5.00
 ;		AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
-
-
 
 ; AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
 StdoutToVar_CreateProcess(sCmd, sEncoding:="CP0", sDir:="", ByRef nExitCode:=0) {
@@ -1526,6 +1637,7 @@ $NumpadMult::
 ; 开关机测试脚本
 F7::
 	CoordMode, Mouse, Screen ; 作用于 MouseGetPos, Click 以及 MouseMove/Click/Drag. 坐标相对于桌面(整个屏幕).
+	Gui, Destroy
 	Gui, Add, Edit, r30 vMyEdit w550, % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：start"
 	Gui, Show
 	winset,ALwaysOnTop,, A
@@ -1567,153 +1679,6 @@ F7::
 	}
 
 F6::Reload ; 重新加载autohotkey脚本
-	
-*/
-}数字2、3分别把network2、network3设置为指定的静态IP
-;		数字5、6分别把network2、network3设置为dhcp
-;		数字8、9弹窗显示network2、network3的IP
-;参考链接:
-;		AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
-;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-{
-
-/*
-
-; AHK获取CMD命令结果三种方法【RunAnyCtrl】 https://www.autohotkey.com/boards/viewtopic.php?t=48132
-StdoutToVar_CreateProcess(sCmd, sEncoding:="CP0", sDir:="", ByRef nExitCode:=0) {
-    DllCall( "CreatePipe",           PtrP,hStdOutRd, PtrP,hStdOutWr, Ptr,0, UInt,0 )
-    DllCall( "SetHandleInformation", Ptr,hStdOutWr, UInt,1, UInt,1                 )
-
-            VarSetCapacity( pi, (A_PtrSize == 4) ? 16 : 24,  0 )
-    siSz := VarSetCapacity( si, (A_PtrSize == 4) ? 68 : 104, 0 )
-    NumPut( siSz,      si,  0,                          "UInt" )
-    NumPut( 0x100,     si,  (A_PtrSize == 4) ? 44 : 60, "UInt" )
-    NumPut( hStdOutWr, si,  (A_PtrSize == 4) ? 60 : 88, "Ptr"  )
-    NumPut( hStdOutWr, si,  (A_PtrSize == 4) ? 64 : 96, "Ptr"  )
-
-    If ( !DllCall( "CreateProcess", Ptr,0, Ptr,&sCmd, Ptr,0, Ptr,0, Int,True, UInt,0x08000000
-                                  , Ptr,0, Ptr,sDir?&sDir:0, Ptr,&si, Ptr,&pi ) )
-        Return ""
-      , DllCall( "CloseHandle", Ptr,hStdOutWr )
-      , DllCall( "CloseHandle", Ptr,hStdOutRd )
-
-    DllCall( "CloseHandle", Ptr,hStdOutWr ) ; The write pipe must be closed before reading the stdout.
-    While ( 1 )
-    { ; Before reading, we check if the pipe has been written to, so we avoid freezings.
-        If ( !DllCall( "PeekNamedPipe", Ptr,hStdOutRd, Ptr,0, UInt,0, Ptr,0, UIntP,nTot, Ptr,0 ) )
-            Break
-        If ( !nTot )
-        { ; If the pipe buffer is empty, sleep and continue checking.
-            Sleep, 100
-            Continue
-        } ; Pipe buffer is not empty, so we can read it.
-        VarSetCapacity(sTemp, nTot+1)
-        DllCall( "ReadFile", Ptr,hStdOutRd, Ptr,&sTemp, UInt,nTot, PtrP,nSize, Ptr,0 )
-        sOutput .= StrGet(&sTemp, nSize, sEncoding)
-    }
-    
-    ; * SKAN has managed the exit code through SetLastError.
-    DllCall( "GetExitCodeProcess", Ptr,NumGet(pi,0), UIntP,nExitCode )
-    DllCall( "CloseHandle",        Ptr,NumGet(pi,0)                  )
-    DllCall( "CloseHandle",        Ptr,NumGet(pi,A_PtrSize)          )
-    DllCall( "CloseHandle",        Ptr,hStdOutRd                     )
-    Return sOutput
-}
-
-;注意要先将网络适配器的名称分别改为network2和network3
-
-; number1：把以太网2、3设置为dhcp
-#IfWinActive 
-$NumpadEnd::
-StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network2") ; release旧的ip地址
-StdoutToVar_CreateProcess("cmd /c  ipconfig  /release network3") ; release旧的ip地址
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.0.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.1.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network2 192.168.66.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.0.233 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.1.233 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 delete address network3 192.168.66.233 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network2 dhcp")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ip set dns network2 dhcp")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ip set address network3 dhcp")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ip set dns network3 dhcp")
-return
-
-
-; number2：把以太网2、3设置为静态IP
-$NumpadDown::
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network2 static 192.168.0.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.1.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network2 192.168.66.222 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 set address network3 static 192.168.0.233 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.1.233 255.255.255.0")
-StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 add address network3 192.168.66.233 255.255.255.0")
-return
-
-; number3：查看以太网2、3的IP
-$NumpadPgDn::MsgBox  % StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 show ipaddress interface=network2")  StdoutToVar_CreateProcess("cmd /c  netsh interface ipv4 show ipaddress interface=network3")
-
-
-$NumpadClear::
-$NumpadRight::
-$NumpadUp::
-$NumpadPgUp::
-$NumpadIns::
-$NumpadLeft::
-$NumpadHome::
-$NumpadDel::
-$NumpadAdd::
-$NumpadSub::
-$NumpadDiv::
-$NumpadMult::
-	return
-	
-*/
-}
-
-;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;另一台电脑运行的脚本备份
-;功能： 开关机测试脚本
-;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-{
-/*	
-
-; 开关机测试脚本
-F7::
-	CoordMode, Mouse, Screen ; 作用于 MouseGetPos, Click 以及 MouseMove/Click/Drag. 坐标相对于桌面(整个屏幕).
-	Gui, Add, Edit, r30 vMyEdit w700, % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：start"
-	Gui, Show
-	winset,ALwaysOnTop,, A
-	loop_outside := 0 ; 记录这是第几次测试
-	While ++loop_outside > 0 ; 先++然后再比较
-	{
-		; 点击登录宏
-		MouseClick , Left , 100, 210, 1, 0 
-		loop_inner := 0
-		while loop_inner++ < 15
-		{
-			sleep, 1000
-			GuiControl, Text, MyEdit , % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在登陆中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
-		}	
-		
-		; 点击执行命令宏
-		MouseClick , Left , 100, 240, 1, 0 
-		loop_inner := 0
-		while loop_inner++ < 20
-		{
-			sleep, 1000
-			GuiControl, Text, MyEdit , % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在执行命令中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
-		}
-		
-		; 点击样机重启宏
-		MouseClick , Left , 100, 270, 1, 0 
-		loop_inner := 0
-		while loop_inner++ < 240
-		{
-			sleep, 1000
-			GuiControl, Text, MyEdit , % A_YYYY "年" A_MM "月" A_DD "日" A_Hour "时" A_Min "分" A_Sec "：正在重启样机中...，已用时间(单位秒)=" loop_inner  "，开关机次数=" loop_outside 
-		}
-	}
 	
 */
 }
