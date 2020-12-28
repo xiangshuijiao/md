@@ -7,11 +7,18 @@ BlockInput SendAndMouse ;正在执行 Send、SendRaw、 Click、MouseMove、Mous
 global FPRINTF_FILE_PATH = "/tmp/1.txt" ; 默认fprintf会写入的路径，可以用NumberEnter+c修改这个值
 global JKN_FLAGS = "jkn1"
 
+#Persistent  ;持续运行
+#SingleInstance, Force ; 强制运行一个脚本
+#UseHook
+#Include %A_ScriptDir%
+
+SetTimer, WatchScrollBar, 100
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;启动autohotkey脚本时立刻执行的脚本，比如启动程序、执行ahk脚本
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	; run, MOUSEG~1.AHK, D:\Documents\4-GREE~1\MouseGestures ; https://wyagd001.github.io/zh-cn/docs/scripts/index.htm#MouseGestures 执行鼠标手势脚本
+
 }
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;左Shift强制切换到英文输入法，
@@ -22,9 +29,6 @@ global JKN_FLAGS = "jkn1"
 {
 	#IfWinActive
 	; 左Shift强制切换到英文输入法，右Shift强制切换到中文输入法
-	#SingleInstance force
-	#UseHook
-	#Include %A_ScriptDir%
 
 	timeInterval := 500
 
@@ -294,6 +298,10 @@ global JKN_FLAGS = "jkn1"
 */
 }
 
+
+
+
+
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; `开头的快捷键
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -302,7 +310,7 @@ global JKN_FLAGS = "jkn1"
 	$`::Send, `` ; 发送模拟按键 `，第一个`是转义字符的前缀，第二个`表示转义字符本身
 	$~::Send, ~
 	
-	` & a::
+	
 	` & b::
 
 	` & e::
@@ -325,7 +333,9 @@ global JKN_FLAGS = "jkn1"
 	` & x::
 	` & z::
 		return
-	
+	` & a::
+		Send, {Down 6}{Enter}{LAlt down}b{LAlt up}{Down 2}{Enter}{Tab}{Down 8}{Enter}
+		Return
 	` & t::send %A_YYYY%_%A_MM%_%A_DD%_%A_Hour%%A_Min%%A_Sec% ; 2020-10-26-152424
 	` & q::Send, !{F4}
 	` & y::Send, !+y
@@ -1478,7 +1488,7 @@ Firefox
 		StdoutToVar_CreateProcess("cmd /c shutdown /r -t 3")
 		GuiControl,, MyEdit , % "已重启pc2、pc3、pc4、本机"
 		return
-	
+		
 	/*
 	监控当前活动窗口是否需要进行某些自动操作，比如点击确定或关闭按钮
 	*/
@@ -1486,21 +1496,21 @@ Firefox
 	#Persistent  ;持续运行
 	#SingleInstance, Force ; 强制运行一个脚本
 	isRun:=True
-	SetTimer, WatchScrollBar, 100
+	; SetTimer, WatchScrollBar, 100 ; 该行要放到文件开头处才能生效，原因未知
 
 	^+!#m::
-		if (isRun=True)
+		if (isRun=false)
 		{
-			SetTimer, WatchScrollBar, Off
-			ToolTip, 监控关闭
+			SetTimer, WatchScrollBar, 100
+			ToolTip, 监控打开
 			Sleep, 1000
 			ToolTip
 			isRun:=!isRun
 		}
 		else
 		{
-			SetTimer, WatchScrollBar, 100
-			ToolTip, 监控打开
+			SetTimer, WatchScrollBar, Off
+			ToolTip, 监控关闭
 			Sleep, 1000
 			ToolTip
 			isRun:=!isRun
@@ -1517,9 +1527,7 @@ Firefox
 		}
 		return
 
-
 }
-
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;另一台电脑运行的脚本备份
