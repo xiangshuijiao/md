@@ -431,7 +431,9 @@ SwitchyOmega插件设置
 ## Ubuntu
 
 ### 远程桌面连接
-
+#### ubuntu2004
+[如何在Ubuntu 20.04 上安装 Xrdp 服务器（远程桌面）](https://blog.csdn.net/snowdream86/article/details/106311024)
+#### Ubuntu1804
 * [连接教程](https://m.linuxidc.com/Linux/2019-08/159848.htm)
 * [Ubuntu 18.04 上使用xrdp远程桌面登录蓝屏解决（包括闪退）](https://blog.csdn.net/cxn304/article/details/99733711?utm_medium=distribute.pc_relevant.none-task-blog-title-7&spm=1001.2101.3001.4242)
 * [Windows 远程桌面连接ubuntu及xrdp的一些小问题](https://blog.csdn.net/u014447845/article/details/80291678) 
