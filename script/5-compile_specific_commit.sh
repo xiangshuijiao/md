@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# 宿主机的/etc/crontab
-# 0  10  * * * root  docker exec docker容器名 docker脚本绝对路径
-# 0  18  * * * root  docker exec docker容器名 docker脚本绝对路径
+# 使用方法：运行命令 docker exec docker容器名 docker脚本绝对路径
 
 # $1：独一无二的项目ID（项目名加branch）
 # $2：project_name
@@ -108,31 +106,31 @@ A_function_that_compile_specified_commit()
   echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
 }
 
-specific_commit=("42064885" "74b982a7")
-need_to_re_clone_the_project=false
+specific_commit=("bff0609" "3e7a552" "563a477")
+need_to_re_clone_the_project=true
 A_function_that_compile_specified_commit \
-  "PON_trunk_bba_2_5.feature_XC220_mesh" "PON_trunk_bba_2_5" "feature_XC220_mesh"  \
-  "git@spcodes.rd.tp-link.net:PON/PON_trunk_bba_2_5.git" \
-  "" \
+  "PON_trunk_bba_2_5.linux_XC220-G3v_v1" "PON_trunk_bba_2_5" "linux_XC220-G3v_v1"  \
+  "ssh://jiangkainan@172.29.88.140:29418/PON_trunk_bba_2_5" \
+  "scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg PON_trunk_bba_2_5/.git/hooks/" \
   "BBA2.5_platform/build" "EN7528DU_SDK/tplink/output/XC220G3vv1/image" \
   "XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin XC220-G3v(SP)v1_1.1.0_0.8.0_up_boot.bin rootfs" \
   "XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin" "XC220G3vv1" ""  "${specific_commit[*]}"
   
   
-<<'COMMENT'
-A_function_that_compile_specified_commit \
-  "PON_trunk_bba_2_5.linux_XC220-G3v_v1" "PON_trunk_bba_2_5" "linux_XC220-G3v_v1"  \
-  "git@spcodes.rd.tp-link.net:PON/PON_trunk_bba_2_5.git" \
-  "" \
-  "BBA2.5_platform/build" "EN7528DU_SDK/tplink/output/XC220G3vv1/image" \
-  "XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin XC220-G3v(SP)v1_1.1.0_0.8.0_up_boot.bin rootfs" \
-  "XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin" "XC220G3vv1" "" 
+
+# A_function_that_compile_specified_commit \
+#   "PON_trunk_bba_2_5.linux_XC220-G3v_v1" "PON_trunk_bba_2_5" "linux_XC220-G3v_v1"  \
+#   "git@spcodes.rd.tp-link.net:PON/PON_trunk_bba_2_5.git" \
+#   "" \
+#   "BBA2.5_platform/build" "EN7528DU_SDK/tplink/output/XC220G3vv1/image" \
+#   "XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin XC220-G3v(SP)v1_1.1.0_0.8.0_up_boot.bin rootfs" \
+#   "XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin" "XC220G3vv1" "" 
   
-A_function_that_compile_specified_commit \
-  "BBA_2_5_Platform_BCM.EX220_USSP_v1.2" "BBA_2_5_Platform_BCM" "EX220_USSP_v1.2"  \
-  "ssh://jiangkainan@172.29.88.140:29418/BBA_2_5_Platform_BCM" \
-  "scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg BBA_2_5_Platform_BCM/.git/hooks/" \
-  "platform/build/" "platform/targets/EX220-G2uV1/USSP/image" \
-  "EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin" \
-  "EX220-G2u_FLASH.bin.w" "EX220-G2uV1" "USSP"
-COMMENT 
+# A_function_that_compile_specified_commit \
+#   "BBA_2_5_Platform_BCM.EX220_USSP_v1.2" "BBA_2_5_Platform_BCM" "EX220_USSP_v1.2"  \
+#   "ssh://jiangkainan@172.29.88.140:29418/BBA_2_5_Platform_BCM" \
+#   "scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg BBA_2_5_Platform_BCM/.git/hooks/" \
+#   "platform/build/" "platform/targets/EX220-G2uV1/USSP/image" \
+#   "EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin" \
+#   "EX220-G2u_FLASH.bin.w" "EX220-G2uV1" "USSP"
+
