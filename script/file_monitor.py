@@ -21,7 +21,7 @@ while (True):
         count = count + 1
     
     if count == 17 :
-        playsound('file:///D:/Desktop/md/python/1.mp3')
+        playsound('file://debugpc.jkn/share_data_folder/4-script/1.mp3')
         break
 
     time.sleep(1)
