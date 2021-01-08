@@ -329,12 +329,12 @@ SetTimer, WatchScrollBar, 100
 	
 	` & u::
 	` & v::
-	` & w::
+	
 	` & x::
 	` & z::
 		return
 	` & a::
-		Send, {Down 6}{Enter}{LAlt down}b{LAlt up}{Down 2}{Enter}{Tab}{Down 8}{Enter}
+		Send, {LAlt down}b{LAlt up}{Down 2}{Enter}{Tab}{Down 8}{Enter}
 		Return
 	` & t::send %A_YYYY%_%A_MM%_%A_DD%_%A_Hour%%A_Min%%A_Sec% ; 2020-10-26-152424
 	` & q::Send, !{F4}
@@ -351,6 +351,24 @@ SetTimer, WatchScrollBar, 100
 	` & d::Send, ^!+d
 	` & Up::MouseClick,WheelUp,,,8,0,D,R
 	` & Down::MouseClick,WheelDown,,,8,0,D,R
+	` & w::
+		;遍历所有窗口：https://blog.csdn.net/liuyukuan/article/details/72876957
+		WinGet, id, list,,, Program Manager
+		Loop, %id%
+		{
+			this_id := id%A_Index%
+			WinGetClass, this_class, ahk_id %this_id%
+			If InStr(this_class, "Qt5151QWindowIcon") ; 匹配wireshark程序
+			{
+				WinGetTitle, this_title, ahk_id %this_id%
+				If InStr(this_title, "wireshark.pkt") ; 匹配标题为wireshark.pkt的wireshark
+				{
+					WinKill, ahk_id %this_id%
+				}
+			}
+		}
+		run, \\pc4.jkn\D\2-抓包\wireshark.pkt
+		return
 	` & ?::
 		Gui, Destroy
 		Gui, Add, Text,, "
@@ -437,7 +455,7 @@ SetTimer, WatchScrollBar, 100
 ;			肯定是因为没有用管理员权限运行autohotkey脚本，
 ;			找到AutoHotkey.exe，右键->属性->默认管理员权限运行即可
 ;`+F1：输入F1
-;		参考：https://www.cnblogs.com/hyaray/p/6660301.html    
+;		参考：https://www.cnblogs.com/hyaray/p/6660301.html    `
 ;		titleClass参数可以用autohotkey软件自带的工具Window Spy进行确认
 ;^+z：everything
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -449,7 +467,8 @@ SetTimer, WatchScrollBar, 100
 	#MaxThreadsPerHotkey 5
 	F1 & a::
 	F1 & d::
-	
+	F1 & f::
+	F1 & g::
 	
 	F1 & h::
 	F1 & i::
@@ -457,7 +476,6 @@ SetTimer, WatchScrollBar, 100
 	F1 & k::
 	F1 & l::
 	F1 & m::
-	
 	F1 & t::
 	F1 & q::
 	F1 & r::
@@ -465,9 +483,10 @@ SetTimer, WatchScrollBar, 100
 	F1 & v::
 	F1 & y::
 	F1 & z::
-	F1 & w::
-	F1 & e::
-	F1 & p::
+	
+	
+		
+	
 		return
 	F1 & c::hyf_onekeyWindow("D:\3-big-software\7-chrome\Chrome\App\chrome.exe", "Chrome_WidgetWin_1", "\S") ;Chrome
 	F1 & s::hyf_onekeyWindow("C:\Program Files (x86)\Source Insight 4.0\sourceinsight4.exe", "si4_Frame", "\S") ;Source Insight 4.0
@@ -475,8 +494,12 @@ SetTimer, WatchScrollBar, 100
 	F1 & n::hyf_onekeyWindow("C:\Program Files\Notepad++\notepad++.exe", "Notepad++", "\S") ;Notepad++ 
 	F1 & b::hyf_onekeyWindow("C:\Program Files\Beyond Compare 4\BCompare.exe", "TViewForm", "\S") ;Beyond Compare 4
 	F1 & o::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S") ;outlook
-	F1 & g::hyf_onekeyWindow("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S") ;GitHub Desktop
-	F1 & f::hyf_onekeyWindow("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S") ;Firefox
+	F1 & w::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE", "OpusApp", "\S") ;word 
+	F1 & e::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\EXCEL.EXE", "XLMAIN", "\S") ;excel 
+	F1 & p::different_key_times_different_operation(1, "D:\3-big-software\22-pdf\PDF-XChange_Editor_Plus_8.0.341.0_Green\PDF-XChange Editor\PDFXEdit.exe", "PXE:{D__3-BIG-SOFTWARE_22-PDF_PDF-XCHANGE_EDITOR_PLUS_8.0.341.0_GREEN_PDF-XCHANGE EDITOR_PDFXEDIT.EXE}", "\S"
+													  ,"C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE", "PPTFrameClass", "\S") ; 只能在逗号前面换行，不能在逗号后面换行，否则会报错
+
+	
 	F1 & ?::
 		MsgBox "
 (
@@ -509,8 +532,11 @@ Firefox
 		show_specific_hide_software("C:\Program Files\Notepad++\notepad++.exe", "Notepad++", "\S", "notepad++.exe") ;Notepad++ 
 		show_specific_hide_software("C:\Program Files\Beyond Compare 4\BCompare.exe", "TViewForm", "\S", "BCompare.exe") ;Beyond Compare 4	
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
-		show_specific_hide_software("C:\Users\admin\AppData\Local\GitHubDesktop\GitHubDesktop.exe", "Chrome_WidgetWin_1", "\S", "GitHubDesktop.exe") ;GitHub Desktop
-		show_specific_hide_software("C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "MozillaWindowClass", "\S", "firefox.exe") ;Firefox 
+		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE", "OpusApp", "\S", "WINWORD.EXE") ;word 
+		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\EXCEL.EXE", "XLMAIN", "\S", "EXCEL.EXE") ;excel 
+		show_specific_hide_software("D:\3-big-software\22-pdf\PDF-XChange_Editor_Plus_8.0.341.0_Green\PDF-XChange Editor\PDFXEdit.exe", "PXE:{D__3-BIG-SOFTWARE_22-PDF_PDF-XCHANGE_EDITOR_PLUS_8.0.341.0_GREEN_PDF-XCHANGE EDITOR_PDFXEDIT.EXE}", "\S", "PDFXEdit.exe") ;pdf 
+		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE", "PPTFrameClass", "\S", "POWERPNT.EXE") ;ppt 
+		
 		
 	return
 	
@@ -810,7 +836,7 @@ Firefox
 			else if (intCount = 3)
 				hyf_onekeyWindow(x7, x8, x9)
 		}
-		else if (operation_type = 2) ; 2：win加数字切换任务栏程序
+		else if (operation_type = 2) ; 2 NumpadEnter & * 发送字符串
 		{
 			if (intCount = 1) 
 				Send, %x1%
@@ -1395,12 +1421,14 @@ Firefox
 	#IfWinActive
 }
 
+
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; 接管鼠标事件：
 ;     LButton：屏蔽指定活动窗口右上角关闭按钮所在区域的鼠标点击事件
 ;	  MButton：将xmind的鼠标中键替换为右键，这样就能用中键拖动画布了（右键被鼠标手势脚本托管了）
 ;	  RButton：被`官方文档->优秀脚本展示->Mouse Gestures(鼠标手势)`给托管了
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
 {
 	#IfWinActive
 	
@@ -1410,16 +1438,7 @@ Firefox
 	;F3::MsgBox, % WinActive("ahk_exe OUTLOOK.EXE")  ; 打印调试信息 
 	;https://zhidao.baidu.com/question/197788326.html
 	LButton::
-		/*
-		if WinActive("ahk_exe notepad++.exe")
-		{
-			MouseGetPos, X1, Y1
-			WinGetPos,,, W, H, ahk_exe notepad++.exe
-			;MsgBox, % X1 "`n" Y1 "`n" W "`n" H
-			if (W-X1>7 and W-X1<56 and Y1>0 and Y1<39) 
-				return
-		}
-		*/
+
 		
 		if WinActive("ahk_exe OUTLOOK.EXE")
 		{
@@ -1444,9 +1463,7 @@ Firefox
 	
 	#IfWinActive
 }
-
-
-
+*/
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; +^+#四个全用上
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1518,16 +1535,38 @@ Firefox
 		return
 
 		WatchScrollBar:
-		WinGetText, OutputVar , A
-		WinGet, proc_name, ProcessName, A  
-		If InStr(proc_name, "VISIO.EXE") and InStr(OutputVar, "某些文件可能含有病毒，或在其他方面对你的计算机有害")
-		{
-			; Click, 230, 220
-			Send, {Left}{Enter}
-		}
-		return
+			WinGet, proc_name, ProcessName, A  
+			If InStr(proc_name, "VISIO.EXE")
+			{
+				WinGetText, OutputVar , A
+				if InStr(OutputVar, "某些文件可能含有病毒，或在其他方面对你的计算机有害")
+				{
+					; Click, 230, 220
+					Send, {Left}{Enter}
+				}
+			}
+			If InStr(proc_name, "vcxsrv.exe")
+			{
+				WinGetTitle, title_name , A
+				if InStr(title_name, "Unsaved packets…")
+				{
+					; Click, 230, 220
+					Send, {Right}{Enter}
+				}
+			}
+			If InStr(proc_name, "Wireshark.exe")
+			{
+				WinGetTitle, title_name , A
+				if InStr(title_name, "Unsaved packets…")
+				{
+					; Click, 230, 220
+					Send, {Right}{Enter}
+				}
+			}
+			return
 
 }
+
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;另一台电脑运行的脚本备份
