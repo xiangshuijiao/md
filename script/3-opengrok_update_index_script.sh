@@ -1,7 +1,8 @@
 #!/bin/bash
-# 放到/etc/crontab中定时执行
+# 使用方法：放到/etc/crontab中定时执行该脚本
+# 0  9    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh
 
-logfile=/tmp/opengrok.log
+logfile=/run/opengrok.log
 bool=false
 eval `ssh-agent` && ssh-add
 
@@ -49,6 +50,7 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/o
 if [ "$bool" == true ]
 then
         echo "正在更新索引..." >> $logfile 2>&1 </dev/null
+        docker exec opengrok rm -rf /var/run/opengrok-indexer
         docker exec opengrok /scripts/index.sh >> $logfile 2>&1 </dev/null
 else
         echo "不需要更新索引..." >> $logfile 2>&1 </dev/null
