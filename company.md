@@ -1,73 +1,5 @@
+[toc]
 
-* [Anaconda](#anaconda)
-* [Autohotkey](#autohotkey)
-* [BOIS](#bois)
-* [C](#c)
-* [Chinese 乱码](#chinese-%E4%B9%B1%E7%A0%81)
-* [CSDN跳转首页](#csdn%E8%B7%B3%E8%BD%AC%E9%A6%96%E9%A1%B5)
-* [Docker](#docker)
-  * [<a href="https://blog\.csdn\.net/BigData\_Mining/article/details/104921479" rel="nofollow">三种方法修改docker的默认存储位置</a>](#%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E4%BF%AE%E6%94%B9docker%E7%9A%84%E9%BB%98%E8%AE%A4%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE)
-  * [<a href="https://blog\.51cto\.com/lidefu/2369147" rel="nofollow">docker资源分配篇</a>](#docker%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E7%AF%87)
-  * [定时执行docker中的脚本](#%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8Cdocker%E4%B8%AD%E7%9A%84%E8%84%9A%E6%9C%AC)
-  * [实时查看docker容器日志](#%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8Bdocker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97)
-* [Ftp](#ftp)
-* [GDB](#gdb)
-* [Gerrit](#gerrit)
-* [GitLab](#gitlab)
-* [Git](#git)
-  * [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
-  * [git 图形化显示](#git-%E5%9B%BE%E5%BD%A2%E5%8C%96%E6%98%BE%E7%A4%BA)
-  * [常见问题](#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
-  * [解决换行符问题](#%E8%A7%A3%E5%86%B3%E6%8D%A2%E8%A1%8C%E7%AC%A6%E9%97%AE%E9%A2%98)
-  * [push注意](#push%E6%B3%A8%E6%84%8F)
-  * [git fetch失败](#git-fetch%E5%A4%B1%E8%B4%A5)
-  * [git pull、git stash apply冲突](#git-pullgit-stash-apply%E5%86%B2%E7%AA%81)
-  * [git stash](#git-stash)
-  * [git 加速](#git-%E5%8A%A0%E9%80%9F)
-* [Graphviz](#graphviz)
-* [Jumpstart](#jumpstart)
-* [Makefile](#makefile)
-  * [加速编译](#%E5%8A%A0%E9%80%9F%E7%BC%96%E8%AF%91)
-* [Menuconfig](#menuconfig)
-* [MobaXterm](#mobaxterm)
-* [OpenGrok](#opengrok)
-* [Samba](#samba)
-* [Source insight](#source-insight)
-* [Shell](#shell)
-* [SSH](#ssh)
-  * [<a href="https://segmentfault\.com/a/1190000011289092" rel="nofollow">nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】</a>](#nohup-%E8%A7%A3%E5%86%B3linux%E5%85%B3%E9%97%AD%E7%BB%88%E7%AB%AF%E5%85%B3%E9%97%ADssh%E7%AD%89%E5%90%8E%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%88%96%E8%80%85%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F)
-  * [SSH 显示图形化界面](#ssh-%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2)
-  * [WinSCP：linux 和电脑互传文件](#winscplinux-%E5%92%8C%E7%94%B5%E8%84%91%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6)
-* [TCPDump](#tcpdump)
-* [Telnet](#telnet)
-* [TFTP](#tftp)
-* [Ubuntu](#ubuntu)
-  * [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1)
-  * [终端颜色配置](#%E7%BB%88%E7%AB%AF%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE)
-  * [Ubuntu1804开机启动](#ubuntu1804%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8)
-  * [定时任务脚本](#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%84%9A%E6%9C%AC)
-  * [Archer T9E网卡驱动安装](#archer-t9e%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85)
-  * [重装系统](#%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F)
-  * [网络分析工具](#%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7)
-  * [大量文件快速拷贝、删除](#%E5%A4%A7%E9%87%8F%E6%96%87%E4%BB%B6%E5%BF%AB%E9%80%9F%E6%8B%B7%E8%B4%9D%E5%88%A0%E9%99%A4)
-  * [路由配置](#%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE)
-  * [内存相关参数](#%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0)
-* [Vim](#vim)
-* [Vim](#vim-1)
-* [Visio](#visio)
-* [VMware Station](#vmware-station)
-  * [虚拟机和主机之间不能复制粘贴](#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4)
-* [Win10](#win10)
-  * [防火墙](#%E9%98%B2%E7%81%AB%E5%A2%99)
-  * [双网卡](#%E5%8F%8C%E7%BD%91%E5%8D%A1)
-  * [查看进程启动时的参数](#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E7%9A%84%E5%8F%82%E6%95%B0)
-  * [<a href="https://blog\.csdn\.net/avinswang/article/details/106651325" rel="nofollow">windows10任务栏预览变成列表</a>](#windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E9%A2%84%E8%A7%88%E5%8F%98%E6%88%90%E5%88%97%E8%A1%A8)
-  * [远程关闭windows和Ubuntu](#%E8%BF%9C%E7%A8%8B%E5%85%B3%E9%97%ADwindows%E5%92%8Cubuntu)
-  * [<a href="https://blog\.csdn\.net/weixin\_33772645/article/details/91793476?utm\_medium=distribute\.pc\_relevant\.none\-task\-blog\-BlogCommendFromMachineLearnPai2\-1\.channel\_param&amp;depth\_1\-utm\_source=distribute\.pc\_relevant\.none\-task\-blog\-BlogCommendFromMachineLearnPai2\-1\.channel\_param" rel="nofollow">远程桌面连接慢的问题解决</a>](#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3)
-  * [EmEditor打开超大文本文件](#emeditor%E6%89%93%E5%BC%80%E8%B6%85%E5%A4%A7%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6)
-* [Xmind](#xmind)
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 ------------------分隔符------------------不要删除------------------分隔符------------------不要删除------------------分隔符------------------
 
 ## Anaconda
@@ -198,6 +130,7 @@ conda update --all
 
 ## Docker
 
+* 安装：`apt update && apt upgrade && apt install docker.io`
 * 新docker调教
 
   * 使用自己导出的镜像` 2020-9-30-153630-docker-image.tar`
@@ -217,9 +150,13 @@ conda update --all
         
         docker restart 容器名
           
+               
+        apt purge git
+        apt install git // 重新安装git可以避免git commit卡死的问题
         git config --add core.filemode false // 忽略文件模式变化
         
-        
+        //notepad++
+        apt-get install python-software-properties
     ```
   
 * 使用c20sp.tar镜像
@@ -514,8 +451,6 @@ git diff **后面的、工作区、暂存区**
 
 git 命令自动补全：`apt install bash-completion -y // 自动补全，需要重新打开bash窗口`
 
-[git 生成patch 和打入patch](https://blog.csdn.net/liuhaomatou/article/details/54410361)
-
 git blame：`git blame 文件名`可以看到每一行最近是由谁更改的
 
 git 只显示add的文件：`git diff --cached --stat`
@@ -765,8 +700,19 @@ git stash clear // 清空所有stash
     An integer -1..9, indicating a default compression level. -1 is the zlib default. 0 means no compression, and 1..9 are various speed/size tradeoffs, 9 being slowest. If set, this provides a default to other compression variables, such as core.looseCompression and pack.compression.
     ```
 
+### git commit 卡死
 
+```c
+apt purge git
+apt install git // 重新安装git可以避免git commit卡死的问题
+```
 
+### git patch生成应用
+
+[Git Patch使用: 生成,导入,解决冲突](https://blog.csdn.net/matrix_laboratory/article/details/45870639)
+
+*   用`git diff --binary --whitespace=nowarn >  1.patch`生成普通的不含commit信息的patch
+*   用`git apply`应用patch，apply失败一般都是生成的patch有问题而不是apply命令有问题
 
 ## Graphviz
 
@@ -809,6 +755,8 @@ git stash clear // 清空所有stash
 
 *   [Cracking Wifi Wpa-Wpa2 in 5 second——Dumpper V.80.8 +JumpStart+WinPcap](https://www.cnblogs.com/shenjieblog/p/5188525.html)
 *   [下载地址](https://zh.osdn.net/projects/sfnet_dumpper/downloads/JumpStart%20+%20WinPcap.rar/)
+
+
 
 ## Makefile
 
@@ -891,17 +839,7 @@ git stash clear // 清空所有stash
         eval `ssh-agent` && ssh-add
         # 明天定时更新索引
         vim /etc/crontab 
-        0  9  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 10  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 11  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 12  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 14  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 15  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 16  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 17  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 18  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 19  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
-        0 20  * * * root  sudo bash opengrok_update_index_script.sh的绝对路径
+        0  9    * * *   root    /home/share_data_folder/5-opengrok/opengrok_update_index_script.sh
         ```
         
         
@@ -914,8 +852,15 @@ git stash clear // 清空所有stash
 
     
 
+## Python
+
+[python操作wifi](https://www.cnblogs.com/yhleng/p/9768037.html)
+
 ## Samba
 
+* ubuntu2004 配置
+  * [ubuntu 20.04 安装配置Samba服务，Windows 和 linux协同工作](https://blog.csdn.net/mvp_Dawn/article/details/105847485)
+  * 修改配置文件`global`标签中所有的`mask`为777
 * 图形化界面配置（Ubuntu1204）
 
   * `apt-get install samba samba-common smbfs cifs-utils system-config-samba`
@@ -1021,9 +966,22 @@ git stash clear // 清空所有stash
 
 ## SSH 
 
-### [nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】](https://segmentfault.com/a/1190000011289092)
+*  [nohup 解决Linux关闭终端（关闭SSH等）后运行的程序或者服务自动停止【后台运行程序】](https://segmentfault.com/a/1190000011289092)
 
 *   `sudo nohup bash 脚本路径 >> /tmp/nohup.log 2>&1 </dev/null &` 指定输出文件
+
+* 问题
+  ```shell
+  [/opt/bba]#/etc/init.d/ssh restart
+  /var/run/sshd must be owned by root and not group or world-writable.
+  [/opt/bba]#chown root /var/run/sshd
+  [/opt/bba]#/etc/init.d/ssh restart
+  /var/run/sshd must be owned by root and not group or world-writable.
+  [/opt/bba]#chmod 744 /var/run/sshd
+  [/opt/bba]#/etc/init.d/ssh restart
+  [/opt/bba]#/etc/init.d/ssh status
+  * sshd is running
+  ```
 
 ### SSH 显示图形化界面
 
@@ -1076,12 +1034,17 @@ git stash clear // 清空所有stash
 
 * 问题3
 
-    ```
-    tftp 192.168.1.200 -gr networkMap.htm 
+    ```shell
+    # tftp 192.168.1.200 -gr networkMap.htm 
     tftp: server error: (256) Access to networkMap.htm denied
     
     不要以管理员权限运行tftp服务器，只能用普通权限运行tftp服务器
     不要用绝对路径传文件，cd到目录里面用相对路径传文件
+
+    # tftp -pl 1.cap  192.168.0.200
+    tftp: server error: (768) Access to 1.cap denied
+    查看远程文件1.cap是否正在被wireshark使用
+    或者本地1.cap文件是否正在被使用
     ```
 
     
@@ -1098,7 +1061,6 @@ git stash clear // 清空所有stash
 
 `tasklist | findstr 21552` ：查看ID对应进程
 
-`su - jkn`：终端切换到用户jkn
 
 `tail -f`：查看实时变化的文件
 
@@ -1111,6 +1073,15 @@ git stash clear // 清空所有stash
 `stat 文件`：查看文件的访问、修改、改变时间
 
 `md5sum`：计算md5值
+
+用户密码相关
+```shell
+su - jkn #终端切换到用户jkn
+sudo passwd #设置su 密码
+sudo passwd root # 设置root密码
+useradd jkn
+userdel -r ppp
+```
 
 ### 终端颜色配置
 
@@ -1137,16 +1108,6 @@ git stash clear // 清空所有stash
 
 ` /var/log/syslog`会记录crontab任务是否被执行情况，但无法看到执行结果，所以还是推荐将执行结果用`>>`追加的方式写入文件`/tmp/jkn.txt`
 
-```shell
-[/home/bba]#cat /etc/crontab
-0 19  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log 
-0 20  * * * root  docker exec opengrok /scripts/index.sh >> /tmp/opengrok.log
-
-0  9  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script  
-0 12  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
-0 17  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
-0 20  * * * root  sudo bash /etc/jkn.script.runs.regularly/09.12.17.20.script
-```
 
 ### Archer T9E网卡驱动安装
 
@@ -1156,7 +1117,7 @@ git stash clear // 清空所有stash
 
 [ubuntu 18.04/16.04/14.04 双硬盘分区方案](https://blog.csdn.net/u010801439/article/details/80485251)
 
-[三种方法修改docker的默认存储位置](#[三种方法修改docker的默认存储位置](https://blog.csdn.net/BigData_Mining/article/details/104921479))
+[三种方法修改docker的默认存储位置](https://blog.csdn.net/BigData_Mining/article/details/104921479)
 
 [Ubuntu1804开机启动](#Ubuntu1804开机启动)
 
@@ -1173,7 +1134,7 @@ git stash clear // 清空所有stash
     *   [Shell重定向 ＆>file、2>&1、1>&2 、/dev/null的区别](https://blog.csdn.net/u011630575/article/details/52151995)
     *   0：标准输入，1：标准输出，2：错误输出
 
-*   ```shell
+    ```shell
     #!/bin/sh
     
     logpath=/tmp/jkn.script.runs.regularly.log
@@ -1192,6 +1153,7 @@ git stash clear // 清空所有stash
 *   查看`cat /proc/sys/vm/swappiness`
 *   设置`/etc/sysctl.conf`末尾添加`vm.swappiness=10`，重启电脑
 
+配置ssh、samba
 ### 网络分析工具
 
 [LinSSID：一款Linux下的图形化Wi-Fi扫描器](https://linux.cn/article-5120-1.html)
@@ -1226,22 +1188,31 @@ git stash clear // 清空所有stash
 
 `route add -net 10.0.1.0/24 gw 192.168.1.1 dev wlp4s0`
 
-### 内存相关参数
+[linux 路由表设置 之 route 指令详解](https://blog.csdn.net/vevenlcf/article/details/48026965)
 
-`cat /proc/进程号/smaps`[内存耗用：VSS/RSS/PSS/USS 的介绍](https://www.jianshu.com/p/3bab26d25d2e)
+### 抓包驱动
+[A6210-mt76x2u_Ubuntu](https://github.com/cyangy/A6210-mt76x2u_Ubuntu)：onmipeek mt7612u可以使用
 
-`cat /proc/zoneinfo` [Normal free    linux内存管理中系统内存相关的参数说明(一)](http://blog.chinaunix.net/uid-27177626-id-4197018.html)
+[编译Linux下mt7612u的驱动](https://blog.csdn.net/wr132/article/details/79117101)：Ubuntu1604、1804、2004都编不过，只能用1404才可以编过
 
-meminfo
+[Ubuntu查看usb设备驱动／usb以太网卡设备驱动](https://blog.csdn.net/u010178308/article/details/79292108)
+```
+lsusb
+lsusb -t
+lshw -C network
+```
+驱动编译过程中碰到的问题：
 
-*   [曾文斌: /proc/meminfo之谜完全揭秘](https://blog.csdn.net/sunshineywz/article/details/105749264)
-*   [通过/proc/meminfo实时获取系统内存使用情况](https://langzi989.github.io/2016/12/19/%E9%80%9A%E8%BF%87-proc-meminfo%E5%AE%9E%E6%97%B6%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/)
-*   [MemAvailable](https://qastack.cn/superuser/980820/what-is-the-difference-between-memfree-and-memavailable-in-procmeminfo)
-*   [Buffers与cached啥区别](https://www.cnblogs.com/argb/p/3448744.html)
-
-## Vim
-
-*   `:setlocal nowrap `当前文档设置为不自动换行
+* [My makefile results in: No rule to make target `arch/x86/tools/relocs.c', needed
+](https://askubuntu.com/questions/232840/my-makefile-results-in-no-rule-to-make-target-arch-x86-tools-relocs-c-needed)
+* [ubuntu安装内核头文件](https://blog.csdn.net/ubuntulover/article/details/6011148)
+* [memcpy stackoverflow问题](https://blog.csdn.net/benjamin_xu/article/details/48230215)
+* [macro "access_ok" passed 3 arguments, but takes just 2](https://github.com/openzfs/zfs/issues/8261)
+* [error: ‘struct file’ has no member named ‘f_dentry’](https://blog.csdn.net/hn2zzzz1996/article/details/79496282)
+* [ incompatible types when assigning to type ‘int’ from type ‘kuid_t’](https://blog.csdn.net/hang_zheng/article/details/41520271?utm_source=blogxgwz5)
+* [error: macro `__DATE__` might prevent reproducible builds [-Werror=date-time]](https://blog.csdn.net/JAZZSOLDIER/article/details/75221514)
+* [warning: passing argument x of xxx from incompatible pointer type](https://blog.csdn.net/weixin_43576525/article/details/106185908)
+* [error: ‘IEEE80211_NUM_BANDS’ undeclared here (not in a function) struct ieee80211_supported_band Cfg80211_bands[IEEE80211_NUM_BANDS]](https://github.com/jurobystricky/Netgear-A6210/issues/32)
 
 ## Vim
 
@@ -1263,7 +1234,20 @@ meminfo
 	:set paste
     ```
     
-    
+* kvim配置
+
+    *   使用镜像网站加速github  clone
+        *   [Github国内mirror加速](https://blog.csdn.net/networken/article/details/105122778)：`githu.com`后面加上`.cnpmjs.org`
+    *   必须先安装最新版git
+        *   [疑问解决步骤里面有vim安装方法](https://github.com/wklken/k-vim/wiki)
+        *   [编译vim clipboard](https://blog.csdn.net/u012335044/article/details/62044268)
+    *   [k-vim](https://github.com/wklken/k-vim)
+        *   `git clone https://github.com.cnpmjs.org/wklken/k-vim.git`
+        *   搜索整个项目，将所有的`githu.com`均替换为`githu.com.cnpmjs.org`
+        *   `sh -x install.sh` ：`delimitMate`安装耗时大概需要1小时，等着就好
+    *   [https://github.com/ma6174/vim](https://github.com/ma6174/vim)
+* vim-vide
+    *  [https://github.com/bilibili/vim-vide](https://github.com/bilibili/vim-vide)
 
 ## Visio
 
@@ -1314,7 +1298,20 @@ Ubuntu
 *   将windows电脑的ssh公钥拷贝到Ubuntu的.ssh文件夹内的authorized_keys文件中（注：文件不存在可以自己创建）
 *   `ssh -l root -p 22 pc3.jkn "shutdown -P now"`远程关机
 
-### [远程桌面连接慢的问题解决](https://blog.csdn.net/weixin_33772645/article/details/91793476?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
+### 远程桌面连接
+[怎么解决远程登录一直卡在正在加密远程连接](https://jingyan.baidu.com/article/3ea5148908c29013e61bba90.html)
+
+### [删除WINDOWS10中讨厌的微软拼音](https://blog.csdn.net/dbyoung/article/details/78797154)
+### 目录有空格
+
+[Windows路径含有带空格的目录/文件名的处理](https://blog.csdn.net/hxiaohai/article/details/50612041)
+
+[关闭、开启短文件名功能](https://wenku.baidu.com/view/e13c215803768e9951e79b89680203d8ce2f6a0d.html?re=view)
+
+*   regedit：`计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem\NtfsDisable8dot3NameCreation`修改为0就是打开，1就是关闭
+*   修改后需要重启电脑，并且只针对新建的文件才会生效，所以需要先将`4-green software`修改为`4-greensoftware`，然后新建`4-green software`，最后再将`4-greensoftware`改回来
+
+### [查找文件或文件夹被哪个进程占用](https://www.cnblogs.com/lnlvinso/p/11160827.html)
 
 ### EmEditor打开超大文本文件
 
@@ -1322,11 +1319,25 @@ EmEditor注册码（序列号）分享
 
 姓 名：ttrar.com
 
-序 列 号：DKAZQ-R9TYP-5SM2A-9Z8KD-3E2RK
+序 列 号：DMAZM-WHY52-AX222-ZQJXN-79JXH
 
-## Xmind
+### vscode
+[Windows下修改VSCode工作区存储目录workspaceStorage](https://blog.csdn.net/asty9000/article/details/90202510)
+
+### Xmind
 
 *   拖动画布
     *   mac下 鼠标中键空白处 按住滚轮可实现抓手
     *   window下 鼠标右键空白处 按住右键可实现抓手
 
+## Wireshark
+[SIOCSIFFLAGS: Operation not possible due to RF-kill](https://blog.csdn.net/fickyou/article/details/50885824)
+```shell
+/etc/init.d/network-manager stop
+ifconfig wlx6466b31cf75b down
+iwconfig wlx6466b31cf75b mode Monitor
+ifconfig wlx6466b31cf75b up
+
+iwlist wlx6466b31cf75b channel # 查看当前信道以及网卡支持的信道
+iwconfig wlp3s0 channel 36 # 设置信道
+```
