@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# 宿主机的/etc/crontab
-# 0  10  * * * root  docker exec docker容器名 docker脚本绝对路径
-# 0  18  * * * root  docker exec docker容器名 docker脚本绝对路径
+# 使用方法：宿主机的/etc/crontab添加如下内容
+# 0  9    * * *   root    docker exec auto_compile /opt/share_data_folder/4-script/compile_newest_commit.sh
+# 0 14    * * *   root    docker exec auto_compile /opt/share_data_folder/4-script/compile_newest_commit.sh
 
 # $1：独一无二的项目ID（项目名加branch）
 # $2：project_name
@@ -22,7 +22,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	work_path=/opt/bba/compile_newest_commit/$1 
 	target_path=/opt/bba/image
 	tar_path=/opt/share_data_folder/9-tar
-	logfile=/tmp/jkn.script.$1.log
+	logfile=/run/jkn.script.$1.log
 
 	# changes needed
 	project_name=$2
@@ -42,7 +42,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	if [ -f $work_path/$project_name/$image_path/$the_file_used_to_check_if_the_compile_was_successful ]
 	then
 		cd $work_path/$project_name
-    git fetch -f
+    		git fetch -f
 		local_commit_date="git log -1 --format="%at" | xargs -I{} date -d @{} +%Y-%m-%d\ %H:%M:%S"
 		local_commit_date=`echo ${local_commit_date} |awk '{run=$0;system(run)}'`
 		
@@ -130,7 +130,7 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 
 		# create the archive file
 		cd $tar_path && rm -rf $1.tar
-		cd $work_path && tar -c $project_name > $tar_path/$1.tar
+		cd $work_path && tar --warning=no-file-changed -c $project_name > $tar_path/$1.tar
 	else
 		echo Compile to generate image failed >> $logfile 2>&1 </dev/null
 	fi
@@ -141,19 +141,19 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	
 A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs \
 	"PON_trunk_bba_2_5.linux_XC220-G3v_v1" "PON_trunk_bba_2_5" "linux_XC220-G3v_v1"  \
-	"git@spcodes.rd.tp-link.net:PON/PON_trunk_bba_2_5.git" \
-	"" \
+	"ssh://jiangkainan@172.29.88.140:29418/PON_trunk_bba_2_5" \
+	"scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg PON_trunk_bba_2_5/.git/hooks/" \
 	"BBA2.5_platform/build" "EN7528DU_SDK/tplink/output/XC220G3vv1/image" \
 	"XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin XC220-G3v(SP)v1_1.1.0_0.8.0_up_boot.bin rootfs" \
 	"XC220-G3v(SP)v1_1.1.0_0.8.0_flash.bin" "XC220G3vv1" "" 
 	
-A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs \
-	"BBA_2_5_Platform_BCM.EX220_USSP_v1.2" "BBA_2_5_Platform_BCM" "EX220_USSP_v1.2"  \
-	"ssh://jiangkainan@172.29.88.140:29418/BBA_2_5_Platform_BCM" \
-	"scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg BBA_2_5_Platform_BCM/.git/hooks/" \
-	"platform/build/" "platform/targets/EX220-G2uV1/USSP/image" \
-	"EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin" \
-	"EX220-G2u_FLASH.bin.w" "EX220-G2uV1" "USSP"
+# A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs \
+# 	"BBA_2_5_Platform_BCM.EX220_USSP_v1.2" "BBA_2_5_Platform_BCM" "EX220_USSP_v1.2"  \
+# 	"ssh://jiangkainan@172.29.88.140:29418/BBA_2_5_Platform_BCM" \
+# 	"scp -p -P 29418 jiangkainan@172.29.88.140:hooks/commit-msg BBA_2_5_Platform_BCM/.git/hooks/" \
+# 	"platform/build/" "platform/targets/EX220-G2uV1/USSP/image" \
+# 	"EX220-G2u_FLASH.bin.w EX220-G2u_UP_BOOT.bin rootfs boot.bin" \
+# 	"EX220-G2u_FLASH.bin.w" "EX220-G2uV1" "USSP"
 	
 	
 	
