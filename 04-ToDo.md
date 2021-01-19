@@ -15,3 +15,4 @@
     * 【JCOW402】通过直接修改客户烧录软件方式修改生产配置
 1. [家用路由器开发](https://www.cnblogs.com/tureno/articles/7199232.html)
 1. 阅读testlink mesh测试项，里面有些mesh的知识点很有用
+1. everything搜索二哥讲的课题：nvram 介绍、nvram 解释、vx420 目标功率设置
