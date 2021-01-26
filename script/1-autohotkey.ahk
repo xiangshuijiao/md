@@ -301,7 +301,6 @@ SetTimer, WatchScrollBar, 100
 
 
 
-
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; `开头的快捷键
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -314,7 +313,7 @@ SetTimer, WatchScrollBar, 100
 	` & b::
 
 	` & e::
-	` & f::
+	
 	` & g::
 	` & h::
 	` & i::
@@ -351,6 +350,7 @@ SetTimer, WatchScrollBar, 100
 	` & d::Send, ^!+d
 	` & Up::MouseClick,WheelUp,,,8,0,D,R
 	` & Down::MouseClick,WheelDown,,,8,0,D,R
+	` & f::Run, \\debugPC.jkn\share_data_folder\4-script\file_monitor.py ; 监听文件变化，文件不变则响铃提醒(比如编译完成时log就不会变化)
 	` & w::
 		;遍历所有窗口：https://blog.csdn.net/liuyukuan/article/details/72876957
 		WinGet, id, list,,, Program Manager
@@ -382,6 +382,7 @@ SetTimer, WatchScrollBar, 100
 【``+2】剪切板/替换为\
 【``+r】secureCRT重新连接
 【``+d】secureCRT关闭连接
+【``+f】监听文件变化，文件不变则响铃提醒(比如编译完成时log就不会变化)
 【``+Up】滚轮向上滚动8次
 【``+Down】滚轮向下滚动8次
 
@@ -467,7 +468,7 @@ SetTimer, WatchScrollBar, 100
 	#MaxThreadsPerHotkey 5
 	F1 & a::
 	F1 & d::
-	F1 & f::
+	
 	F1 & g::
 	
 	F1 & h::
@@ -475,8 +476,8 @@ SetTimer, WatchScrollBar, 100
 	F1 & j::
 	F1 & k::
 	F1 & l::
-	F1 & m::
-	F1 & t::
+	
+	
 	F1 & q::
 	F1 & r::
 	F1 & u::
@@ -498,7 +499,9 @@ SetTimer, WatchScrollBar, 100
 	F1 & e::hyf_onekeyWindow("C:\Program Files\Microsoft Office\Office16\EXCEL.EXE", "XLMAIN", "\S") ;excel 
 	F1 & p::different_key_times_different_operation(1, "D:\3-big-software\22-pdf\PDF-XChange_Editor_Plus_8.0.341.0_Green\PDF-XChange Editor\PDFXEdit.exe", "PXE:{D__3-BIG-SOFTWARE_22-PDF_PDF-XCHANGE_EDITOR_PLUS_8.0.341.0_GREEN_PDF-XCHANGE EDITOR_PDFXEDIT.EXE}", "\S"
 													  ,"C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE", "PPTFrameClass", "\S") ; 只能在逗号前面换行，不能在逗号后面换行，否则会报错
-
+	F1 & m::hyf_onekeyWindow("C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe", "TMobaXtermForm", "\S") ;MobaXterm 
+	F1 & f::hyf_onekeyWindow("C:\Program Files (x86)\FileZilla FTP Client\filezilla.exe", "wxWindowNR", "\S") ;fielZilla
+	
 	
 	F1 & ?::
 		MsgBox "
@@ -525,17 +528,19 @@ Firefox
 	^+z::only_for_everything() ;everything
 	
 	
-	#a:: ;显示所有WinHide和!WinActive的窗口
-		show_specific_hide_software("D:\3-big-software\7-chrome\Chrome\App\chrome.exe", "Chrome_WidgetWin_1", "\S", "chrome.exe") ;Chrome
+	^+a:: ;显示所有WinHide和!WinActive的窗口
+		show_specific_hide_software("D:\3-big-software\7-chrome\Chrome\App\chrome.exe", "Chrome_WidgetWin_1", "\S", "chrome.exe") ;Chrome 管理员启动会导致点击链接时无法弹出Chrome窗口，需要使用系统自带快捷键 +!c
 		show_specific_hide_software("C:\Program Files (x86)\Source Insight 4.0\sourceinsight4.exe", "si4_Frame", "\S", "sourceinsight4.exe") ;Source Insight 4.0
 		show_specific_hide_software("D:\3-big-software\20-Xmind\XMind2020\XMind.exe", "Chrome_WidgetWin_1", "\S", "XMind.exe") ;XMind
-		show_specific_hide_software("C:\Program Files\Notepad++\notepad++.exe", "Notepad++", "\S", "notepad++.exe") ;Notepad++ 
+		show_specific_hide_software("C:\Program Files\Notepad++\notepad++.exe", "Notepad++", "\S", "notepad++.exe") ;Notepad++  管理员启动会导致右键使用notepad++打开时无法弹出notepad++窗口，需要使用系统自带快捷键 +!n
 		show_specific_hide_software("C:\Program Files\Beyond Compare 4\BCompare.exe", "TViewForm", "\S", "BCompare.exe") ;Beyond Compare 4	
-		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook
+		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE", "rctrl_renwnd32", "\S", "OUTLOOK.EXE") ;outlook 管理员启动会导致无法使用搜索功能，需要使用系统自带快捷键 +!o
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE", "OpusApp", "\S", "WINWORD.EXE") ;word 
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\EXCEL.EXE", "XLMAIN", "\S", "EXCEL.EXE") ;excel 
 		show_specific_hide_software("D:\3-big-software\22-pdf\PDF-XChange_Editor_Plus_8.0.341.0_Green\PDF-XChange Editor\PDFXEdit.exe", "PXE:{D__3-BIG-SOFTWARE_22-PDF_PDF-XCHANGE_EDITOR_PLUS_8.0.341.0_GREEN_PDF-XCHANGE EDITOR_PDFXEDIT.EXE}", "\S", "PDFXEdit.exe") ;pdf 
 		show_specific_hide_software("C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE", "PPTFrameClass", "\S", "POWERPNT.EXE") ;ppt 
+		show_specific_hide_software("C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe", "TMobaXtermForm", "\S", "MobaXterm.exe") ;MobaXterm
+		show_specific_hide_software("C:\Program Files (x86)\FileZilla FTP Client\filezilla.exe", "wxWindowNR", "\S", "filezilla.exe") ;fielZilla	
 		
 		
 	return
@@ -912,7 +917,6 @@ Firefox
 	NumpadEnter & NumpadDot::function_for_the_NumpadEnter_short_key("NumpadDot")
 	
 
-
 	function_for_the_NumpadEnter_short_key(short_key)
 	{
 		; 将输入法切换为英文，取消大小写锁定
@@ -955,11 +959,7 @@ Firefox
 		}
 		else if(short_key = "f")
 		{
-			Send, bflag set 0`n
-			Sleep, 200
-			Send, bflag get 0`n
-			Sleep, 200
-			Send, flash 80000 800a0000 1300000`n
+			Send, find ``pwd`` -iname{Space}  
 		}
 		else if(short_key = "t")
 			Send, tftp -i 192.168.1.1 put{Space}{Space}  
@@ -1542,7 +1542,9 @@ Firefox
 				if InStr(OutputVar, "某些文件可能含有病毒，或在其他方面对你的计算机有害")
 				{
 					; Click, 230, 220
-					Send, {Left}{Enter}
+					Send, {Left}
+					Sleep, 100
+					Send, {Enter}
 				}
 			}
 			If InStr(proc_name, "vcxsrv.exe")
@@ -1550,8 +1552,10 @@ Firefox
 				WinGetTitle, title_name , A
 				if InStr(title_name, "Unsaved packets…")
 				{
-					; Click, 230, 220
-					Send, {Right}{Enter}
+					;Click, 230, 220
+					Send, {Right}
+					Sleep, 100
+					Send, {Enter}
 				}
 			}
 			If InStr(proc_name, "Wireshark.exe")
@@ -1560,7 +1564,9 @@ Firefox
 				if InStr(title_name, "Unsaved packets…")
 				{
 					; Click, 230, 220
-					Send, {Right}{Enter}
+					Send, {Right}
+					Sleep, 100
+					Send, {Enter}
 				}
 			}
 			return
