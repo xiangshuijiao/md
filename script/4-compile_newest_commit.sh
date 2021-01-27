@@ -17,6 +17,7 @@
 # ${11}：SPEC
 # ${12}：使用make编译时额外使用的其他编译参数，比如：-j1指定单线程编译
 eval `ssh-agent` && ssh-add
+LOG_FILE=/run/jkn.script.compile_newest_commit.log
 A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 {	
 	# No changes needed
@@ -185,6 +186,15 @@ A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs()
 	echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
 }
 
+# 不知为何只有该脚本运行时在该脚本中运行如下两个命令的结果却不一样，只是多了echo而已：
+# ps -aux | grep compile_newest_commit.sh | grep -v "grep" | wc -l 的结果为1
+# echo `ps -aux | grep compile_newest_commit.sh | grep -v "grep" | wc -l` 的结果为2
+echo "`date`：`ps -aux | grep compile_newest_commit.sh | grep -v "grep" | wc -l`" >> $LOG_FILE 2>&1
+if [ `ps -aux | grep compile_newest_commit.sh | grep -v "grep" | wc -l` -gt 2 ]
+then
+	echo -e "        `date` 脚本已经在运行了，不需要重复运行第二次！！！" >> $LOG_FILE 2>&1
+	exit 0
+fi
 
 # xc220
 A_function_that_auto_clone_make_copy_image_when_a_new_commit_occurs \
