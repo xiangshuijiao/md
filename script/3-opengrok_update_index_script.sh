@@ -3,6 +3,7 @@
 # 0  9    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh
 
 logfile=/run/opengrok.log
+LOG_FILE=/run/opengrok_repeat_run_check.log
 bool=false
 eval `ssh-agent` && ssh-add
 
@@ -43,9 +44,20 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
         echo "<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=end `date`" >> $logfile 2>&1 </dev/null
 }
 
-Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/BBA_2_5_Platform_BCM/BBA_2_5_Platform_BCM/" "EX220_USSP_v1.2"
-Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/BBA_2_5_Platform_BCM.2/BBA_2_5_Platform_BCM/" "VX420-G2h-P1"
-Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/PON_trunk_bba_2_5/PON_trunk_bba_2_5/" "linux_XC220-G3v_v1"
+# 不知为何只有该脚本运行时在该脚本中运行如下两个命令的结果却不一样，只是多了echo而已：
+# ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l 的结果为1
+# echo `ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l` 的结果为2
+echo "`date`：`ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l`" >> $LOG_FILE 2>&1
+if [ `ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l` -gt 2 ]
+then
+	echo -e "        `date` 脚本已经在运行了，不需要重复运行第二次！！！" >> $LOG_FILE 2>&1
+	exit 0
+fi
+
+Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/BBA_2_5_Platform_BCM" "EX220_USSP_v1.2"
+Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/PON_trunk_bba_2_5" "linux_XC220-G3v_v1"
+Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/bba_3_0_platform" "hc220-g5_bba3.0"
+Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit "/home/opengrok/src/private_project" "master"
 
 if [ "$bool" == true ]
 then
