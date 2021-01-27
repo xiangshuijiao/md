@@ -355,7 +355,8 @@ SwitchyOmega插件设置
       ```
   
 * 公开资源
-  
+  * https://www.sanzhima.com
+  * https://images.soik.top
   * https://www.uedbox.com/post/54776/
   * https://ac.scmor.com/
   * http://scholar.hedasudi.com/
