@@ -1,6 +1,11 @@
 #!/bin/bash
 # 使用方法：放到/etc/crontab中定时执行该脚本
-# 0  9    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh
+# 0  9    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh &
+# 0 11    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh &
+# 0 13    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh &
+# 0 15    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh &
+# 0 17    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh &
+# 0 19    * * *   root    /home/share_data_folder/4-script/opengrok_update_index_script.sh &
 
 logfile=/run/opengrok.log
 LOG_FILE=/run/opengrok_repeat_run_check.log
@@ -10,7 +15,7 @@ eval `ssh-agent` && ssh-add
 # $1为git仓库所在路径，$2为仓库目前的分支
 Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
 {
-        echo "=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>start `date`" >> $logfile 2>&1 </dev/null
+        echo -e "\n\n\n\n=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>start `date`" >> $logfile 2>&1 </dev/null
         if [ -d $1 ]
         then
                 cd $1
@@ -26,7 +31,7 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
 
                 echo local_commit_date=$local_commit_date >> $logfile 2>&1 </dev/null
                 echo remote_commit_date=$remote_commit_date >> $logfile 2>&1 </dev/null
-                 
+                
                 if [ $local_commit_date -gt $remote_commit_date ]; then
                         echo "$1 $2：$local_commit_date > $remote_commit_date" >> $logfile 2>&1 </dev/null
                 elif [ $local_commit_date -eq $remote_commit_date ]; then
@@ -37,6 +42,33 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
                         bool=true
                         git reset --hard remotes/origin/$2 
                         git pull -f
+
+                        # 项目定制
+                        if [ $1 == "/home/opengrok/src/bba_3_0_platform" ]
+                        then
+                                # 更新子模块
+                                git submodule init >> $logfile 2>&1 </dev/null
+                                git submodule update --init --recursive >> $logfile 2>&1 </dev/null
+                                git submodule foreach git checkout -f master >> $logfile 2>&1 </dev/null
+                                git submodule foreach git fetch -f >> $logfile 2>&1 </dev/null
+                                git submodule foreach git reset --hard remotes/origin/master >> $logfile 2>&1 </dev/null
+
+                                # push到自建gitlab
+                                echo "git push -f gitlab $2"  >> $LOG_FILE 2>&1
+                                git push -f gitlab $2 >> $LOG_FILE 2>&1
+                                echo "cd sdk/mt7621 && git push -f gitlab master"  >> $LOG_FILE 2>&1
+                                cd sdk/mt7621 && git push -f gitlab master >> $LOG_FILE 2>&1
+                        fi
+
+                        # 项目定制
+                        if [ $1 == "/home/opengrok/src/private_project" ] \
+                           || [ $1 == "/home/opengrok/src/BBA_2_5_Platform_BCM" ] \
+                           || [ $1 == "/home/opengrok/src/PON_trunk_bba_2_5" ]
+                        then
+                                # push到自建gitlab
+                                echo "git push -f gitlab $2"  >> $LOG_FILE 2>&1
+                                git push -f gitlab $2 >> $LOG_FILE 2>&1
+                        fi
                 fi
         else
                 echo "指定的仓库$1不存在，请手动重新clone" >> $logfile 2>&1 </dev/null
@@ -47,7 +79,7 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
 # 不知为何只有该脚本运行时在该脚本中运行如下两个命令的结果却不一样，只是多了echo而已：
 # ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l 的结果为1
 # echo `ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l` 的结果为2
-echo "`date`：`ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l`" >> $LOG_FILE 2>&1
+echo -e "\n\n\n\n`date`：`ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l`" >> $LOG_FILE 2>&1
 if [ `ps -aux | grep opengrok_update_index_script.sh | grep -v "grep" | wc -l` -gt 2 ]
 then
 	echo -e "        `date` 脚本已经在运行了，不需要重复运行第二次！！！" >> $LOG_FILE 2>&1
@@ -64,8 +96,12 @@ then
         echo "正在更新索引..." >> $logfile 2>&1 </dev/null
         docker exec opengrok rm -rf /var/run/opengrok-indexer
         docker exec opengrok /scripts/index.sh >> $logfile 2>&1 </dev/null
+        echo "更新索引成功" >> $logfile 2>&1 </dev/null
+        echo "`date`：更新索引成功" >> $LOG_FILE 2>&1 </dev/null
 else
-        echo "不需要更新索引..." >> $logfile 2>&1 </dev/null
+        echo "不需要更新索引" >> $logfile 2>&1 </dev/null
+        echo "`date`：不需要更新索引" >> $LOG_FILE 2>&1 </dev/null
 fi
 
+echo "`date`：The script is finished!!!" >> $LOG_FILE 2>&1 </dev/null
 #end 结尾占位
