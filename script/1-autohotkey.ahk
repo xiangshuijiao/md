@@ -338,14 +338,6 @@ SetTimer, WatchScrollBar, 100
 	` & t::send %A_YYYY%_%A_MM%_%A_DD%_%A_Hour%%A_Min%%A_Sec% ; 2020-10-26-152424
 	` & q::Send, !{F4}
 	` & y::Send, !+y
-	` & 1::
-		clipboard := StrReplace(clipboard, "\", "/")
-		Send, +{vk2dsc152}`n  ; shift+insert
-		return
-	` & 2::
-		clipboard := StrReplace(clipboard, "/", "\")
-		Send, +{vk2dsc152}`n  ; shift+insert
-		return
 	` & r::Send, ^!+r
 	` & d::Send, ^!+d
 	` & Up::MouseClick,WheelUp,,,8,0,D,R
@@ -378,8 +370,6 @@ SetTimer, WatchScrollBar, 100
 【``+h】代替ctrl+Home返回文档首页
 【``+q】代替alt+F4关闭软件
 【``+y】有道词典鼠标取词开关
-【``+1】剪切板\替换为/
-【``+2】剪切板/替换为\
 【``+r】secureCRT重新连接
 【``+d】secureCRT关闭连接
 【``+f】监听文件变化，文件不变则响铃提醒(比如编译完成时log就不会变化)
@@ -875,7 +865,7 @@ Firefox
 	NumpadEnter & 0::
 	NumpadEnter & b::
 	NumpadEnter & c::
-	NumpadEnter & d::
+	
 	NumpadEnter & e::
 	
 	
@@ -903,7 +893,7 @@ Firefox
 	NumpadEnter & 4::function_for_the_NumpadEnter_short_key("4")
 	NumpadEnter & j::function_for_the_NumpadEnter_short_key("j")
 	NumpadEnter & a::function_for_the_NumpadEnter_short_key("a")
-	
+	NumpadEnter & d::function_for_the_NumpadEnter_short_key("d")
 	NumpadEnter & f::function_for_the_NumpadEnter_short_key("f")
 	NumpadEnter & t::function_for_the_NumpadEnter_short_key("t")
 	NumpadEnter & u::function_for_the_NumpadEnter_short_key("u")
@@ -970,6 +960,12 @@ Firefox
 			Send, export RSYNC_RSH="ssh -T -c aes128-ctr -o Compression=no -x"`n
 			Sleep, 200
 			Send, time rsync -ah --info=progress2{Space} 
+		}
+		else if(short_key = "d")
+		{
+			Send, export RSYNC_RSH="ssh -T -c aes128-ctr -o Compression=no -x"`n
+			Sleep, 200
+			Send, time rsync --delete-before -avH --progress{Space}
 		}
 		else if(short_key = "g")
 			Send, git grep -n -i  ""{left 1}
@@ -1141,18 +1137,20 @@ Firefox
 	NumpadSub & q::
 	
 	NumpadSub & s::
-	NumpadSub & u::
 	NumpadSub & v::
 	NumpadSub & x::
 	NumpadSub & y::
 	NumpadSub & z::
-		return
-		
+
 	NumpadSub & f::
 	NumpadSub & j::
 		return
-	NumpadSub & r::function_for_the_NumpadSub_short_key("r")
+		
 	NumpadSub & ?::function_for_the_NumpadSub_short_key("?")
+	NumpadSub & r::function_for_the_NumpadSub_short_key("r")
+	NumpadSub & u::function_for_the_NumpadSub_short_key("u")
+	NumpadSub & w::function_for_the_NumpadSub_short_key("w")
+
 	
 	function_for_the_NumpadSub_short_key(short_key)	
 	{
@@ -1170,7 +1168,9 @@ Firefox
 			MsgBox "
 (
 
-【r】重新加载autohotkey脚本
+【NumpadSub & r】重新加载autohotkey脚本
+【NumpadSub & u】剪切板\替换为/，并粘贴到鼠标所在位置然后回车
+【NumpadSub & w】剪切板/替换为\，并粘贴到鼠标所在位置然后回车
 
 )"  
 ; 注意：括号前后各一个折行也会显示出来所以是必不可少的，不加则显示会有问题
@@ -1181,8 +1181,18 @@ Firefox
 		; 变量何时使用%%，何时不用%%：https://wyagd001.github.io/zh-cn/docs/Variables.htm
 		else if(short_key = "r")
 			Reload ; 重新加载autohotkey脚本
-		else if(short_key = "f")
-			Run, % "C:\Users\admin\AppData\Local\Programs\Python\Python39\python.exe" 
+		else if(short_key = "u")
+		{
+			clipboard := StrReplace(clipboard, "\", "/")
+			Send, +{vk2dsc152}`n  ; shift+insert
+			return	
+		}
+		else if(short_key = "w")
+		{
+			clipboard := StrReplace(clipboard, "/", "\")
+			Send, +{vk2dsc152}`n  ; shift+insert
+			return
+		}
 		return
 	}
 	
