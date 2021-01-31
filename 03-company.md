@@ -26,6 +26,7 @@
   * [git 加速](#git-%E5%8A%A0%E9%80%9F)
   * [git commit 卡死](#git-commit-%E5%8D%A1%E6%AD%BB)
   * [git patch生成应用](#git-patch%E7%94%9F%E6%88%90%E5%BA%94%E7%94%A8)
+  * [git submodule](#git-submodule)
 * [Graphviz](#graphviz)
 * [Jumpstart](#jumpstart)
 * [Makefile](#makefile)
@@ -352,6 +353,9 @@ conda update --all
     5. `docker inspect 容器名`  查看容器配置是否修改成功
     ```
   
+* 查看容器日志
+  * docker logs -f -t --tail 行数 容器名
+
 * 问题：
 
   ```c
@@ -464,23 +468,61 @@ http://ispproject.rd.tp-link.net/redmine/boards/3/topics/25
     mkdir -p /home/gitlab/config /home/gitlab/logs /home/gitlab/data
     docker run -p 9000:443 -p 9001:80 -p 9002:22 --name gitlab -v /home/gitlab/config/:/etc/gitlab -v /home/gitlab/logs/:/var/log/gitlab -v /home/gitlab/data/:/var/opt/gitlab -d gitlab/gitlab-ce  # 9000（https）、9001（http）、9002（ssh）
     vim /home/gitlab/config/gitlab.rb
-        external_url 'http://192.168.137.180:9001'
+        external_url 'http://192.168.137.30:9001' # 端口不能少
         nginx['listen_port'] = 80
         gitlab_rails['gitlab_shell_ssh_port'] =9002
-        gitlab_rails['gitlab_ssh_host'] = "192.168.137.180"
+        gitlab_rails['gitlab_ssh_host'] = "192.168.137.30"
+    docker restart gitlab
     访问页面会要求给root用户设置初始密码，然后用root账户登录即可
     ```
+
+*   [【docker】【Gitlab】gitlab中clone项目时，IP地址是一串数字（内网Gitlab的IP地址不正确）的问题解决](https://www.cnblogs.com/sxdcgaq8080/p/10511936.html)：端口还是有必要带上的
 
 *   [Git使用(二)：本地仓库关联多个远程仓库](https://juejin.im/entry/6844903757356990477)
 
     ```shell
-    git remote add gitlab ssh://git@192.168.137.180:9002/root/bba_2_5_platform_bcm.git # 添加远程仓库
+    git remote add gitlab ssh://git@192.168.137.30:9002/root/bba_2_5_platform_bcm.git # 添加远程仓库
     git remote -v #查看远程仓库有哪些
     git branch
     git push gitlab VX420-G2h-P1 # 向指定仓库push指定分支
     ```
 
-*   [【docker】【Gitlab】gitlab中clone项目时，IP地址是一串数字（内网Gitlab的IP地址不正确）的问题解决](https://www.cnblogs.com/sxdcgaq8080/p/10511936.html)
+* 问题1
+    ```shell
+    Running handlers:
+    There was an error running gitlab-ctl reconfigure:
+
+    runit_service[grafana] (monitoring::grafana line 155) had an error: Mixlib::ShellOut::ShellCommandFailed: Expected process to exit with [0], but received '1'
+    ---- Begin output of /opt/gitlab/embedded/bin/sv restart /opt/gitlab/service/grafana ----
+    STDOUT: fail: /opt/gitlab/service/grafana: runsv not running
+    STDERR:
+    ---- End output of /opt/gitlab/embedded/bin/sv restart /opt/gitlab/service/grafana ----
+    Ran /opt/gitlab/embedded/bin/sv restart /opt/gitlab/service/grafana returned 1
+
+    Running handlers complete
+    Chef Infra Client failed. 38 resources updated in 10 seconds
+
+    Running handlers:
+    There was an error running gitlab-ctl reconfigure:
+
+    runit_service[prometheus] (monitoring::prometheus line 87) had an error: Mixlib::ShellOut::ShellCommandFailed: ruby_block[restart_log_service] (/opt/gitlab/embedded/cookbooks/cache/cookbooks/runit/libraries/provider_runit_service.rb line 65) had an error: Mixlib::ShellOut::ShellCommandFailed: Expected process to exit with [0], but received '1'
+    ---- Begin output of /opt/gitlab/embedded/bin/sv restart /opt/gitlab/service/prometheus/log ----
+    STDOUT: fail: /opt/gitlab/service/prometheus/log: runsv not running
+    STDERR:
+    ---- End output of /opt/gitlab/embedded/bin/sv restart /opt/gitlab/service/prometheus/log ----
+    Ran /opt/gitlab/embedded/bin/sv restart /opt/gitlab/service/prometheus/log returned 1
+
+    Running handlers complete
+    Chef Infra Client failed. 42 resources updated in 07 seconds
+    ```
+
+    ```shell
+    # 解决方法：使用如下脚本不断死循环重启gitlab直至启动成功为止，鬼知道为什么
+    while :
+    do 
+    docker start gitlab && docker logs -f -t --tail 20 gitlab
+    done
+    ```
 
 ## Git
 
@@ -788,6 +830,16 @@ apt install git // 重新安装git可以避免git commit卡死的问题
 *   用`git diff --binary --whitespace=nowarn >  1.patch`生成普通的不含commit信息的patch
 *   用`git apply`应用patch，apply失败一般都是生成的patch有问题而不是apply命令有问题
 
+### git submodule
+
+git submodule init 
+
+git submodule update --init --recursive
+
+git submodule foreach git checkout -f master
+
+git submodule foreach git pull -f
+
 ## Graphviz
 
 * 指令集
@@ -872,6 +924,15 @@ apt install git // 重新安装git可以避免git commit卡死的问题
 
 串口打开过一段时间后无法输入：在串口设置中将`Flow control`修改为`None`
 
+session keepalive：执行如下脚本保持和终端的交互即可
+```shell
+while :
+do
+sleep 5
+echo " \c" #输出不换行的空格
+done&
+```
+
 ## OpenGrok
 
 *   搭建
@@ -932,9 +993,28 @@ apt install git // 重新安装git可以避免git commit卡死的问题
 
 ## Samba
 
+* 问题：samba、ssh每隔几分钟都会卡10多秒，并且卡顿期间无法使用域名访问samba，但是可以使用ip地址直接访问samba
+  * 解决方法：以后就不要使用域名访问了直接上IP
+
+* 调试方法：
+  * 查看log文件/var/log/samba
+  * [SMB协议原理抓包分析](https://www.cnblogs.com/yuzly/p/10480438.html)
+
 * ubuntu2004 配置
   * [ubuntu 20.04 安装配置Samba服务，Windows 和 linux协同工作](https://blog.csdn.net/mvp_Dawn/article/details/105847485)
   * 修改配置文件`global`标签中所有的`mask`为777
+  * 注意一定要配置workgroup，否则会出现下面的问题，log文件路径/var/log/samba/log.nmbd
+  
+  ```shell
+  [2021/01/26 09:01:23.036188,  0] ../../source3/nmbd/nmbd_become_lmb.c:531(become_local_master_browser)
+    become_local_master_browser: Error - cannot find server JKN-SYSTEM-PRODUCT-NAME in workgroup WORKGROUP on subnet 172.17.0.1
+  [2021/01/26 09:01:23.036229,  0] ../../source3/nmbd/nmbd_become_lmb.c:531(become_local_master_browser)
+    become_local_master_browser: Error - cannot find server JKN-SYSTEM-PRODUCT-NAME in workgroup WORKGROUP on subnet 192.168.137.30
+  [2021/01/26 09:06:32.116527,  0] ../../source3/nmbd/nmbd_become_lmb.c:531(become_local_master_browser)
+    become_local_master_browser: Error - cannot find server JKN-SYSTEM-PRODUCT-NAME in workgroup WORKGROUP on subnet 172.17.0.1
+  [2021/01/26 09:06:32.116696,  0] ../../source3/nmbd/nmbd_become_lmb.c:531(become_local_master_browser)
+    become_local_master_browser: Error - cannot find server JKN-SYSTEM-PRODUCT-NAME in workgroup WORKGROUP on subnet 192.168.137.30  
+  ```
 * 图形化界面配置（Ubuntu1204）
 
   * `apt-get install samba samba-common smbfs cifs-utils system-config-samba`
@@ -975,6 +1055,9 @@ apt install git // 重新安装git可以避免git commit卡死的问题
 *   有些函数定`义无法识别
     *   在 source insight 安装目录下，修改文件 c.tom文件 (对应C/C++)，添加如下内容`PJ_DEF(type)`
 
+*   正则表达式 `或|` 匹配
+    *   由sourceinsight的帮助文档`features and concepts->Regular Expressions`可知source insight支持的字符集汇总没有`或|`
+    *   所以只能用现有支持的支持的字符集构造正则表达式`INCLUDE_[EW]+[AI]+[SF]+[YI]+[M_]+[EM]+[SE]+[HS]+[H]*[_]*[S]*[U]*[P]*[O]*[R]*[T]*`来匹配`INCLUDE_WIFI_MESH_SUPPORT`或`INCLUDE_EASYMESH`
 ## Shell
 
 执行变量中存放的命令
@@ -1044,6 +1127,8 @@ apt install git // 重新安装git可以避免git commit卡死的问题
 
 *   `sudo nohup bash 脚本路径 >> /tmp/nohup.log 2>&1 </dev/null &` 指定输出文件
 
+* 问题：samba、ssh每隔几分钟都会卡10多秒，并且卡顿期间无法使用域名访问samba，但是可以使用ip地址直接访问samba，解决方法见[Samba](#Samba)
+
 * 问题
   ```shell
   [/opt/bba]#/etc/init.d/ssh restart
@@ -1056,6 +1141,7 @@ apt install git // 重新安装git可以避免git commit卡死的问题
   [/opt/bba]#/etc/init.d/ssh status
   * sshd is running
   ```
+* 调试方法：ssh服务端启动时加上-d参数，查看log文件：`/var/log/auth.log`
 
 ### SSH 显示图形化界面
 
@@ -1064,7 +1150,24 @@ apt install git // 重新安装git可以避免git commit卡死的问题
 *   **注意1**：配置secureCRT时需要将`Connection->Port Forwarding->Remote/X11->Forward X11 packets->Enforce X11 authentication`中的Display修改为`192.168.137.1:0.0`，这个地址必须要让服务器能ping通，否则服务器不知道把图形界面转发给谁。
 *   **注意2**：docker中另外还需要定义下面的变量`export DISPLAY=192.168.137.1:0.0`并写死到`~/.bashrc`中
 *   **注意3**：连接ssh的电脑`192.168.137.243`可以和显示X11界面的电脑`192.168.137.1`不是同一台电脑，因为`192.168.137.1`电脑的显示器是U2417H的高清显示器，所以就讲X11的界面放到这台电脑上面了
+*   **注意4**：mobaxterm中自带vcxsrv，所以启动自己的vcxsrv会启动失败，需要关掉`setting->configuration->x11->automaticlly start X server at mobaxterm start up`
 *   开机启动：参考本文链接：[查看进程启动时的参数](#%e6%9f%a5%e7%9c%8b%e8%bf%9b%e7%a8%8b%e5%90%af%e5%8a%a8%e6%97%b6%e7%9a%84%e5%8f%82%e6%95%b0)
+*   问题1
+    ```
+    _XSERVTransSocketCreateListener: failed to bind listener
+    _XSERVTransSocketINETCreateListener: ...SocketCreateListener() failed
+    _XSERVTransMakeAllCOTSServerListeners: failed to create listener for inet6
+    _XSERVTransSocketCreateListener: failed to bind listener
+    _XSERVTransSocketINETCreateListener: ...SocketCreateListener() failed
+    _XSERVTransMakeAllCOTSServerListeners: failed to create listener for inet
+    (EE) 
+    Fatal server error:
+    (EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+    (EE) Server terminated with error (1). Closing log file.
+
+    解决：
+    将display number由0修改为90即可
+    ```
 
 ### WinSCP：linux 和电脑互传文件
 
@@ -1090,6 +1193,7 @@ apt install git // 重新安装git可以避免git commit卡死的问题
   tftp总是传输到一半终止，
   或者一个tftp传输命令却在服务端建立了多个传输进度为0的连接
   或者在客户端体现为出现多个T也就是建立了多个tftp的连接传输进度却都是0
+  tftp服务器文件路径设置错误
       
   解决：
       问题出在你使用的交换机上面有一个自己的默认的静态IP：192.168.0.1，你需要将它的IP设置为自动获取而不是静态IP
@@ -1397,6 +1501,8 @@ EmEditor注册码（序列号）分享
 
 ### vscode
 [Windows下修改VSCode工作区存储目录workspaceStorage](https://blog.csdn.net/asty9000/article/details/90202510)
+
+切换python2、python3的方法：`Ctrl + Shift + P 输入python 选择select interpreter`
 
 ### Xmind
 
