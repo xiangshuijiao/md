@@ -38,7 +38,7 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
                         echo "$1 $2：$local_commit_date = $remote_commit_date" >> $logfile 2>&1 </dev/null
                 else
                         echo "$1 $2：$local_commit_date < $remote_commit_date" >> $logfile 2>&1 </dev/null
-						# 更新索引前强制用远程代码覆盖本地代码
+			# 更新索引前强制用远程代码覆盖本地代码
                         bool=true
                         git reset --hard remotes/origin/$2 
                         git pull -f
@@ -52,23 +52,16 @@ Check_if_the_Git_repository_in_the_specified_path_has_the_latest_commit()
                                 git submodule foreach git checkout -f master >> $logfile 2>&1 </dev/null
                                 git submodule foreach git fetch -f >> $logfile 2>&1 </dev/null
                                 git submodule foreach git reset --hard remotes/origin/master >> $logfile 2>&1 </dev/null
-
-                                # push到自建gitlab
-                                echo "git push -f gitlab $2"  >> $LOG_FILE 2>&1
-                                git push -f gitlab $2 >> $LOG_FILE 2>&1
-                                echo "cd sdk/mt7621 && git push -f gitlab master"  >> $LOG_FILE 2>&1
-                                cd sdk/mt7621 && git push -f gitlab master >> $LOG_FILE 2>&1
                         fi
+                fi
 
-                        # 项目定制
-                        if [ $1 == "/home/opengrok/src/private_project" ] \
-                           || [ $1 == "/home/opengrok/src/BBA_2_5_Platform_BCM" ] \
-                           || [ $1 == "/home/opengrok/src/PON_trunk_bba_2_5" ]
-                        then
-                                # push到自建gitlab
-                                echo "git push -f gitlab $2"  >> $LOG_FILE 2>&1
-                                git push -f gitlab $2 >> $LOG_FILE 2>&1
-                        fi
+                # push到自建gitlab
+                echo "git push -f gitlab $2"  >> $LOG_FILE 2>&1
+                git push -f gitlab $2 >> $LOG_FILE 2>&1
+                if [ $1 == "/home/opengrok/src/bba_3_0_platform" ]
+                then
+                        echo "cd sdk/mt7621 && git push -f gitlab master"  >> $LOG_FILE 2>&1
+                        cd sdk/mt7621 && git push -f gitlab master >> $LOG_FILE 2>&1   
                 fi
         else
                 echo "指定的仓库$1不存在，请手动重新clone" >> $logfile 2>&1 </dev/null
